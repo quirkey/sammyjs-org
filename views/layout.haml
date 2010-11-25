@@ -1,0 +1,26 @@
+!!!
+%html
+  %head
+    %title
+    %meta{'http-equiv'=>"Content-Type", :content=>"text/html; charset=iso-8859-1"}/
+    %meta{'http-equiv'=>"Content-Language", :content=>"en-us"}/
+
+    %link{:rel => "shortcut icon", :href => "/favicon.ico"}/
+
+    %link{:href =>"/css/screen.css", :media=>"screen", :rel=>"stylesheet", :type=>"text/css"}/
+
+    %script{:src => "/javascripts/bundled.js", :type => 'text/javascript'}
+    %script{:src => "/javascripts/extensions.js", :type => 'text/javascript'}
+    %script{:src => "/javascripts/app.js", :type => 'text/javascript'}
+  %body
+    #header
+      %h1 Sammy.js
+      %h3 A Small Web Framework With Class
+      #download
+        %h2
+          %a{:href => @download_url} DOWNLOAD
+    #main
+      = yield
+    #footer
+      %p
+        &copy; 2010 Aaron Quint. All code provided is open source under the MIT License

@@ -1,6 +1,6 @@
-/* Welcome to Compass.
- * In this file you should write your main styles. (or centralize your imports)
- * Import this file using the following HTML or equivalent:
- * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+// Import all the default blueprint modules so that we can access their mixins.
+@import "partials/blueprint";
 
-@import "compass/reset";
+#main {
+  @include container;
+}
