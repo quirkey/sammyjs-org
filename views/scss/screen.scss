@@ -1,5 +1,5 @@
 // Import all the default blueprint modules so that we can access their mixins.
-@import "partials/blueprint";
+@import "partials/base";
 
 #main {
   @include container;

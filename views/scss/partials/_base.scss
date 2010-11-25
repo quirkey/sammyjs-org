@@ -28,9 +28,11 @@ $blueprint-grid-width: ($blueprint-container-size + $blueprint-grid-margin) / $b
 // But Compass recommends that you scope your blueprint styles
 // So that you can better control what pages use blueprint
 // when stylesheets are concatenated together.
-@include blueprint-scaffolding;
+.body {
+  @include blueprint-scaffolding;
 
-@include blueprint-typography(true);
-@include blueprint-utilities;
-@include blueprint-debug;
-@include blueprint-interaction;
+  @include blueprint-typography(true);
+  @include blueprint-utilities;
+  @include blueprint-debug;
+  @include blueprint-interaction;
+}
