@@ -9,8 +9,8 @@ class SammyjsOrg < Sinatra::Application
 
   configure do
     Compass.configuration do |config|
-      config.project_path = File.dirname(__FILE__)
-      config.sass_dir = 'views/css'
+      config.project_path = APP_ROOT
+      config.sass_dir = APP_ROOT + 'views/scss'
     end
 
     set :haml, { :format => :html5 }
