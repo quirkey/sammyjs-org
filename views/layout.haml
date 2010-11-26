@@ -11,12 +11,34 @@
 
     / %script{:src => "/javascripts/extensions.js", :type => 'text/javascript'}
   %body
-    #header
-      %h1 Sammy.js
-      %h3 A Small Web Framework With Class
-      #download
-        %h2
-          %a{:href => @download_url} DOWNLOAD
+    #header-holder
+      #header
+        %h1
+          %img{:src => "/images/sammy-logo-header-large.png", :alt => "Sammy.js"}
+        %h3
+          %img{:src => "/images/slogan-large.png", :alt => "A Small Web Framework With Class"}
+        #download
+          %h2
+            %a{:href => '/download'}
+              %img{:src => "/images/download-button.png", :alt => 'DOWNLOAD'}
+          %p
+            Latest Version:
+            %strong 0.6.3
+          %p
+            %a{:href => "http://github.com/quirkey/sammy"}
+              Fork It on Github
+    #nav-holder
+      %ul#nav
+        %li
+          %a{:href => '/intro'} INTRODUCTION
+        %li
+          %a{:href => '/faq'} FAQ
+        %li
+          %a{:href => '/docs'} DOCS
+        %li
+          %a{:href => '/community'} COMMUNITY
+        %li
+          %a{:href => '/wiki'} WIKI
     #main
       = yield
     #footer

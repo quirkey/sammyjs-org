@@ -16,8 +16,8 @@ GEM
       downlow (~> 0.1.3)
       downlow (~> 0.1.4)
       fakeweb (>= 1.2.8)
-      fssm (~> 0.2.0)
       fssm
+      fssm (~> 0.2.0)
       leftright
       mocha
       shoulda
@@ -33,6 +33,8 @@ GEM
     rack (1.2.1)
     rake (0.8.7)
     rubyzip (0.9.4)
+    shotgun (0.8)
+      rack (>= 1.0)
     shoulda (2.11.3)
     sinatra (1.1.0)
       rack (~> 1.1)
@@ -53,6 +55,7 @@ DEPENDENCIES
   compass
   haml
   jim
+  shotgun
   sinatra (= 1.1.0)
   thin
   yajl-ruby

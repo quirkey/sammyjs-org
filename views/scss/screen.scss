@@ -1,6 +1,96 @@
 // Import all the default blueprint modules so that we can access their mixins.
 @import "partials/base";
+@import "fonts";
 
+
+$top-margin: 16px;
+
+// colors
+$blue: #5F6E81;
+$brown:#904B1C;
+$light-blue: #A5ADB5;
+$bebas: 'BebasRegular', Helvetica, Arial, sans-serif;
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.8em;
+  color: #333333;
+  background: #fff;
+}
+a:link {
+  color: $blue;
+  text-decoration: underline;
+}
+a:visited {
+  text-decoration: none;
+}
+a:hover {
+  color: $light-blue;
+}
+
+#header-holder {
+  margin: $top-margin 0px 0px 0px;
+  width: 100%;
+  background: url(/images/header-large-bg.png) repeat-x;
+  height: 185px;
+}
+
+#header {
+  @include container;
+  position:relative;
+  top: -$top-margin;
+  h1 {
+    width: 500px;
+    height: 207px;
+    z-index: 10;
+  }
+  h3 {
+    position: absolute;
+    width: 205px;
+    height: 57px;
+    top: 75px;
+    left: 510px;
+  }
+  #download {
+    background: url(/images/download-corner.png) no-repeat;
+    position: absolute;
+    width: 261px;
+    height: 200px;
+    top: 0px;
+    left: 720px;
+
+    h2 {
+      position: relative;
+      top: 70px;
+      left: 42px;
+    }
+  }
+}
+#nav-holder {
+  width: 100%;
+  background: url(/images/tweed-bg.gif) #f1f0e7;
+  border-bottom: 4px solid #dbdacf;
+  #nav {
+    @include container;
+    @include inline-block-list;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    li {
+      a {
+        text-decoration: none;
+        font: 1.2em/1.2em $bebas;
+        @include text-shadow(#ccc, 1px, 1px);
+        padding: 10px 25px;
+        &:hover {
+          background: #dbdacf;
+          @include opacity(0.5);
+          color: #333;
+        }
+      }
+    }
+  }
+}
 #main {
   @include container;
 }

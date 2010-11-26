@@ -9,4 +9,5 @@ gem "jim"
 
 group :development do
   gem "thin"
+  gem "shotgun"
 end
