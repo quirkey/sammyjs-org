@@ -1,1 +1,40 @@
-This is the index
+.highlights-list
+  %ol
+    %li
+      %a{:href => '#/small'} SMALL
+    %li
+      %a{:href => '#/modular'} MODULAR
+    %li
+      %a{:href => '#/simple'} CLEAN
+    %li
+      %a{:href => '#/fun'} FUN
+.highlights-details
+  .highlight{:rel => 'small'}
+    %p
+      Sammy's core is only
+      %strong 16K compressed
+      and
+      %strong 5.2K compressed and gzipped
+
+  .highlight{:rel => 'modular'}
+    %p
+      Sammy is built on a system of
+      %strong plugins
+      and
+      %strong adapters
+      \.
+      Only include the code you need.
+      It's also easy to extract your own
+      code into reusable plugins.
+  .highlight{:rel => 'clean'}
+    %p
+      The entire API was designed to be
+      %strong easy to understand
+      and read. Sammy tries to encourage good encapsulation
+      and application design.
+  .highlight{:rel => 'fun'}
+    %p
+      What's the real point of development if its not enjoyable.
+      Sammy tries to follow the
+      %strong MATZ
+      approach. It is optimized for developer happiness.
