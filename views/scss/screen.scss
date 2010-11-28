@@ -73,6 +73,7 @@ a:hover {
   #nav {
     @include container;
     @include inline-block-list;
+    margin: 0 auto;
     text-align: center;
     font-size: 16px;
     font-weight: bold;

@@ -6,6 +6,7 @@ gem "haml"
 gem "compass"
 gem "yajl-ruby"
 gem "jim" 
+gem "rdiscount"
 
 group :development do
   gem "thin"

@@ -1,3 +1,24 @@
+.intro
+  %h2 Sammy is RESTful Evented JavaScript
+.intro-code
+  %pre{:class => 'prettyprint lang-js'}
+    %code
+      :preserve
+        // initialize the application
+        var app = Sammy('#main', function() {
+          // include a plugin
+          this.use('Mustache');
+
+          // define a 'route'
+          this.get('#/', function() {
+            this.load('posts.json') // load some data
+                .renderEach('post.mustache') // render a template
+                .swap(); // swap the DOM with the new content
+          });
+        });
+
+        app.run('#/'); // start the application
+
 .highlights-list
   %ol
     %li

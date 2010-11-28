@@ -43,4 +43,7 @@ class SammyjsOrg < Sinatra::Application
     scss :"scss/#{params[:name]}"
   end
 
+  get '*' do
+    haml(markdown :"#{params[:splat].join}")
+  end
 end
