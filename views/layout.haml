@@ -11,13 +11,14 @@
 
     / %script{:src => "/javascripts/extensions.js", :type => 'text/javascript'}
   %body
-    #header-holder
-      #header
+    #header-holder{:class => @small_header ? 'small' : nil}
+      - size = @small_header ? 'small' : 'large'
+      #header{:class => @small_header ? 'small' : nil}
         %h1
-          %img{:src => "/images/sammy-logo-header-large.png", :alt => "Sammy.js"}
+          %img{:src => "/images/sammy-logo-header-#{size}.png", :alt => "Sammy.js"}
         %h3
-          %img{:src => "/images/slogan-large.png", :alt => "A Small Web Framework With Class"}
-        #download
+          %img{:src => "/images/slogan-#{size}.png", :alt => "A Small Web Framework With Class"}
+        .download
           %h2
             %a{:href => '/download'}
               %img{:src => "/images/download-button.png", :alt => 'DOWNLOAD'}

@@ -34,6 +34,11 @@ a:hover {
   width: 100%;
   background: url(/images/header-large-bg.png) repeat-x;
   height: 185px;
+
+  &.small {
+    background: url(/images/header-small-bg.png) repeat-x;
+    height: 107px;
+  }
 }
 
 #header {
@@ -52,7 +57,7 @@ a:hover {
     top: 75px;
     left: 510px;
   }
-  #download {
+  .download {
     background: url(/images/download-corner.png) no-repeat;
     position: absolute;
     width: 261px;
@@ -64,6 +69,25 @@ a:hover {
       position: relative;
       top: 70px;
       left: 42px;
+    }
+  }
+  // small
+  &.small {
+    h1 {
+      width: 291px;
+      height: 123px;
+      margin-top: 8px;
+    }
+    h3 {
+      width: 138px;
+      height: 38px;
+      top: 47px;
+      left: 332px;
+    }
+    .download {
+      background: url(/images/download-corner-small.png) no-repeat;
+      width: 264px;
+      height: 124px;
     }
   }
 }

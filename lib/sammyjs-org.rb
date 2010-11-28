@@ -43,6 +43,7 @@ class SammyjsOrg < Sinatra::Application
   end
 
   get '*' do
+    @small_header = true
     path = params[:splat].join
     haml "= textile(:\"#{path}\")"
   end
