@@ -12,9 +12,14 @@ end
 
 require 'sinatra'
 require 'compass'
+require 'jim/rack'
 
 class SammyjsOrg < Sinatra::Application
 
+  use Jim::Rack, {
+    :jimfile     => APP_ROOT + '/Jimfile',
+    :bundle_uri => '/javascripts/',
+  }
   configure do
     Compass.configuration do |config|
       config.project_path = APP_ROOT
@@ -25,12 +30,11 @@ class SammyjsOrg < Sinatra::Application
     set :scss, Compass.sass_engine_options
 
     set :root, APP_ROOT
-    # use Jim::Rack, {
-    #   :jimfile     => APP_ROOT + '/jimfile',
-    #   :bundled_uri => '/javascripts/bundled.js',
-    #   :compressed_uri => '/javascripts/compressed.js'
-    # }
 
+  end
+
+  before do
+    @current_version = '0.6.3'
   end
 
   get '/' do

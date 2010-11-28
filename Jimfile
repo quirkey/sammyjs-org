@@ -1,0 +1,12 @@
+{
+  "bundle_dir": "public/javascripts/",
+  "vendor_dir": "public/javascripts/vendor",
+  "bundles": {
+    "default": [
+      "jquery",
+      "prettify",
+      "public/javascripts/app"
+    ]
+  }
+}
+

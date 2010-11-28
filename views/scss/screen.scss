@@ -1,7 +1,7 @@
 // Import all the default blueprint modules so that we can access their mixins.
 @import "partials/base";
 @import "fonts";
-
+@import "partials/syntax";
 
 $top-margin: 16px;
 
@@ -70,6 +70,21 @@ a:hover {
       top: 70px;
       left: 42px;
     }
+    .download-info {
+      position: relative;
+      top: 130px;
+      left: 82px;
+      width: 160px;
+      color: $light-blue;
+      font-size: 0.9em;
+      a {
+        color: $light-blue;
+      }
+      strong {
+        color: #CCCCCC;
+      }
+    }
+
   }
   // small
   &.small {
@@ -117,6 +132,19 @@ a:hover {
     }
   }
 }
+
+#footer {
+  width: 100%;
+  background: url(/images/tweed-bg.gif) #f1f0e7;
+  border-top: 4px solid #dbdacf;
+  text-align:center;
+  padding: 10px 0px;
+  margin-top: 20px;
+
+  p {
+    font-size: 0.7em;
+  }
+}
 #main {
   @include container;
 
@@ -124,4 +152,17 @@ a:hover {
     padding-bottom: 10px;
     line-height: 140%;
   }
+}
+
+// index
+.intro {
+  @include column(10);
+  h2 {
+    font: 4.2em/1.4em $bebas;
+    color: $light-blue;
+    @include text-shadow(#CCC, 1px, 1px, 4px);
+  }
+}
+.intro-code {
+  @include column(14, true);
 }

@@ -9,25 +9,27 @@
 
     %link{:href =>"/css/screen.css", :media=>"screen", :rel=>"stylesheet", :type=>"text/css"}/
 
-    / %script{:src => "/javascripts/extensions.js", :type => 'text/javascript'}
+    /
   %body
     #header-holder{:class => @small_header ? 'small' : nil}
       - size = @small_header ? 'small' : 'large'
       #header{:class => @small_header ? 'small' : nil}
         %h1
-          %img{:src => "/images/sammy-logo-header-#{size}.png", :alt => "Sammy.js"}
+          %a{:href => '/'}
+            %img{:src => "/images/sammy-logo-header-#{size}.png", :alt => "Sammy.js"}
         %h3
           %img{:src => "/images/slogan-#{size}.png", :alt => "A Small Web Framework With Class"}
         .download
           %h2
             %a{:href => '/download'}
               %img{:src => "/images/download-button.png", :alt => 'DOWNLOAD'}
-          %p
-            Latest Version:
-            %strong 0.6.3
-          %p
-            %a{:href => "http://github.com/quirkey/sammy"}
-              Fork It on Github
+          .download-info
+            %p
+              Latest Version:
+              %strong= @current_version
+            %p
+              %a{:href => "http://github.com/quirkey/sammy"}
+                Fork It on Github
     #nav-holder
       %ul#nav
         %li
@@ -45,3 +47,4 @@
     #footer
       %p
         &copy; 2010 Aaron Quint. All code provided is open source under the MIT License
+    %script{:src => "/javascripts/default.js", :type => 'text/javascript'}
