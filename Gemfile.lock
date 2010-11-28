@@ -1,6 +1,7 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    RedCloth (4.2.3)
     archive-tar-minitar (0.5.2)
     compass (0.10.6)
       haml (>= 3.0.4)
@@ -32,7 +33,6 @@ GEM
       rake
     rack (1.2.1)
     rake (0.8.7)
-    rdiscount (1.6.5)
     rubyzip (0.9.4)
     shotgun (0.8)
       rack (>= 1.0)
@@ -53,10 +53,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  RedCloth
   compass
   haml
   jim
-  rdiscount
   shotgun
   sinatra (= 1.1.0)
   thin

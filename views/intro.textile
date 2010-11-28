@@ -1,6 +1,12 @@
-## Introduction
+h2. Introduction
 
-### What
+
+* "What":#what
+* "Why":#why
+* "How":#how
+* "More!":#more
+
+h3. What
 
 Sammy.js is a tiny JavaScript framework developed to ease the pain and provide a basic structure for developing JavaScript applications.
 
@@ -8,7 +14,7 @@ Sammy tries to achieve this by providing a small 'core' framework and an evergro
 
 Sammy *is not* a solution for every JavaScript application or problematic situation. It is a single and rather opinionated method for building applications that tries to lend itself to best practices and maintainable development. It does this without the overhead of a large base framework or a single method or system for building models or views. If you want something more fully featured I highly suggest checking out [SproutCore](http://www.sproutcore.com) or [Cappucino](http://cappucino.org).
 
-### Why
+h3. Why
 
 In the modern age of super fast browsers and user expectations about the responsiveness and perceived speed of web applications - single page AJAX applications have become the rage (GMail, etc). Furthermore, instead of just fetching full HTML and rendering it asynchronously, fetching raw data (JSON) and rendering on the client side has not only become possible - its actually very common. 
 
@@ -16,7 +22,7 @@ Sammy.js was originally built as an experiment in desigining API's in Javascript
 
 Sammy continues to be fueled by the community and real world production applications. It's small enough that it can stay out of your way, and now in the latest version it can integrate with the DOM/AJAX Framework of your choice.
 
-### How
+h3. How
 
 #### Installation
 

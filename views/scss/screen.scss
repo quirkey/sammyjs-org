@@ -13,8 +13,8 @@ $bebas: 'BebasRegular', Helvetica, Arial, sans-serif;
 
 body {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 0.8em;
-  color: #333333;
+  font-size: 1em;
+  color: #444;
   background: #fff;
 }
 a:link {
@@ -22,6 +22,7 @@ a:link {
   text-decoration: underline;
 }
 a:visited {
+  color: $blue;
   text-decoration: none;
 }
 a:hover {
@@ -94,4 +95,9 @@ a:hover {
 }
 #main {
   @include container;
+
+  p {
+    padding-bottom: 10px;
+    line-height: 140%;
+  }
 }

@@ -11,7 +11,6 @@ rescue LoadError
 end
 
 require 'sinatra'
-require 'haml'
 require 'compass'
 
 class SammyjsOrg < Sinatra::Application
@@ -44,6 +43,7 @@ class SammyjsOrg < Sinatra::Application
   end
 
   get '*' do
-    haml(markdown :"#{params[:splat].join}")
+    path = params[:splat].join
+    haml "= textile(:\"#{path}\")"
   end
 end
