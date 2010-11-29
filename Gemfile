@@ -5,7 +5,7 @@ gem "sinatra", "1.1.0"
 gem "haml"
 gem "compass"
 gem "yajl-ruby"
-gem "jim" 
+gem "jim", "0.3.0.pre" 
 gem "RedCloth"
 
 group :development do
