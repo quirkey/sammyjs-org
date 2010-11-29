@@ -11,14 +11,14 @@
 
     /
   %body
-    #header-holder{:class => @small_header ? 'small' : nil}
-      - size = @small_header ? 'small' : 'large'
-      #header{:class => @small_header ? 'small' : nil}
+    #header-holder{:class => @general_header ? 'general' : nil}
+      - size = @general_header ? 'small' : 'large'
+      #header{:class => @general_header ? 'general' : nil}
         %h1
           %a{:href => '/'}
             %img{:src => "/images/sammy-logo-header-#{size}.png", :alt => "Sammy.js"}
         %h3
-          %img{:src => "/images/slogan-#{size}.png", :alt => "A Small Web Framework With Class"}
+          %img{:src => "/images/slogan-#{size}.png", :alt => "A general Web Framework With Class"}
         .download
           %h2
             %a{:href => '/download'}
@@ -42,7 +42,7 @@
           %a{:href => '/community'} COMMUNITY
         %li
           %a{:href => '/wiki'} WIKI
-    #main
+    #main{:class => @general_header ? 'general' : nil}
       = yield
     #footer
       %p

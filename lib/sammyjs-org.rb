@@ -12,14 +12,9 @@ end
 
 require 'sinatra'
 require 'compass'
-require 'jim/rack'
 
 class SammyjsOrg < Sinatra::Application
 
-  use Jim::Rack, {
-    :jimfile     => APP_ROOT + '/Jimfile',
-    :bundle_uri => '/javascripts/',
-  }
   configure do
     Compass.configuration do |config|
       config.project_path = APP_ROOT
@@ -47,7 +42,7 @@ class SammyjsOrg < Sinatra::Application
   end
 
   get '*' do
-    @small_header = true
+    @general_header = true
     path = params[:splat].join
     haml "= textile(:\"#{path}\")"
   end

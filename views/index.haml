@@ -9,53 +9,64 @@
 
           // define a 'route'
           this.get('#/', function() {
-            this.load('posts.json') // load some data
-                .renderEach('post.mustache') // render a template
-                .swap(); // swap the DOM with the new content
+            // load some data
+            this.load('posts.json')
+                // render a template
+                .renderEach('post.mustache')
+                // swap the DOM with the new content
+                .swap();
           });
         });
 
-        app.run('#/'); // start the application
+        // start the application
+        app.run('#/');
 
 .intro
   %h2 RESTful Evented JavaScript
+
+.ctas
+  .cta.download
+    %a{:href => '/download'} DOWNLOAD
+  .cta.docs
+    %a{:href => '/docs'} READ THE DOCS
+  .cta.help
+    %a{:href => '/community'} GET HELP
 .highlights-list
   %ol
     %li
-      %a{:href => '#/small'} SMALL
+      %h3 SMALL
+      .highlight{:rel => 'small'}
+        %p
+          Sammy's core is only
+          %strong 16K compressed
+          and
+          %strong 5.2K compressed and gzipped
     %li
-      %a{:href => '#/modular'} MODULAR
+      %h3 MODULAR
+      .highlight{:rel => 'modular'}
+        %p
+          Sammy is built on a system of
+          %strong plugins
+          and
+          %strong adapters
+          \.
+          Only include the code you need.
+          It's also easy to extract your own
+          code into reusable plugins.
     %li
-      %a{:href => '#/simple'} CLEAN
-    %li
-      %a{:href => '#/fun'} FUN
-.highlights-details
-  .highlight{:rel => 'small'}
-    %p
-      Sammy's core is only
-      %strong 16K compressed
-      and
-      %strong 5.2K compressed and gzipped
+      %h3 CLEAN
 
-  .highlight{:rel => 'modular'}
-    %p
-      Sammy is built on a system of
-      %strong plugins
-      and
-      %strong adapters
-      \.
-      Only include the code you need.
-      It's also easy to extract your own
-      code into reusable plugins.
-  .highlight{:rel => 'clean'}
-    %p
-      The entire API was designed to be
-      %strong easy to understand
-      and read. Sammy tries to encourage good encapsulation
-      and application design.
-  .highlight{:rel => 'fun'}
-    %p
-      What's the real point of development if its not enjoyable.
-      Sammy tries to follow the
-      %strong MATZ
-      approach. It is optimized for developer happiness.
+      .highlight{:rel => 'clean'}
+        %p
+          The entire API was designed to be
+          %strong easy to understand
+          and read. Sammy tries to encourage good encapsulation
+          and application design.
+    %li
+      %h3 FUN
+      .highlight{:rel => 'fun'}
+        %p
+          What's the real point of development if its not enjoyable.
+          Sammy tries to follow the
+          %strong MATZ
+          approach. It is optimized for developer happiness.

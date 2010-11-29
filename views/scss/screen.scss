@@ -9,7 +9,14 @@ $top-margin: 16px;
 $blue: #5F6E81;
 $brown:#904B1C;
 $light-blue: #A5ADB5;
+$green: #246438;
+$bright-blue: #376aac;
+
 $bebas: 'BebasRegular', Helvetica, Arial, sans-serif;
+
+@mixin tweed-bg($style: '') {
+  background: url(/images/tweed-bg#{$style}.gif) #f1f0e7;
+}
 
 body {
   font-family: Arial, Helvetica, sans-serif;
@@ -35,7 +42,7 @@ a:hover {
   background: url(/images/header-large-bg.png) repeat-x;
   height: 185px;
 
-  &.small {
+  &.general {
     background: url(/images/header-small-bg.png) repeat-x;
     height: 107px;
   }
@@ -78,7 +85,7 @@ a:hover {
       color: $light-blue;
       font-size: 0.9em;
       a {
-        color: $light-blue;
+        color: #FFF;
       }
       strong {
         color: #CCCCCC;
@@ -86,8 +93,8 @@ a:hover {
     }
 
   }
-  // small
-  &.small {
+  // general
+  &.general {
     h1 {
       width: 291px;
       height: 123px;
@@ -108,7 +115,7 @@ a:hover {
 }
 #nav-holder {
   width: 100%;
-  background: url(/images/tweed-bg.gif) #f1f0e7;
+  @include tweed-bg;
   border-bottom: 4px solid #dbdacf;
   #nav {
     @include container;
@@ -134,8 +141,8 @@ a:hover {
 }
 
 #footer {
+  @include tweed-bg;
   width: 100%;
-  background: url(/images/tweed-bg.gif) #f1f0e7;
   border-top: 4px solid #dbdacf;
   text-align:center;
   padding: 10px 0px;
@@ -147,22 +154,142 @@ a:hover {
 }
 #main {
   @include container;
-
+  margin-top: 20px;
   p {
     padding-bottom: 10px;
     line-height: 140%;
   }
-}
-
-// index
-.intro {
-  @include column(10);
-  h2 {
-    font: 4.2em/1.4em $bebas;
-    color: $light-blue;
-    @include text-shadow(#CCC, 1px, 1px, 4px);
+  // index
+  .intro {
+    @include column(10, true);
+    @include prepend(2);
+    h2 {
+      font: 4.4em/1.4em $bebas;
+      color: $light-blue;
+      @include text-shadow(#CCC, 1px, 1px, 4px);
+    }
   }
-}
-.intro-code {
-  @include column(14, true);
+  .intro-code {
+    @include column(12);
+  }
+
+  .ctas {
+    @include column(24, true);
+    @include clearfix;
+    margin-top: 20px;
+
+    .cta {
+      @include column(8);
+      @include clearfix;
+      font: 2.6em/1.0em $bebas;
+      text-align: center;
+      padding: 20px 0px;
+      a {
+        @include text-shadow(#ccc, 1px, 1px, 5px);
+        text-decoration: none;
+      }
+      &.download a {
+        color: $brown;
+      }
+      &.docs a {
+        color: $green;
+      }
+      &.help {
+        @include column(8, true);
+        a {
+          color: $bright-blue;
+        }
+      }
+    }
+  }
+  .highlights-list {
+    width: 100%;
+    ol {
+      @include no-bullets;
+      @include clearfix;
+      @include column(24, true);
+      margin-top: 20px;
+      li {
+        @include clearfix;
+        h3 {
+          @include column(6);
+          font: 2.2em/1.4em $bebas;
+          color: $blue;
+          text-align:right;
+        }
+      }
+    }
+    .highlight {
+      @include column(18, true);
+      @include tweed-bg(-light);
+      p {
+        padding: 10px 10px 20px 10px;
+        color: #666;
+      }
+    }
+  }
+
+  // main content
+  position: relative;
+  &.general {
+    p, pre, h3, h4, h5, ul, ol {
+      @include span(18, last);
+      position: relative;
+      float: right;
+    }
+    h2 {
+      font: 2.2em/1.4em $bebas;
+      color: $blue;
+      border-bottom: 1px solid #E5E5E5;
+      margin-bottom: 20px;
+    }
+    h3 {
+      color: $brown;
+      font: 1.7em/1.4em $bebas;
+      margin: 0px 0px 20px;
+      // top links
+      .top {
+        a {
+          color: $bright-blue !important;
+          font-family: Arial, sans-serif !important;
+          font-size: 1em;
+        }
+      }
+    }
+    h4 {
+      color: $light-blue;
+      font-size: 1.4em;
+      margin: 0px 0px 20px;
+    }
+    ul, ol {
+      margin: 0px 0px 20px;
+      list-style-position: inside;
+      li {
+        padding: 4px 0px;
+      }
+    }
+    pre {
+      margin: 0px 0px 20px;
+    }
+    .menu {
+      @include column(6);
+      position: absolute;
+      ul {
+        @include column(6);
+        @include no-bullets;
+        margin-left: 0px;
+        li {
+          padding: 10px;
+          a {
+            text-decoration: none;
+            font: 1.4em/0.7em $bebas;
+            color: #666; //$bright-blue;
+            &:hover {
+              border-bottom: 1px solid #E5E5E5;
+            }
+          }
+        }
+      }
+    }
+  }
 }

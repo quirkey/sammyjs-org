@@ -1,6 +1,18 @@
-pre.prettyprint {background-color:#fff;color:#000;font-weight:normal;font-style:normal;}
-pre.prettyprint .str{color:#f00;}
-pre.prettyprint .kwd{color:#5599CE; font-weight: bold;}
+pre, code {
+  font-family: Monaco, Courier, mono-space;
+  background: #F6F6F6;
+}
+pre {
+  padding: 10px;
+  border-left: 1px solid #E5E5E5;
+  line-height: 140%;
+}
+code {
+  font-size: 0.8em;
+}
+pre.prettyprint {color:#000;font-weight:normal;font-style:normal;}
+pre.prettyprint .str{color:#BF7D47;}
+pre.prettyprint .kwd{color:#5599CE; }
 pre.prettyprint .com{color:#666; font-style: italic;}
 pre.prettyprint .typ{color:#C75C32;}
 pre.prettyprint .lit{color:#a900a9;}
