@@ -1,0 +1,80 @@
+<div class='individual meth' id='Sammy.Application-use'>
+  <h4>
+    <strong>Sammy.Application</strong>
+    <a href='Sammy.Application._method_.use'>use</a>
+    <span>
+      (
+      <em></em>
+      )
+    </span>
+  </h4>
+  <div class='links'>
+    <a href='Sammy.Application._method_.use#comments'>Comments</a>
+    |
+    <a href='https://github.com/quirkey/sammy/tree//lib/sammy.js#L416'>Show in GitHub</a>
+  </div><div class='doc'><p><code>use()</code> is the entry point for including Sammy plugins.
+  The first argument to use should be a function() that is evaluated
+  in the context of the current application, just like the <code>app_function</code>
+  argument to the <code>Sammy.Application</code> constructor.</p>
+
+  <p>Any additional arguments are passed to the app function sequentially.</p>
+
+  <p>For much more detail about plugins, check out:
+  http://code.quirkey.com/sammy/doc/plugins.html</p>
+
+  <h3>Example</h3>
+
+  <pre class='prettyprint'><code>
+   var MyPlugin = function(app, prepend) {
+
+     this.helpers({
+       myhelper: function(text) {
+         alert(prepend + " " + text);
+       }
+     });
+
+   };
+
+   var app = $.sammy(function() {
+
+     this.use(MyPlugin, 'This is my plugin');
+
+     this.get('#/', function() {
+       this.myhelper('and dont you forget it!');
+       //=&gt; Alerts: This is my plugin and dont you forget it!
+     });
+
+   });
+  </code></pre>
+
+  <p>If plugin is passed as a string it assumes your are trying to load
+  Sammy."Plugin". This is the prefered way of loading core Sammy plugins
+  as it allows for better error-messaging.</p>
+
+  <h3>Example</h3>
+
+  <pre class='prettyprint'><code>
+   $.sammy(function() {
+     this.use('Mustache'); //=&gt; Sammy.Mustache
+     this.use('Storage'); //=&gt; Sammy.Storage
+   });
+  </code></pre></div><div id='comments'>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'sammyjsorg'; // required: replace example with your forum shortname
+
+    // The following are highly recommended additional parameters. Remove the slashes in front to use.
+    var disqus_identifier = "sammyjsdocs-Sammy.Application-use";
+    // var disqus_url = 'http://example.com/permalink-to-page.html';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
+</div>

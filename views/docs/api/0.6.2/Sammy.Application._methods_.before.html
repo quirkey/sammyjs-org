@@ -1,0 +1,66 @@
+<div class='individual meth' id='Sammy.Application-before'>
+  <h4>
+    <strong>Sammy.Application</strong>
+    <a href='Sammy.Application._method_.before'>before</a>
+    <span>
+      (
+      <em>options, callback</em>
+      )
+    </span>
+  </h4>
+  <div class='links'>
+    <a href='Sammy.Application._method_.before#comments'>Comments</a>
+    |
+    <a href='https://github.com/quirkey/sammy/tree//lib/sammy.js#L675'>Show in GitHub</a>
+  </div><div class='doc'><p>Takes a single callback that is pushed on to a stack.
+  Before any route is run, the callbacks are evaluated in order within
+  the current <code>Sammy.EventContext</code></p>
+
+  <p>If any of the callbacks explicitly return false, execution of any
+  further callbacks and the route itself is halted.</p>
+
+  <p>You can also provide a set of options that will define when to run this
+  before based on the route it proceeds.</p>
+
+  <h3>Example</h3>
+
+  <pre class='prettyprint'><code>
+   var app = $.sammy(function() {
+
+     // will run at #/route but not at #/
+     this.before('#/route', function() {
+       //...
+     });
+
+     // will run at #/ but not at #/route
+     this.before({except: {path: '#/route'}}, function() {
+       this.log('not before #/route');
+     });
+
+     this.get('#/', function() {});
+
+     this.get('#/route', function() {});
+
+   });
+  </code></pre>
+
+  <p>See <code>contextMatchesOptions()</code> for a full list of supported options</p></div><div id='comments'>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'sammyjsorg'; // required: replace example with your forum shortname
+
+    // The following are highly recommended additional parameters. Remove the slashes in front to use.
+    var disqus_identifier = "sammyjsdocs-Sammy.Application-before";
+    // var disqus_url = 'http://example.com/permalink-to-page.html';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
+</div>

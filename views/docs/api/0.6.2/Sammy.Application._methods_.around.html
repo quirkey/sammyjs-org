@@ -1,0 +1,76 @@
+<div class='individual meth' id='Sammy.Application-around'>
+  <h4>
+    <strong>Sammy.Application</strong>
+    <a href='Sammy.Application._method_.around'>around</a>
+    <span>
+      (
+      <em>callback</em>
+      )
+    </span>
+  </h4>
+  <div class='links'>
+    <a href='Sammy.Application._method_.around#comments'>Comments</a>
+    |
+    <a href='https://github.com/quirkey/sammy/tree//lib/sammy.js#L733'>Show in GitHub</a>
+  </div><div class='doc'><p>Adds an around filter to the application. around filters are functions
+  that take a single argument <code>callback</code> which is the entire route
+  execution path wrapped up in a closure. This means you can decide whether
+  or not to proceed with execution by not invoking <code>callback</code> or,
+  more usefuly wrapping callback inside the result of an asynchronous execution.</p>
+
+  <h3>Example</h3>
+
+  <p>The most common use case for around() is calling a <em>possibly</em> async function
+  and executing the route within the functions callback:</p>
+
+  <pre class='prettyprint'><code>
+   var app = $.sammy(function() {
+
+     var current_user = false;
+
+     function checkLoggedIn(callback) {
+       // /session returns a JSON representation of the logged in user
+       // or an empty object
+       if (!current_user) {
+         $.getJSON('/session', function(json) {
+           if (json.login) {
+             // show the user as logged in
+             current_user = json;
+             // execute the route path
+             callback();
+           } else {
+             // show the user as not logged in
+             current_user = false;
+             // the context of aroundFilters is an EventContext
+             this.redirect('#/login');
+           }
+         });
+       } else {
+         // execute the route path
+         callback();
+       }
+     };
+
+     this.around(checkLoggedIn);
+
+   });
+  </code></pre></div><div id='comments'>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'sammyjsorg'; // required: replace example with your forum shortname
+
+    // The following are highly recommended additional parameters. Remove the slashes in front to use.
+    var disqus_identifier = "sammyjsdocs-Sammy.Application-around";
+    // var disqus_url = 'http://example.com/permalink-to-page.html';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
+</div>

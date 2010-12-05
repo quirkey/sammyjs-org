@@ -1,0 +1,63 @@
+<div class='individual meth' id='Sammy.RenderContext-then'>
+  <h4>
+    <strong>Sammy.RenderContext</strong>
+    <a href='Sammy.RenderContext._method_.then'>then</a>
+    <span>
+      (
+      <em>callback</em>
+      )
+    </span>
+  </h4>
+  <div class='links'>
+    <a href='Sammy.RenderContext._method_.then#comments'>Comments</a>
+    |
+    <a href='https://github.com/quirkey/sammy/tree//lib/sammy.js#L1324'>Show in GitHub</a>
+  </div><div class='doc'><p>The "core" of the <code>RenderContext</code> object, adds the <code>callback</code> to the
+  queue. If the context is <code>waiting</code> (meaning an async operation is happening)
+  then the callback will be executed in order, once the other operations are
+  complete. If there is no currently executing operation, the <code>callback</code>
+  is executed immediately.</p>
+
+  <p>The value returned from the callback is stored in <code>content</code> for the
+  subsiquent operation. If you return <code>false</code>, the queue will pause, and
+  the next callback in the queue will not be executed until <code>next()</code> is
+  called. This allows for the guarunteed order of execution while working
+  with async operations.</p>
+
+  <p>If then() is passed a string instead of a function, the string is looked
+  up as a helper method on the event context.</p>
+
+  <h3>Example</h3>
+
+  <pre class='prettyprint'><code>
+   this.get('#/', function() {
+     // initialize the RenderContext
+     // Even though `load()` executes async, the next `then()`
+     // wont execute until the load finishes
+     this.load('myfile.txt')
+         .then(function(content) {
+           // the first argument to then is the content of the
+           // prev operation
+           $('#main').html(content);
+         });
+   });
+  </code></pre></div><div id='comments'>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'sammyjsorg'; // required: replace example with your forum shortname
+
+    // The following are highly recommended additional parameters. Remove the slashes in front to use.
+    var disqus_identifier = "sammyjsdocs-Sammy.RenderContext-then";
+    // var disqus_url = 'http://example.com/permalink-to-page.html';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
+</div>

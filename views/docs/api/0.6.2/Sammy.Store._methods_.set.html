@@ -1,0 +1,47 @@
+<div class='individual meth' id='Sammy.Store-set'>
+  <h4>
+    <strong>Sammy.Store</strong>
+    <a href='Sammy.Store._method_.set'>set</a>
+    <span>
+      (
+      <em>key, value</em>
+      )
+    </span>
+  </h4>
+  <div class='links'>
+    <a href='Sammy.Store._method_.set#comments'>Comments</a>
+    |
+    <a href='https://github.com/quirkey/sammy/tree//lib/plugins/sammy.storage.js#L103'>Show in GitHub</a>
+  </div><div class='doc'><p>Sets the value of <code>key</code> with <code>value</code>. If <code>value</code> is an
+  object, it is turned to and stored as a string with <code>JSON.stringify</code>.
+  It also tries to conform to the KVO pattern triggering jQuery events on the
+  element that the store is bound to.</p>
+
+  <h3>Example</h3>
+
+  <pre class='prettyprint'><code>
+   var store = new Sammy.Store({name: 'kvo'});
+   $('body').bind('set-kvo-foo', function(e, data) {
+     Sammy.log(data.key + ' changed to ' + data.value);
+   });
+   store.set('foo', 'bar'); // logged: foo changed to bar
+  </code></pre></div><div id='comments'>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'sammyjsorg'; // required: replace example with your forum shortname
+
+    // The following are highly recommended additional parameters. Remove the slashes in front to use.
+    var disqus_identifier = "sammyjsdocs-Sammy.Store-set";
+    // var disqus_url = 'http://example.com/permalink-to-page.html';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
+</div>

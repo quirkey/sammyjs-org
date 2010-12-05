@@ -1,0 +1,49 @@
+<div class='individual meth' id='Sammy.Application-setLocationProxy'>
+  <h4>
+    <strong>Sammy.Application</strong>
+    <a href='Sammy.Application._method_.setLocationProxy'>setLocationProxy</a>
+    <span>
+      (
+      <em>new_proxy</em>
+      )
+    </span>
+  </h4>
+  <div class='links'>
+    <a href='Sammy.Application._method_.setLocationProxy#comments'>Comments</a>
+    |
+    <a href='https://github.com/quirkey/sammy/tree//lib/sammy.js#L455'>Show in GitHub</a>
+  </div><div class='doc'><p>Sets the location proxy for the current app. By default this is set to
+  a new <code>Sammy.HashLocationProxy</code> on initialization. However, you can set
+  the location_proxy inside you're app function to give your app a custom
+  location mechanism. See <code>Sammy.HashLocationProxy</code> and <code>Sammy.DataLocationProxy</code>
+  for examples.</p>
+
+  <p><code>setLocationProxy()</code> takes an initialized location proxy.</p>
+
+  <h3>Example</h3>
+
+  <pre class='prettyprint'><code>
+     // to bind to data instead of the default hash;
+     var app = $.sammy(function() {
+       this.setLocationProxy(new Sammy.DataLocationProxy(this));
+     });
+  </code></pre></div><div id='comments'>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'sammyjsorg'; // required: replace example with your forum shortname
+
+    // The following are highly recommended additional parameters. Remove the slashes in front to use.
+    var disqus_identifier = "sammyjsdocs-Sammy.Application-setLocationProxy";
+    // var disqus_url = 'http://example.com/permalink-to-page.html';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
+</div>

@@ -1,0 +1,52 @@
+<div class='individual meth' id='Sammy.Application-mapRoutes'>
+  <h4>
+    <strong>Sammy.Application</strong>
+    <a href='Sammy.Application._method_.mapRoutes'>mapRoutes</a>
+    <span>
+      (
+      <em>route_array</em>
+      )
+    </span>
+  </h4>
+  <div class='links'>
+    <a href='Sammy.Application._method_.mapRoutes#comments'>Comments</a>
+    |
+    <a href='https://github.com/quirkey/sammy/tree//lib/sammy.js#L566'>Show in GitHub</a>
+  </div><div class='doc'><p><code>mapRoutes</code> takes an array of arrays, each array being passed to route()
+  as arguments, this allows for mass definition of routes. Another benefit is
+  this makes it possible/easier to load routes via remote JSON.</p>
+
+  <h3>Example</h3>
+
+  <p>   var app = $.sammy(function() {</p>
+
+  <pre class='prettyprint'><code>
+   this.mapRoutes([
+       ['get', '#/', function() { this.log('index'); }],
+       // strings in callbacks are looked up as methods on the app
+       ['post', '#/create', 'addUser'],
+       // No verb assumes 'any' as the verb
+       [/dowhatever/, function() { this.log(this.verb, this.path)}];
+     ]);
+  </code></pre>
+
+  <p>   })</p></div><div id='comments'>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'sammyjsorg'; // required: replace example with your forum shortname
+
+    // The following are highly recommended additional parameters. Remove the slashes in front to use.
+    var disqus_identifier = "sammyjsdocs-Sammy.Application-mapRoutes";
+    // var disqus_url = 'http://example.com/permalink-to-page.html';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
+</div>

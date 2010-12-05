@@ -1,0 +1,50 @@
+<div class='individual meth' id='Sammy.Application-route'>
+  <h4>
+    <strong>Sammy.Application</strong>
+    <a href='Sammy.Application._method_.route'>route</a>
+    <span>
+      (
+      <em>verb, path, callback</em>
+      )
+    </span>
+  </h4>
+  <div class='links'>
+    <a href='Sammy.Application._method_.route#comments'>Comments</a>
+    |
+    <a href='https://github.com/quirkey/sammy/tree//lib/sammy.js#L483'>Show in GitHub</a>
+  </div><div class='doc'><p><code>route()</code> is the main method for defining routes within an application.
+  For great detail on routes, check out: http://code.quirkey.com/sammy/doc/routes.html</p>
+
+  <p>This method also has aliases for each of the different verbs (eg. <code>get()</code>, <code>post()</code>, etc.)</p>
+
+  <h3>Arguments</h3>
+
+  <ul>
+  <li><code>verb</code> A String in the set of ROUTE_VERBS or 'any'. 'any' will add routes for each
+   of the ROUTE_VERBS. If only two arguments are passed,
+   the first argument is the path, the second is the callback and the verb
+   is assumed to be 'any'.</li>
+  <li><code>path</code> A Regexp or a String representing the path to match to invoke this verb.</li>
+  <li><code>callback</code> A Function that is called/evaluated whent the route is run see: <code>runRoute()</code>.
+   It is also possible to pass a string as the callback, which is looked up as the name
+   of a method on the application.</li>
+  </ul></div><div id='comments'>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'sammyjsorg'; // required: replace example with your forum shortname
+
+    // The following are highly recommended additional parameters. Remove the slashes in front to use.
+    var disqus_identifier = "sammyjsdocs-Sammy.Application-route";
+    // var disqus_url = 'http://example.com/permalink-to-page.html';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
+</div>

@@ -1,0 +1,53 @@
+<div class='individual meth' id='Sammy.Application-swap'>
+  <h4>
+    <strong>Sammy.Application</strong>
+    <a href='Sammy.Application._method_.swap'>swap</a>
+    <span>
+      (
+      <em>content</em>
+      )
+    </span>
+  </h4>
+  <div class='links'>
+    <a href='Sammy.Application._method_.swap#comments'>Comments</a>
+    |
+    <a href='https://github.com/quirkey/sammy/tree//lib/sammy.js#L1118'>Show in GitHub</a>
+  </div><div class='doc'><p>Swaps the content of <code>$element()</code> with <code>content</code>
+  You can override this method to provide an alternate swap behavior
+  for <code>EventContext.partial()</code>.</p>
+
+  <h3>Example</h3>
+
+  <p>   var app = $.sammy(function() {</p>
+
+  <pre class='prettyprint'><code>
+   // implements a 'fade out'/'fade in'
+   this.swap = function(content) {
+     this.$element().hide('slow').html(content).show('slow');
+   }
+
+   get('#/', function() {
+     this.partial('index.html.erb') // will fade out and in
+   });
+  </code></pre>
+
+  <p>   });</p></div><div id='comments'>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'sammyjsorg'; // required: replace example with your forum shortname
+
+    // The following are highly recommended additional parameters. Remove the slashes in front to use.
+    var disqus_identifier = "sammyjsdocs-Sammy.Application-swap";
+    // var disqus_url = 'http://example.com/permalink-to-page.html';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
+</div>

@@ -1,0 +1,50 @@
+<div class='individual meth' id='Sammy.Store-filter'>
+  <h4>
+    <strong>Sammy.Store</strong>
+    <a href='Sammy.Store._method_.filter'>filter</a>
+    <span>
+      (
+      <em>callback</em>
+      )
+    </span>
+  </h4>
+  <div class='links'>
+    <a href='Sammy.Store._method_.filter#comments'>Comments</a>
+    |
+    <a href='https://github.com/quirkey/sammy/tree//lib/plugins/sammy.storage.js#L179'>Show in GitHub</a>
+  </div><div class='doc'><p>Filters the store by a filter function that takes a key value.
+  Returns an array of arrays where the first element of each array
+  is the key and the second is the value of that key.</p>
+
+  <h3>Example</h3>
+
+  <pre class='prettyprint'><code>
+   var store = new Sammy.Store;
+   store.set('one', 'two');
+   store.set('two', 'three');
+   store.set('1', 'two');
+   var returned = store.filter(function(key, value) {
+     // only return
+     return value === 'two';
+   });
+   // returned =&gt; [['one', 'two'], ['1', 'two']];
+  </code></pre></div><div id='comments'>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'sammyjsorg'; // required: replace example with your forum shortname
+
+    // The following are highly recommended additional parameters. Remove the slashes in front to use.
+    var disqus_identifier = "sammyjsdocs-Sammy.Store-filter";
+    // var disqus_url = 'http://example.com/permalink-to-page.html';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
+</div>

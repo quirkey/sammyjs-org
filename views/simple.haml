@@ -1,0 +1,18 @@
+!!!
+%html
+  %head
+    %title Sammy.js / A Small Web Framework with Class / RESTFul Evented JavaScript
+    %meta{'http-equiv'=>"Content-Type", :content=>"text/html; charset=UTF-8"}/
+    %meta{'http-equiv'=>"Content-Language", :content=>"en-us"}/
+
+    %link{:rel => "shortcut icon", :href => "/favicon.ico"}/
+
+    %link{:href =>"/css/screen.css", :media=>"screen", :rel=>"stylesheet", :type=>"text/css"}/
+
+  %body
+    #api{:class => @general_header ? 'general' : nil}
+      = yield
+    #footer
+      %p
+        &copy; 2010 Aaron Quint. All code provided is open source under the MIT License
+    %script{:src => "/javascripts/default.js", :type => 'text/javascript'}

@@ -1,0 +1,54 @@
+<div class='individual meth' id='Sammy.Application-runRoute'>
+  <h4>
+    <strong>Sammy.Application</strong>
+    <a href='Sammy.Application._method_.runRoute'>runRoute</a>
+    <span>
+      (
+      <em>verb, path, params, target</em>
+      )
+    </span>
+  </h4>
+  <div class='links'>
+    <a href='Sammy.Application._method_.runRoute#comments'>Comments</a>
+    |
+    <a href='https://github.com/quirkey/sammy/tree//lib/sammy.js#L940'>Show in GitHub</a>
+  </div><div class='doc'><p>First, invokes <code>lookupRoute()</code> and if a route is found, parses the
+  possible URL params and then invokes the route's callback within a new
+  <code>Sammy.EventContext</code>. If the route can not be found, it calls
+  <code>notFound()</code>. If <code>raise_errors</code> is set to <code>true</code> and
+  the <code>error()</code> has not been overriden, it will throw an actual JS
+  error.</p>
+
+  <p>You probably will never have to call this directly.</p>
+
+  <h3>Arguments</h3>
+
+  <ul>
+  <li><code>verb</code> A String for the verb.</li>
+  <li><code>path</code> A String path to lookup.</li>
+  <li><code>params</code> An Object of Params pulled from the URI or passed directly.</li>
+  </ul>
+
+
+  <h3>Returns</h3>
+
+  <p>Either returns the value returned by the route callback or raises a 404 Not Found error.</p></div><div id='comments'>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'sammyjsorg'; // required: replace example with your forum shortname
+
+    // The following are highly recommended additional parameters. Remove the slashes in front to use.
+    var disqus_identifier = "sammyjsdocs-Sammy.Application-runRoute";
+    // var disqus_url = 'http://example.com/permalink-to-page.html';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
+</div>

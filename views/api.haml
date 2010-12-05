@@ -1,0 +1,15 @@
+!!!
+%html
+  %head
+    %title Sammy.js / A Small Web Framework with Class / RESTFul Evented JavaScript
+    %meta{'http-equiv'=>"Content-Type", :content=>"text/html; charset=UTF-8"}/
+    %meta{'http-equiv'=>"Content-Language", :content=>"en-us"}/
+
+    %link{:rel => "shortcut icon", :href => "/favicon.ico"}/
+
+    %link{:href =>"/css/screen.css", :media=>"screen", :rel=>"stylesheet", :type=>"text/css"}/
+
+  %frameset{:cols => "250, *"}
+    %frame{:src => 'menu.html', :name => 'menu'}/
+    %frame{:src => "#{@page}.html", :name => 'content'}/
+  %script{:src => "/javascripts/default.js", :type => 'text/javascript'}

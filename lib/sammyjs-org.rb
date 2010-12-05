@@ -1,8 +1,8 @@
 APP_ROOT = File.expand_path(File.join(File.dirname(__FILE__), '..'))
 
-  require "rubygems"
-  require "bundler"
-  Bundler.require
+require "rubygems"
+require "bundler"
+Bundler.require
 
 require 'sinatra'
 require 'compass'
@@ -23,7 +23,7 @@ class SammyjsOrg < Sinatra::Application
   end
 
   before do
-    @current_version = '0.6.3'
+    @current_version = '0.6.2'
   end
 
   get '/' do
@@ -35,9 +35,26 @@ class SammyjsOrg < Sinatra::Application
     scss :"scss/#{params[:name]}"
   end
 
+  get '/docs/api/:version?/:page?' do
+    @general_header = true
+    @version = params[:version] || @current_version
+    @page = params[:page] || 'index'
+    puts @page.inspect
+    if @page =~ /\.html$/
+      haml "= html('docs/api/#{@version}/#{@page}')", :layout => :simple
+    else
+      haml :api, :layout => false
+    end
+  end
+
   get '*' do
     @general_header = true
     path = params[:splat].join
     haml "= textile(:\"#{path}\")"
+  end
+
+  private
+  def html(path)
+    File.read(File.join(APP_ROOT, "views", path))
   end
 end
