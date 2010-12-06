@@ -324,15 +324,15 @@ a:hover {
   }
 
   ol.api-menu {
-    width: 244px;
-    padding-left: 4px;
-
+    li {
+      width: 235px;
+    }
     h3 {
       font-weight: bold;
       font-size: 1em;
       border-top: 1px solid $light-blue;
       a {
-        padding: 4px 0px;
+        padding: 4px 0px 0px 4px;
         display: block;
         text-decoration: none;
       }
@@ -341,6 +341,7 @@ a:hover {
       font-weight: normal;
       font-size: 0.8em;
       color: #999;
+      padding-left: 4px;
     }
     li ol {
       padding-bottom: 8px;
@@ -350,6 +351,35 @@ a:hover {
       padding: 2px 0px 0px 8px;
       font-size: 0.9em;
       text-decoration: none;
+    }
+  }
+
+  .klass {
+    margin: 15px;
+    h2 {
+      font-size: 1.9em;
+      font-weight: bold;
+      color: $brown;
+      margin: 15px 0px;
+      // border-top: 3px solid #DCDBD4;
+      span {
+        font-size: 70%;
+        font-weight: normal;
+        color: #666;
+      }
+    }
+    .doc {
+      h3 {
+        font-weight: bold;
+        color: #444;
+        margin: 10px 0px;
+        font-size: 1.1em;
+      }
+      p {
+        width: 600px;
+        line-height: 150%;
+        padding-bottom: 10px;
+      }
     }
   }
 }
