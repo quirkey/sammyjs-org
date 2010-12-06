@@ -10,6 +10,8 @@
     %link{:href =>"/css/screen.css", :media=>"screen", :rel=>"stylesheet", :type=>"text/css"}/
 
   %frameset{:cols => "250, *"}
-    %frame{:src => 'menu.html', :name => 'menu'}/
-    %frame{:src => "#{@page}.html", :name => 'content'}/
+    %frameset{:rows => "150, *"}
+      %frame{:src => '/docs/api/header', :name => 'header', :scrolling => 'no', :noresize => 'noresize', :frameborder => '0', :border => 0}/
+      %frame{:src => 'menu.html', :name => 'menu', :noresize => 'noresize', :frameborder => '0', :border => 0}/
+    %frame{:src => "#{@page}.html", :name => 'content', :noresize => 'noresize', :frameborder => '0', :border => 0}/
   %script{:src => "/javascripts/default.js", :type => 'text/javascript'}

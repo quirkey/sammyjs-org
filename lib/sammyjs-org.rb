@@ -35,7 +35,11 @@ class SammyjsOrg < Sinatra::Application
     scss :"scss/#{params[:name]}"
   end
 
-  get '/docs/api/:version?/:page?' do
+  get '/docs/api/header' do
+    haml :"docs/api/header", :layout => :simple
+  end
+
+  get '/docs/api/?:version?/:page?' do
     @general_header = true
     @version = params[:version] || @current_version
     @page = params[:page] || 'index'
