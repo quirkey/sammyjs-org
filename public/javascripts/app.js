@@ -2,6 +2,27 @@
 
 
   $(function() {
+    $('pre.prettyprint code').each(function() {
+      var $code = $(this);
+      var text  = [];
+      var lines = $code.text().split("\n");
+      var i = 0, sub, match, line;
+      for (; i < lines.length; i++) {
+        line = lines[i];
+        if (!sub) {
+          match = line.match(/^(\s+)(.*)$/);
+          if (match) {
+            sub = match[1].length;
+            text.push(match[2]);
+          } else {
+            text.push(line);
+          }
+        } else {
+          text.push(line.substr(sub));
+        }
+      }
+      $code.text(text.join("\n"));
+    });
     // pretty print code
     prettyPrint();
 

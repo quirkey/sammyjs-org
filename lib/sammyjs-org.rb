@@ -15,7 +15,7 @@ class SammyjsOrg < Sinatra::Application
       config.sass_dir = APP_ROOT + 'views/scss'
     end
 
-    set :haml, { :format => :html5 }
+    set :haml, { :format => :html5, :output_style => :ugly }
     set :scss, Compass.sass_engine_options
 
     set :root, APP_ROOT
