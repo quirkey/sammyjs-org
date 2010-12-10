@@ -30,7 +30,8 @@
 
    // extends the app at '#main' with function.
    Sammy('#main', function() { ... });
-  </code></pre></div></div>
+  </code></pre></div>  <hr />
+</div>
 <div class='klass' id='Sammy.Application'>
   <h2 class='klass-name'>
     Sammy.Application
@@ -81,88 +82,6 @@
       <a href='#Sammy.Application-template_engine'>template_engine</a>
     </li>
   </ul>
-  <hr />
-  <div class='attr' id='Sammy.Application-APP_EVENTS'>
-    <h4>
-      APP_EVENTS
-      =
-      <span>['run'</span>
-    </h4><div class='doc'><p>An array of the default events triggered by the
-    application during its lifecycle</p></div></div>
-  <div class='attr' id='Sammy.Application-ROUTE_VERBS'>
-    <h4>
-      ROUTE_VERBS
-      =
-      <span>['get','post','put','delete']</span>
-    </h4><div class='doc'><p>the four route verbs</p></div></div>
-  <div class='attr' id='Sammy.Application-any'>
-    <h4>
-      any
-      =
-      <span>_routeWrapper('any')</span>
-    </h4><div class='doc'><p>Alias for route('any', ...)</p></div></div>
-  <div class='attr' id='Sammy.Application-debug'>
-    <h4>
-      debug
-      =
-      <span>false</span>
-    </h4><div class='doc'><p>When set to true, logs all of the default events using <code>log()</code></p></div></div>
-  <div class='attr' id='Sammy.Application-del'>
-    <h4>
-      del
-      =
-      <span>_routeWrapper('delete')</span>
-    </h4><div class='doc'><p>Alias for route('delete', ...)</p></div></div>
-  <div class='attr' id='Sammy.Application-element_selector'>
-    <h4>
-      element_selector
-      =
-      <span>'body'</span>
-    </h4><div class='doc'><p>Defines what element the application is bound to. Provide a selector
-    (parseable by <code>jQuery()</code>) and this will be used by <code>$element()</code></p></div></div>
-  <div class='attr' id='Sammy.Application-get'>
-    <h4>
-      get
-      =
-      <span>_routeWrapper('get')</span>
-    </h4><div class='doc'><p>Alias for route('get', ...)</p></div></div>
-  <div class='attr' id='Sammy.Application-post'>
-    <h4>
-      post
-      =
-      <span>_routeWrapper('post')</span>
-    </h4><div class='doc'><p>Alias for route('post', ...)</p></div></div>
-  <div class='attr' id='Sammy.Application-put'>
-    <h4>
-      put
-      =
-      <span>_routeWrapper('put')</span>
-    </h4><div class='doc'><p>Alias for route('put', ...)</p></div></div>
-  <div class='attr' id='Sammy.Application-raise_errors'>
-    <h4>
-      raise_errors
-      =
-      <span>false</span>
-    </h4><div class='doc'><p>When set to true, and the error() handler is not overriden, will actually
-    raise JS errors in routes (500) and when routes can't be found (404)</p></div></div>
-  <div class='attr' id='Sammy.Application-run_interval_every'>
-    <h4>
-      run_interval_every
-      =
-      <span>50</span>
-    </h4><div class='doc'><p>The time in milliseconds that the URL is queried for changes</p></div></div>
-  <div class='attr' id='Sammy.Application-template_engine'>
-    <h4>
-      template_engine
-      =
-      <span>null</span>
-    </h4><div class='doc'><p>The default template engine to use when using <code>partial()</code> in an
-    <code>EventContext</code>. <code>template_engine</code> can either be a string that
-    corresponds to the name of a method/helper on EventContext or it can be a function
-    that takes two arguments, the content of the unrendered partial and an optional
-    JS object that contains interpolation data. Template engine is only called/refered
-    to if the extension of the partial is null or unknown. See <code>partial()</code>
-    for more information</p></div></div>
   <h3 class='list'>Methods</h3>
   <ul>
     <li>
@@ -257,6 +176,87 @@
     </li>
   </ul>
   <hr />
+  <div class='attr' id='Sammy.Application-APP_EVENTS'>
+    <h4>
+      APP_EVENTS
+      =
+      <span>['run'</span>
+    </h4><div class='doc'><p>An array of the default events triggered by the
+    application during its lifecycle</p></div></div>
+  <div class='attr' id='Sammy.Application-ROUTE_VERBS'>
+    <h4>
+      ROUTE_VERBS
+      =
+      <span>['get','post','put','delete']</span>
+    </h4><div class='doc'><p>the four route verbs</p></div></div>
+  <div class='attr' id='Sammy.Application-any'>
+    <h4>
+      any
+      =
+      <span>_routeWrapper('any')</span>
+    </h4><div class='doc'><p>Alias for route('any', ...)</p></div></div>
+  <div class='attr' id='Sammy.Application-debug'>
+    <h4>
+      debug
+      =
+      <span>false</span>
+    </h4><div class='doc'><p>When set to true, logs all of the default events using <code>log()</code></p></div></div>
+  <div class='attr' id='Sammy.Application-del'>
+    <h4>
+      del
+      =
+      <span>_routeWrapper('delete')</span>
+    </h4><div class='doc'><p>Alias for route('delete', ...)</p></div></div>
+  <div class='attr' id='Sammy.Application-element_selector'>
+    <h4>
+      element_selector
+      =
+      <span>'body'</span>
+    </h4><div class='doc'><p>Defines what element the application is bound to. Provide a selector
+    (parseable by <code>jQuery()</code>) and this will be used by <code>$element()</code></p></div></div>
+  <div class='attr' id='Sammy.Application-get'>
+    <h4>
+      get
+      =
+      <span>_routeWrapper('get')</span>
+    </h4><div class='doc'><p>Alias for route('get', ...)</p></div></div>
+  <div class='attr' id='Sammy.Application-post'>
+    <h4>
+      post
+      =
+      <span>_routeWrapper('post')</span>
+    </h4><div class='doc'><p>Alias for route('post', ...)</p></div></div>
+  <div class='attr' id='Sammy.Application-put'>
+    <h4>
+      put
+      =
+      <span>_routeWrapper('put')</span>
+    </h4><div class='doc'><p>Alias for route('put', ...)</p></div></div>
+  <div class='attr' id='Sammy.Application-raise_errors'>
+    <h4>
+      raise_errors
+      =
+      <span>false</span>
+    </h4><div class='doc'><p>When set to true, and the error() handler is not overriden, will actually
+    raise JS errors in routes (500) and when routes can't be found (404)</p></div></div>
+  <div class='attr' id='Sammy.Application-run_interval_every'>
+    <h4>
+      run_interval_every
+      =
+      <span>50</span>
+    </h4><div class='doc'><p>The time in milliseconds that the URL is queried for changes</p></div></div>
+  <div class='attr' id='Sammy.Application-template_engine'>
+    <h4>
+      template_engine
+      =
+      <span>null</span>
+    </h4><div class='doc'><p>The default template engine to use when using <code>partial()</code> in an
+    <code>EventContext</code>. <code>template_engine</code> can either be a string that
+    corresponds to the name of a method/helper on EventContext or it can be a function
+    that takes two arguments, the content of the unrendered partial and an optional
+    JS object that contains interpolation data. Template engine is only called/refered
+    to if the extension of the partial is null or unknown. See <code>partial()</code>
+    for more information</p></div></div>
   <div class='meth' id='Sammy.Application-$element'>
     <h3>
       <a href='Sammy.Application._methods_.$element.html'>$element</a>
@@ -1049,7 +1049,8 @@
   has been deprecated in favor of this one based on Sammy.Storage. The exposed
   API is almost identical, but Sammy.Storage provides additional backends including
   HTML5 Storage. <code>Sammy.Cache</code> will try to use these backends when available
-  (in this order) <code>LocalStorage</code>, <code>SessionStorage</code>, and <code>Memory</code></p></div></div>
+  (in this order) <code>LocalStorage</code>, <code>SessionStorage</code>, and <code>Memory</code></p></div>  <hr />
+</div>
 <div class='klass' id='Sammy.DataCacheProxy'>
   <h2 class='klass-name'>
     Sammy.DataCacheProxy
@@ -1058,7 +1059,8 @@
       initial, $element
       )
     </span>
-  </h2><div class='doc'><p>A simple cache strategy that stores key/values <tt>$element.data()</tt> with a <tt>cache.</tt> prefix</p></div></div>
+  </h2><div class='doc'><p>A simple cache strategy that stores key/values <tt>$element.data()</tt> with a <tt>cache.</tt> prefix</p></div>  <hr />
+</div>
 <div class='klass' id='Sammy.DataLocationProxy'>
   <h2 class='klass-name'>
     Sammy.DataLocationProxy
@@ -1100,7 +1102,8 @@
   </code></pre>
 
   <p>Clicking on that link would not go to /about, but would set the apps location
-  to 'about' and trigger the route.</p></div></div>
+  to 'about' and trigger the route.</p></div>  <hr />
+</div>
 <div class='klass' id='Sammy.EventContext'>
   <h2 class='klass-name'>
     Sammy.EventContext
@@ -1471,6 +1474,12 @@
       <a href='#Sammy.Form-simple_element'>simple_element</a>
     </li>
   </ul>
+  <h3 class='list'>Methods</h3>
+  <ul>
+    <li>
+      <a href='#Sammy.Form-formFor'>formFor</a>
+    </li>
+  </ul>
   <hr />
   <div class='attr' id='Sammy.Form-simple_element'>
     <h4>
@@ -1488,13 +1497,6 @@
     <li><code>content</code> an optional string representing the content for the
     the element. If ommited, the element becomes self closing</li>
     </ul></div></div>
-  <h3 class='list'>Methods</h3>
-  <ul>
-    <li>
-      <a href='#Sammy.Form-formFor'>formFor</a>
-    </li>
-  </ul>
-  <hr />
   <div class='meth' id='Sammy.Form-formFor'>
     <h3>
       <a href='Sammy.Form._methods_.formFor.html'>formFor</a>
@@ -1936,7 +1938,8 @@
   </code></pre>
 
   <p>Note: You dont have to include the haml.js file on top of the plugin as the plugin
-  includes the full source.</p></div></div>
+  includes the full source.</p></div>  <hr />
+</div>
 <div class='klass' id='Sammy.Handlebars'>
   <h2 class='klass-name'>
     Sammy.Handlebars
@@ -2041,7 +2044,8 @@
   </code></pre>
 
   <p>Note: You dont have to include the handlebars.js file on top of the plugin as the plugin
-  includes the full source.</p></div></div>
+  includes the full source.</p></div>  <hr />
+</div>
 <div class='klass' id='Sammy.HashLocationProxy'>
   <h2 class='klass-name'>
     Sammy.HashLocationProxy
@@ -2258,7 +2262,8 @@
    });
   </code></pre>
 
-  <p>Would look for template nodes like <code>&lt;div data-key='entry'&gt;</code></p></div></div>
+  <p>Would look for template nodes like <code>&lt;div data-key='entry'&gt;</code></p></div>  <hr />
+</div>
 <div class='klass' id='Sammy.MemoryCacheProxy'>
   <h2 class='klass-name'>
     Sammy.MemoryCacheProxy
@@ -2267,7 +2272,8 @@
       initial
       )
     </span>
-  </h2><div class='doc'><p>A simple cache strategy that stores key/values in memory.</p></div></div>
+  </h2><div class='doc'><p>A simple cache strategy that stores key/values in memory.</p></div>  <hr />
+</div>
 <div class='klass' id='Sammy.Mustache'>
   <h2 class='klass-name'>
     Sammy.Mustache
@@ -2372,7 +2378,8 @@
   </code></pre>
 
   <p>Note: You dont have to include the mustache.js file on top of the plugin as the plugin
-  includes the full source.</p></div></div>
+  includes the full source.</p></div>  <hr />
+</div>
 <div class='klass' id='Sammy.NestedParams'>
   <h2 class='klass-name'>
     Sammy.NestedParams
@@ -2430,7 +2437,8 @@
   </code></pre>
 
   <p>It supports creating arrays with [] and other niceities. Check out the tests for
-  full specs.</p></div></div>
+  full specs.</p></div>  <hr />
+</div>
 <div class='klass' id='Sammy.OAuth2'>
   <h2 class='klass-name'>
     Sammy.OAuth2
@@ -2486,7 +2494,8 @@
   this.get("#/signout", function(context) {
     context.loseAccessToken();
     context.redirect("#/");
-  });</p></div></div>
+  });</p></div>  <hr />
+</div>
 <div class='klass' id='Sammy.Object'>
   <h2 class='klass-name'>
     Sammy.Object
@@ -2502,14 +2511,6 @@
       <a href='#Sammy.Object-escapeHTML'>escapeHTML</a>
     </li>
   </ul>
-  <hr />
-  <div class='attr' id='Sammy.Object-escapeHTML'>
-    <h4>
-      escapeHTML
-      =
-      <span>_escapeHTML</span>
-    </h4><div class='doc'><p>Escape HTML in string, use in templates to prevent script injection.
-    Also aliased as <code>h()</code></p></div></div>
   <h3 class='list'>Methods</h3>
   <ul>
     <li>
@@ -2535,6 +2536,13 @@
     </li>
   </ul>
   <hr />
+  <div class='attr' id='Sammy.Object-escapeHTML'>
+    <h4>
+      escapeHTML
+      =
+      <span>_escapeHTML</span>
+    </h4><div class='doc'><p>Escape HTML in string, use in templates to prevent script injection.
+    Also aliased as <code>h()</code></p></div></div>
   <div class='meth' id='Sammy.Object-has'>
     <h3>
       <a href='Sammy.Object._methods_.has.html'>has</a>
@@ -2657,7 +2665,8 @@
   will take a full refresh to get the app to change state.</p>
 
   <p>To read more about location proxies, check out the
-  documentation for <code>Sammy.HashLocationProxy</code></p></div></div>
+  documentation for <code>Sammy.HashLocationProxy</code></p></div>  <hr />
+</div>
 <div class='klass' id='Sammy.Pure'>
   <h2 class='klass-name'>
     Sammy.Pure
@@ -2669,7 +2678,8 @@
   </h2><div class='doc'><p><code>Sammy.Pure</code> is a simple wrapper around the pure.js templating engine for
   use in Sammy apps.</p>
 
-  <p>See http://beebole.com/pure/ for detailed documentation.</p></div></div>
+  <p>See http://beebole.com/pure/ for detailed documentation.</p></div>  <hr />
+</div>
 <div class='klass' id='Sammy.RenderContext'>
   <h2 class='klass-name'>
     Sammy.RenderContext
@@ -3078,7 +3088,8 @@
   if available, otherwise <code>Cookie</code>, otherwise <code>Memory</code>.
   It provides the <code>session()</code> helper through <code>Sammy.Storage#store()</code>.</p>
 
-  <p>See the <code>Sammy.Storage</code> plugin for full documentation.</p></div></div>
+  <p>See the <code>Sammy.Storage</code> plugin for full documentation.</p></div>  <hr />
+</div>
 <div class='klass' id='Sammy.Storage'>
   <h2 class='klass-name'>
     Sammy.Storage
@@ -3089,7 +3100,8 @@
     </span>
   </h2><div class='doc'><p>Sammy.Storage is a plugin that provides shortcuts for creating and using
   Sammy.Store objects. Once included it provides the <code>store()</code> app level
-  and helper methods. Depends on Sammy.JSON (or json2.js).</p></div></div>
+  and helper methods. Depends on Sammy.JSON (or json2.js).</p></div>  <hr />
+</div>
 <div class='klass' id='Sammy.Store'>
   <h2 class='klass-name'>
     Sammy.Store
@@ -3458,7 +3470,8 @@
 
 
   <p>For more information about document.cookie, check out the pre-eminint article
-  by ppk: [http://www.quirksmode.org/js/cookies.html]</p></div></div>
+  by ppk: [http://www.quirksmode.org/js/cookies.html]</p></div>  <hr />
+</div>
 <div class='klass' id='Sammy.Store.Data'>
   <h2 class='klass-name'>
     Sammy.Store.Data
@@ -3469,7 +3482,8 @@
     </span>
   </h2><div class='doc'><p>Data ('data') stores objects using the jQuery.data() methods. This has the advantadge
   of scoping the data to the specific element. Like the 'memory' store its data
-  will only last for the length of the current request (data is lost on refresh/etc).</p></div></div>
+  will only last for the length of the current request (data is lost on refresh/etc).</p></div>  <hr />
+</div>
 <div class='klass' id='Sammy.Store.LocalStorage'>
   <h2 class='klass-name'>
     Sammy.Store.LocalStorage
@@ -3486,7 +3500,8 @@
 
   <p>For more info on DOM Storage:
   [https://developer.mozilla.org/en/DOM/Storage]
-  [http://www.w3.org/TR/2009/WD-webstorage-20091222/]</p></div></div>
+  [http://www.w3.org/TR/2009/WD-webstorage-20091222/]</p></div>  <hr />
+</div>
 <div class='klass' id='Sammy.Store.Memory'>
   <h2 class='klass-name'>
     Sammy.Store.Memory
@@ -3496,7 +3511,8 @@
       )
     </span>
   </h2><div class='doc'><p>Memory ('memory') is the basic/default store. It stores data in a global
-  JS object. Data is lost on refresh.</p></div></div>
+  JS object. Data is lost on refresh.</p></div>  <hr />
+</div>
 <div class='klass' id='Sammy.Store.SessionStorage'>
   <h2 class='klass-name'>
     Sammy.Store.SessionStorage
@@ -3510,7 +3526,8 @@
   SessionStorage is only persistant through the current 'session' which is defined
   as the length that the current window is open. This means that data will survive
   refreshes but not close/open or multiple windows/tabs. For more info, check out
-  the <code>LocalStorage</code> documentation and links.</p></div></div>
+  the <code>LocalStorage</code> documentation and links.</p></div>  <hr />
+</div>
 <div class='klass' id='Sammy.Store.isAvailable'>
   <h2 class='klass-name'>
     Sammy.Store.isAvailable
@@ -3521,7 +3538,8 @@
     </span>
   </h2><div class='doc'><p>Tests if the type of storage is available/works in the current browser/config.
   Especially useful for testing the availability of the awesome, but not widely
-  supported HTML5 DOM storage</p></div></div>
+  supported HTML5 DOM storage</p></div>  <hr />
+</div>
 <div class='klass' id='Sammy.Template'>
   <h2 class='klass-name'>
     Sammy.Template
@@ -3578,7 +3596,8 @@
    this.get('#/', function() {
      this.partial('myfile.tpl');
    });
-  </code></pre></div></div>
+  </code></pre></div>  <hr />
+</div>
 <div class='klass' id='Sammy.Title'>
   <h2 class='klass-name'>
     Sammy.Title
@@ -3589,7 +3608,8 @@
     </span>
   </h2><div class='doc'><p>Sammy.Title is a very simple plugin to easily set the document's title.
   It supplies a helper for setting the title (<code>title()</code>) within routes,
-  and an app level method for setting the global title (<code>setTitle()</code>)</p></div></div>
+  and an app level method for setting the global title (<code>setTitle()</code>)</p></div>  <hr />
+</div>
 <div class='klass' id='Sammy.addLogger'>
   <h2 class='klass-name'>
     Sammy.addLogger
@@ -3600,7 +3620,8 @@
     </span>
   </h2><div class='doc'><p>Add to the global logger pool. Takes a function that accepts an
   unknown number of arguments and should print them or send them somewhere
-  The first argument is always a timestamp.</p></div></div>
+  The first argument is always a timestamp.</p></div>  <hr />
+</div>
 <div class='klass' id='Sammy.log'>
   <h2 class='klass-name'>
     Sammy.log
@@ -3611,4 +3632,5 @@
     </span>
   </h2><div class='doc'><p>Sends a log message to each logger listed in the global
   loggers pool. Can take any number of arguments.
-  Also prefixes the arguments with a timestamp.</p></div></div>
+  Also prefixes the arguments with a timestamp.</p></div>  <hr />
+</div>

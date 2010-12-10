@@ -368,6 +368,43 @@ a:hover {
         color: #666;
       }
     }
+    h3.list {
+      font-weight: normal;
+      color: #999;
+      margin: 10px 0px;
+    }
+    > ul {
+      @include inline-list;
+      @include no-bullets;
+      li {
+        padding-right: 10px;
+        a {
+          font-size: 0.9em;
+          text-decoration: none;
+        }
+      }
+    }
+    hr {
+      margin: 15px 0px;
+      color: #999
+    }
+    .attr {
+      h4 {
+        color: $bright-blue;
+        font-weight: bold;
+        font-size: 1.1em;
+        margin: 10px 0px;
+        span {
+          font-weight: normal;
+        }
+      }
+    }
+    .meth {
+      h3 {
+        font-size: 1.2em;
+        font-weight: bold;
+      }
+    }
     .doc {
       h3 {
         font-weight: bold;

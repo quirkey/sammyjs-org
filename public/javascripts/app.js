@@ -14,7 +14,7 @@
           if (match) {
             sub = match[1].length;
             text.push(match[2]);
-          } else {
+          } else if (!line.match(/^\s*$/)) { // its not whitespace
             text.push(line);
           }
         } else {
