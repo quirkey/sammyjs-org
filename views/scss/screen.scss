@@ -361,7 +361,8 @@ a:hover {
       font-weight: bold;
       color: $brown;
       margin: 15px 0px;
-      // border-top: 3px solid #DCDBD4;
+      padding: 15px 0px 0px;
+      border-top: 3px solid #DCDBD4;
       span {
         font-size: 70%;
         font-weight: normal;
@@ -401,8 +402,30 @@ a:hover {
     }
     .meth {
       h3 {
-        font-size: 1.2em;
+        font-size: 1.3em;
         font-weight: bold;
+        margin: 15px 0px 5px;
+        a {
+          text-decoration: none;
+          color: $green;
+        }
+        span {
+          color: #999;
+          font-size: 0.9em;
+        }
+      }
+      .links {
+        font-size: 0.9em;
+        padding: 5px 0px;
+      }
+      .doc {
+        margin: 10px 0px 0px;
+      }
+      ul {
+        margin: 0px 0px 0px 20px;
+        li {
+          padding: 5px 0px;
+        }
       }
     }
     .doc {

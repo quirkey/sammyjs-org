@@ -12,30 +12,7 @@
     <a href='Sammy.RenderContext._methods_.wait.html#comments'>Comments</a>
     |
     <a href='https://github.com/quirkey/sammy/tree/v0.6.2/lib/sammy.js#L1374'>Show in GitHub</a>
-  </div><div class='doc'><p>Pause the <code>RenderContext</code> queue. Combined with <code>next()</code> allows for async
-  operations.</p>
-
-  <h3>Example</h3>
-
-  <pre class='prettyprint'><code>
-     this.get('#/', function() {
-       this.load('mytext.json')
-           .then(function(content) {
-             var context = this,
-                 data    = JSON.parse(content);
-             // pause execution
-             context.wait();
-             // post to a url
-             $.post(data.url, {}, function(response) {
-               context.next(JSON.parse(response));
-             });
-           })
-           .then(function(data) {
-             // data is json from the previous post
-             $('#message').text(data.status);
-           });
-     });
-  </code></pre></div><div id='comments'>
+  </div><div class='doc'><p>Pause the <code>RenderContext</code> queue. Combined with <code>next()</code> allows for async&#x000A;operations.</p>&#x000A;&#x000A;<h3>Example</h3>&#x000A;&#x000A;<pre class='prettyprint'><code>&#x000A;   this.get('#/', function() {&#x000A;     this.load('mytext.json')&#x000A;         .then(function(content) {&#x000A;           var context = this,&#x000A;               data    = JSON.parse(content);&#x000A;           // pause execution&#x000A;           context.wait();&#x000A;           // post to a url&#x000A;           $.post(data.url, {}, function(response) {&#x000A;             context.next(JSON.parse(response));&#x000A;           });&#x000A;         })&#x000A;         .then(function(data) {&#x000A;           // data is json from the previous post&#x000A;           $('#message').text(data.status);&#x000A;         });&#x000A;   });&#x000A;</code></pre></div><div id='comments'>
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'sammyjsorg'; // required: replace example with your forum shortname

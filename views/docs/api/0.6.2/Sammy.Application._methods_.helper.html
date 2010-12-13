@@ -12,34 +12,7 @@
     <a href='Sammy.Application._methods_.helper.html#comments'>Comments</a>
     |
     <a href='https://github.com/quirkey/sammy/tree/v0.6.2/lib/sammy.js#L799'>Show in GitHub</a>
-  </div><div class='doc'><p>Helper extends the event context just like <code>helpers()</code> but does it
-  a single method at a time. This is especially useful for dynamically named
-  helpers</p>
-
-  <h3>Example</h3>
-
-  <pre class='prettyprint'><code>
-  // Trivial example that adds 3 helper methods to the context dynamically
-  var app = $.sammy(function(app) {
-
-    $.each([1,2,3], function(i, num) {
-      app.helper('helper' + num, function() {
-        this.log("I'm helper number " + num);
-      });
-    });
-
-    this.get('#/', function() {
-      this.helper2(); //=&gt; I'm helper number 2
-    });
-  });
-  </code></pre>
-
-  <h3>Arguments</h3>
-
-  <ul>
-  <li><code>name</code> The name of the method</li>
-  <li><code>method</code> The function to be added to the prototype at <code>name</code></li>
-  </ul></div><div id='comments'>
+  </div><div class='doc'><p>Helper extends the event context just like <code>helpers()</code> but does it&#x000A;a single method at a time. This is especially useful for dynamically named&#x000A;helpers</p>&#x000A;&#x000A;<h3>Example</h3>&#x000A;&#x000A;<pre class='prettyprint'><code>&#x000A;// Trivial example that adds 3 helper methods to the context dynamically&#x000A;var app = $.sammy(function(app) {&#x000A;&#x000A;  $.each([1,2,3], function(i, num) {&#x000A;    app.helper('helper' + num, function() {&#x000A;      this.log("I'm helper number " + num);&#x000A;    });&#x000A;  });&#x000A;&#x000A;  this.get('#/', function() {&#x000A;    this.helper2(); //=&gt; I'm helper number 2&#x000A;  });&#x000A;});&#x000A;</code></pre>&#x000A;&#x000A;<h3>Arguments</h3>&#x000A;&#x000A;<ul>&#x000A;<li><code>name</code> The name of the method</li>&#x000A;<li><code>method</code> The function to be added to the prototype at <code>name</code></li>&#x000A;</ul>&#x000A;</div><div id='comments'>
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'sammyjsorg'; // required: replace example with your forum shortname

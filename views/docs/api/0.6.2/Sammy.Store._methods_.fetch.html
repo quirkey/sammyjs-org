@@ -12,28 +12,7 @@
     <a href='Sammy.Store._methods_.fetch.html#comments'>Comments</a>
     |
     <a href='https://github.com/quirkey/sammy/tree/v0.6.2/lib/plugins/sammy.storage.js#L216'>Show in GitHub</a>
-  </div><div class='doc'><p>Returns the value at <code>key</code> if set, otherwise, runs the callback
-  and sets the value to the value returned in the callback.</p>
-
-  <h3>Example</h3>
-
-  <p>   var store = new Sammy.Store;
-     store.exists('foo'); //=> false
-     store.fetch('foo', function() {</p>
-
-  <pre class='prettyprint'><code>
-   return 'bar!';
-  </code></pre>
-
-  <p>   }); //=> 'bar!'
-     store.get('foo') //=> 'bar!'
-     store.fetch('foo', function() {</p>
-
-  <pre class='prettyprint'><code>
-   return 'baz!';
-  </code></pre>
-
-  <p>   }); //=> 'bar!</p></div><div id='comments'>
+  </div><div class='doc'><p>Returns the value at <code>key</code> if set, otherwise, runs the callback&#x000A;and sets the value to the value returned in the callback.</p>&#x000A;&#x000A;<h3>Example</h3>&#x000A;&#x000A;<p>   var store = new Sammy.Store;&#x000A;   store.exists('foo'); //=> false&#x000A;   store.fetch('foo', function() {</p>&#x000A;&#x000A;<pre class='prettyprint'><code>&#x000A; return 'bar!';&#x000A;</code></pre>&#x000A;&#x000A;<p>   }); //=> 'bar!'&#x000A;   store.get('foo') //=> 'bar!'&#x000A;   store.fetch('foo', function() {</p>&#x000A;&#x000A;<pre class='prettyprint'><code>&#x000A; return 'baz!';&#x000A;</code></pre>&#x000A;&#x000A;<p>   }); //=> 'bar!</p></div><div id='comments'>
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'sammyjsorg'; // required: replace example with your forum shortname

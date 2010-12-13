@@ -12,26 +12,7 @@
     <a href='Sammy.Application._methods_.swap.html#comments'>Comments</a>
     |
     <a href='https://github.com/quirkey/sammy/tree/v0.6.2/lib/sammy.js#L1118'>Show in GitHub</a>
-  </div><div class='doc'><p>Swaps the content of <code>$element()</code> with <code>content</code>
-  You can override this method to provide an alternate swap behavior
-  for <code>EventContext.partial()</code>.</p>
-
-  <h3>Example</h3>
-
-  <p>   var app = $.sammy(function() {</p>
-
-  <pre class='prettyprint'><code>
-   // implements a 'fade out'/'fade in'
-   this.swap = function(content) {
-     this.$element().hide('slow').html(content).show('slow');
-   }
-
-   get('#/', function() {
-     this.partial('index.html.erb') // will fade out and in
-   });
-  </code></pre>
-
-  <p>   });</p></div><div id='comments'>
+  </div><div class='doc'><p>Swaps the content of <code>$element()</code> with <code>content</code>&#x000A;You can override this method to provide an alternate swap behavior&#x000A;for <code>EventContext.partial()</code>.</p>&#x000A;&#x000A;<h3>Example</h3>&#x000A;&#x000A;<p>   var app = $.sammy(function() {</p>&#x000A;&#x000A;<pre class='prettyprint'><code>&#x000A; // implements a 'fade out'/'fade in'&#x000A; this.swap = function(content) {&#x000A;   this.$element().hide('slow').html(content).show('slow');&#x000A; }&#x000A;&#x000A; get('#/', function() {&#x000A;   this.partial('index.html.erb') // will fade out and in&#x000A; });&#x000A;</code></pre>&#x000A;&#x000A;<p>   });</p></div><div id='comments'>
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'sammyjsorg'; // required: replace example with your forum shortname

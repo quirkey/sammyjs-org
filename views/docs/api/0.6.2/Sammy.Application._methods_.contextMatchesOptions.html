@@ -12,37 +12,7 @@
     <a href='Sammy.Application._methods_.contextMatchesOptions.html#comments'>Comments</a>
     |
     <a href='https://github.com/quirkey/sammy/tree/v0.6.2/lib/sammy.js#L1048'>Show in GitHub</a>
-  </div><div class='doc'><p>Matches an object of options against an <code>EventContext</code> like object that
-  contains <code>path</code> and <code>verb</code> attributes. Internally Sammy uses this
-  for matching <code>before()</code> filters against specific options. You can set the
-  object to <em>only</em> match certain paths or verbs, or match all paths or verbs <em>except</em>
-  those that match the options.</p>
-
-  <h3>Example</h3>
-
-  <pre class='prettyprint'><code>
-  var app = $.sammy(),
-      context = {verb: 'get', path: '#/mypath'};
-
-  // match against a path string
-  app.contextMatchesOptions(context, '#/mypath'); //=&gt; true
-  app.contextMatchesOptions(context, '#/otherpath'); //=&gt; false
-  // equivilent to
-  app.contextMatchesOptions(context, {only: {path:'#/mypath'}}); //=&gt; true
-  app.contextMatchesOptions(context, {only: {path:'#/otherpath'}}); //=&gt; false
-  // match against a path regexp
-  app.contextMatchesOptions(context, /path/); //=&gt; true
-  app.contextMatchesOptions(context, /^path/); //=&gt; false
-  // match only a verb
-  app.contextMatchesOptions(context, {only: {verb:'get'}}); //=&gt; true
-  app.contextMatchesOptions(context, {only: {verb:'post'}}); //=&gt; false
-  // match all except a verb
-  app.contextMatchesOptions(context, {except: {verb:'post'}}); //=&gt; true
-  app.contextMatchesOptions(context, {except: {verb:'get'}}); //=&gt; false
-  // match all except a path
-  app.contextMatchesOptions(context, {except: {path:'#/otherpath'}}); //=&gt; true
-  app.contextMatchesOptions(context, {except: {path:'#/mypath'}}); //=&gt; false
-  </code></pre></div><div id='comments'>
+  </div><div class='doc'><p>Matches an object of options against an <code>EventContext</code> like object that&#x000A;contains <code>path</code> and <code>verb</code> attributes. Internally Sammy uses this&#x000A;for matching <code>before()</code> filters against specific options. You can set the&#x000A;object to <em>only</em> match certain paths or verbs, or match all paths or verbs <em>except</em>&#x000A;those that match the options.</p>&#x000A;&#x000A;<h3>Example</h3>&#x000A;&#x000A;<pre class='prettyprint'><code>&#x000A;var app = $.sammy(),&#x000A;    context = {verb: 'get', path: '#/mypath'};&#x000A;&#x000A;// match against a path string&#x000A;app.contextMatchesOptions(context, '#/mypath'); //=&gt; true&#x000A;app.contextMatchesOptions(context, '#/otherpath'); //=&gt; false&#x000A;// equivilent to&#x000A;app.contextMatchesOptions(context, {only: {path:'#/mypath'}}); //=&gt; true&#x000A;app.contextMatchesOptions(context, {only: {path:'#/otherpath'}}); //=&gt; false&#x000A;// match against a path regexp&#x000A;app.contextMatchesOptions(context, /path/); //=&gt; true&#x000A;app.contextMatchesOptions(context, /^path/); //=&gt; false&#x000A;// match only a verb&#x000A;app.contextMatchesOptions(context, {only: {verb:'get'}}); //=&gt; true&#x000A;app.contextMatchesOptions(context, {only: {verb:'post'}}); //=&gt; false&#x000A;// match all except a verb&#x000A;app.contextMatchesOptions(context, {except: {verb:'post'}}); //=&gt; true&#x000A;app.contextMatchesOptions(context, {except: {verb:'get'}}); //=&gt; false&#x000A;// match all except a path&#x000A;app.contextMatchesOptions(context, {except: {path:'#/otherpath'}}); //=&gt; true&#x000A;app.contextMatchesOptions(context, {except: {path:'#/mypath'}}); //=&gt; false&#x000A;</code></pre></div><div id='comments'>
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'sammyjsorg'; // required: replace example with your forum shortname

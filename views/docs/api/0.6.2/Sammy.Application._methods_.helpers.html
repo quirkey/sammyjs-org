@@ -12,34 +12,7 @@
     <a href='Sammy.Application._methods_.helpers.html#comments'>Comments</a>
     |
     <a href='https://github.com/quirkey/sammy/tree/v0.6.2/lib/sammy.js#L769'>Show in GitHub</a>
-  </div><div class='doc'><p>Helpers extends the EventContext prototype specific to this app.
-  This allows you to define app specific helper functions that can be used
-  whenever you're inside of an event context (templates, routes, bind).</p>
-
-  <h3>Example</h3>
-
-  <p>   var app = $.sammy(function() {</p>
-
-  <pre class='prettyprint'><code>
-   helpers({
-     upcase: function(text) {
-      return text.toString().toUpperCase();
-     }
-   });
-
-   get('#/', function() { with(this) {
-     // inside of this context I can use the helpers
-     $('#main').html(upcase($('#main').text());
-   }});
-  </code></pre>
-
-  <p>   });</p>
-
-  <h3>Arguments</h3>
-
-  <ul>
-  <li><code>extensions</code> An object collection of functions to extend the context.</li>
-  </ul></div><div id='comments'>
+  </div><div class='doc'><p>Helpers extends the EventContext prototype specific to this app.&#x000A;This allows you to define app specific helper functions that can be used&#x000A;whenever you're inside of an event context (templates, routes, bind).</p>&#x000A;&#x000A;<h3>Example</h3>&#x000A;&#x000A;<p>   var app = $.sammy(function() {</p>&#x000A;&#x000A;<pre class='prettyprint'><code>&#x000A; helpers({&#x000A;   upcase: function(text) {&#x000A;    return text.toString().toUpperCase();&#x000A;   }&#x000A; });&#x000A;&#x000A; get('#/', function() { with(this) {&#x000A;   // inside of this context I can use the helpers&#x000A;   $('#main').html(upcase($('#main').text());&#x000A; }});&#x000A;</code></pre>&#x000A;&#x000A;<p>   });</p>&#x000A;&#x000A;<h3>Arguments</h3>&#x000A;&#x000A;<ul>&#x000A;<li><code>extensions</code> An object collection of functions to extend the context.</li>&#x000A;</ul>&#x000A;</div><div id='comments'>
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'sammyjsorg'; // required: replace example with your forum shortname

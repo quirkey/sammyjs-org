@@ -12,25 +12,7 @@
     <a href='Sammy.Application._methods_.mapRoutes.html#comments'>Comments</a>
     |
     <a href='https://github.com/quirkey/sammy/tree/v0.6.2/lib/sammy.js#L566'>Show in GitHub</a>
-  </div><div class='doc'><p><code>mapRoutes</code> takes an array of arrays, each array being passed to route()
-  as arguments, this allows for mass definition of routes. Another benefit is
-  this makes it possible/easier to load routes via remote JSON.</p>
-
-  <h3>Example</h3>
-
-  <p>   var app = $.sammy(function() {</p>
-
-  <pre class='prettyprint'><code>
-   this.mapRoutes([
-       ['get', '#/', function() { this.log('index'); }],
-       // strings in callbacks are looked up as methods on the app
-       ['post', '#/create', 'addUser'],
-       // No verb assumes 'any' as the verb
-       [/dowhatever/, function() { this.log(this.verb, this.path)}];
-     ]);
-  </code></pre>
-
-  <p>   })</p></div><div id='comments'>
+  </div><div class='doc'><p><code>mapRoutes</code> takes an array of arrays, each array being passed to route()&#x000A;as arguments, this allows for mass definition of routes. Another benefit is&#x000A;this makes it possible/easier to load routes via remote JSON.</p>&#x000A;&#x000A;<h3>Example</h3>&#x000A;&#x000A;<p>   var app = $.sammy(function() {</p>&#x000A;&#x000A;<pre class='prettyprint'><code>&#x000A; this.mapRoutes([&#x000A;     ['get', '#/', function() { this.log('index'); }],&#x000A;     // strings in callbacks are looked up as methods on the app&#x000A;     ['post', '#/create', 'addUser'],&#x000A;     // No verb assumes 'any' as the verb&#x000A;     [/dowhatever/, function() { this.log(this.verb, this.path)}];&#x000A;   ]);&#x000A;</code></pre>&#x000A;&#x000A;<p>   })</p></div><div id='comments'>
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'sammyjsorg'; // required: replace example with your forum shortname
