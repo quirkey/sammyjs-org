@@ -1,0 +1,49 @@
+h2. Documentation 
+
+<div class="menu">
+
+* "API":#api
+* "Building Blocks":#blocks
+* "Tutorials":#tutorials
+* "More Help":#more
+
+</div>
+
+h3(#api). API
+
+The API docs are generated from inline comments in the source. The API documentation now uses DISQUS for comments on specific methods and settings. You can help improve the API documentation by forking "the main repository":http://github.com/quirkey/sammy and adding and improving the inline documentation. We're also going to maintain documentation for each specific version.
+
+*"View the documentation for the latest stable version":/docs/api/stable*
+
+*"View the API docs for master/edge":/docs/api/master*
+
+
+h3(#blocks). Building Blocks
+
+Here are some more detailed descriptions of the different building blocks of a Sammy Application:
+
+* "Routes":/docs/routes - Defining the basic structure of your application in a RESTful way
+* "Events":/docs/events - Seperate some of the logic into custom events
+* "Plugins":/docs/plugins - Reusable and configurable code FTW
+
+
+h3(#tutorials). Tutorials
+
+More in-depth walkthroughs and tutorials for learning how to build and tweak Sammy apps.
+
+h4. The JSON Store
+
+The first official tutorial. It walks through the building of an Ecommerce front end using Sammy.
+
+* "Part I":/docs/tutorials/json_store_1
+* "Part II":/docs/tutorials/json_store_2
+
+h3(#more). More Help
+
+If you can't find what you're looking for in the documentation, there are a number of other resources. 
+
+First, check the growing "FAQ.":/faq
+
+Nope? How about "the wiki?":/wiki
+
+If all else fails, "the community of Sammy developers, will definitely help you out.":/community
