@@ -17,8 +17,8 @@ GEM
       downlow (~> 0.1.3)
       downlow (~> 0.1.4)
       fakeweb (>= 1.2.8)
-      fssm (~> 0.2.0)
       fssm
+      fssm (~> 0.2.0)
       leftright
       mocha
       shoulda

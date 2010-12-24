@@ -39,6 +39,10 @@ class SammyjsOrg < Sinatra::Application
     haml :"docs/api/header", :layout => :simple
   end
 
+  get '/docs/api/stable/?' do
+    redirect "/docs/api/#{@current_version}/"
+  end
+
   get '/docs/api/?:version?/:page?' do
     @general_header = true
     @version = params[:version] || @current_version
