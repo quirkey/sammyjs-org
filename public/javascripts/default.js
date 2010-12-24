@@ -7564,13 +7564,13 @@ window['_pr_isIE6'] = function () {
       var $code = $(this);
       var text  = [];
       var lines = $code.text().split("\n");
-      var i = 0, sub, match, line;
+      var i = 0, sub = 0, match, line;
       for (; i < lines.length; i++) {
         line = lines[i];
-        if (!sub) {
-          match = line.match(/^(\s+)(.*)$/);
+        if (i === 0) {
+          match = line.match(/^(\s+)?(.*)$/);
           if (match) {
-            sub = match[1].length;
+            sub = match[1] ? match[1].length : 0;
             text.push(match[2]);
           } else if (!line.match(/^\s*$/)) { // its not whitespace
             text.push(line);

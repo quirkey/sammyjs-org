@@ -1,0 +1,33 @@
+h2. Download
+
+<div class="menu">
+
+* "Just the JS":#justjs
+* "Packages":#packages
+* "Git":#git
+
+</div>
+
+h3(#justjs). Just the JS
+
+h4. Sammy.js "full":https://github.com/quirkey/sammy/raw/master/lib/sammy.js "minified":https://github.com/quirkey/sammy/raw/master/lib/min/sammy-latest.min.js
+
+h3(#packages). Packages
+
+You can download full packages of the source, examples, and minified versions from
+GitHub. "See all available versions here.":https://github.com/quirkey/sammy/downloads
+
+<p class="download">
+  <a href="http://github.com/quirkey/sammy/zipball/master">
+    <img border="0" width="90" src="http://github.com/images/modules/download/zip.png" />
+  </a>
+  <a href="http://github.com/quirkey/sammy/tarball/master">
+    <img border="0" width="90" src="http://github.com/images/modules/download/tar.png" />
+  </a>
+</p>
+
+h3(#git). Git
+
+The source and history is fully open and available via GitHub:
+
+"http://github.com/quirkey/sammy":http://github.com/quirkey/sammy
