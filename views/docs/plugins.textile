@@ -1,35 +1,13 @@
----
-layout: quirkey_code_multi
-title: Sammy - Documentation - API
-github_name: sammy
-current_version: 0.6.2
-nav:
-  - name: Overview
-    link: ../index.html
-  - name: Installation
-    link: ../install.html
-  - name: Documentation
-    link: index.html
-    sub:
-      - name: Routes
-        link: routes.html
-      - name: Events
-        link: events.html
-      - name: Plugins
-        link: plugins.html
-      - name: FAQ
-        link: faq.html
-      - name: API
-        link: api.html
-  - name: Tutorials
-    link: ../tutorials/index.html
-  - name: Resources
-    link: http://github.com/quirkey/sammy/wiki/
----
-
-h2(project_name). Sammy
-
 h2. Documentation
+
+<div class="menu">
+
+* "API":/docs#api
+* "Building Blocks":/docs#blocks
+* "Tutorials":/docs#tutorials
+* "More Help":/docs#more
+
+</div>
 
 h3. Plugins
 
@@ -39,7 +17,7 @@ h4. Basics
 
 A Sammy plugin is really just a Sammy app definition that isn't evaluated until needed. Since a Sammy app definition is really just a @function()@ we can pass this definition around wherever we want.
 
-{% highlight javascript %}
+<pre class="prettyprint lang-js"><code>
 var MyPlugin = function(app) {
   
   this.helpers({
@@ -49,11 +27,11 @@ var MyPlugin = function(app) {
   });
   
 };
-{% endhighlight %}
+</code></pre>
 
 This is the simplest type of plugin. It defines a helper method @alert()@ which once included can be used within routes and event bindings. Including this code into a Sammy app is as easy as creating it:
 
-{% highlight javascript %}
+<pre class="prettyprint lang-js"><code>
 var app = $.sammy(function() {
   this.use(MyPlugin);
   
@@ -62,7 +40,7 @@ var app = $.sammy(function() {
   });
   
 });
-{% endhighlight %}
+</code></pre>
 
 The key method for plugins is @use()@. Use takes the plugin function you defined and evaluates it within the context of the current application. In this case it calls @helpers()@ and defines our @alert()@ method. 
 
@@ -70,7 +48,7 @@ Plugins are not limited to helpers. You can define routes, event bindings, even 
 
 Theres one extra nicety to @use@. You can pass extra arguments when using a plugin that get passed to the plugin function.
 
-{% highlight javascript %}
+<pre class="prettyprint lang-js"><code>
 var MyAdvancedPlugin = function(app, prefix, suffix) {
   
   this.helpers({
@@ -89,7 +67,7 @@ var app = $.sammy(function() {
   });
   
 });
-{% endhighlight %}
+</code></pre>
 
 Here we defined a slightly more advanced plugin. Notice, the plugin function takes two extra arguments, @prefix@ and @suffix@. These two are evaluated with the function scope and allow us to change the behavior of the code we're including. At include time, we pass a 'BEFORE!', 'AFTER!' to _configure_ the plugin. 
 
@@ -97,7 +75,7 @@ h4. Code Re-use
 
 One of the greatest use-cases for Sammy plugins is refactoring common code out of multiple applications. 
 
-{% highlight javascript %}
+<pre class="prettyprint lang-js"><code>
 var app1 = $.sammy(function() {
   this.element_selector = '#div_1';
   
@@ -127,11 +105,11 @@ var app2 = $.sammy(function() {
     this.db = loadDB();
   });
 });
-{% endhighlight %}
+</code></pre>
 
 Obviously, this is a pretty extreme example, but it lends itself well to refactoring. Lets take the common code out into a plugin.
 
-{% highlight javascript %}
+<pre class="prettyprint lang-js"><code>
 var dbLoadAndDisplay = function(app, element_selector) {
   this.element_selector = element_selector;
   
@@ -158,7 +136,7 @@ var app2 = $.sammy(function() {
   // ... app specific code ...
 
 });
-{% endhighlight %}
+</code></pre>
 
 h4. Public Plugin Repository
 

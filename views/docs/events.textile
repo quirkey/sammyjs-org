@@ -1,35 +1,13 @@
----
-layout: quirkey_code_multi
-title: Sammy - Documentation - API
-github_name: sammy
-current_version: 0.6.2
-nav:
-  - name: Overview
-    link: ../index.html
-  - name: Installation
-    link: ../install.html
-  - name: Documentation
-    link: index.html
-    sub:
-      - name: Routes
-        link: routes.html
-      - name: Events
-        link: events.html
-      - name: Plugins
-        link: plugins.html
-      - name: FAQ
-        link: faq.html
-      - name: API
-        link: api.html
-  - name: Tutorials
-    link: ../tutorials/index.html
-  - name: Resources
-    link: http://github.com/quirkey/sammy/wiki/
----
-
-h2(project_name). Sammy
-
 h2. Documentation
+
+<div class="menu">
+
+* "API":/docs#api
+* "Building Blocks":/docs#blocks
+* "Tutorials":/docs#tutorials
+* "More Help":/docs#more
+
+</div>
 
 h3. Events
 
@@ -39,12 +17,12 @@ h4. Bind
 
 Custom events can be bound within the application definintion block with the @bind()@ method.
 
-{% highlight javascript %}
+<pre class="prettyprint lang-js"><code>
 // bind(name, callback)
 bind('db-loaded', function(e, data) {
   this.redirect('#/');
 });
-{% endhighlight%}
+</code></pre>
 
 Internally, Sammy binds the events to the application element within a unique application namespace. This means that if you have two Sammy applications running in the same document, you can trigger and bind events without worrying about double trigger issues. Events are also automatically bound and unbound to the DOM on @run()@ and @unload()@.
 
@@ -56,7 +34,7 @@ The other side of events is @trigger()@ which trigger's the custom events you've
 
 These triggers are equivalent:
 
-{% highlight javascript %}
+<pre class="prettyprint lang-js"><code>
 var app = $.sammy(function() {
   
   bind('test', function() {
@@ -67,11 +45,11 @@ var app = $.sammy(function() {
 });
 // trigger on the app itself
 app.trigger('other-event');
-{% endhighlight%}
+</code></pre>
 
 You can also pass a custom data object to trigger. These get passed to the bound callback as the second argument.
 
-{% highlight javascript %}
+<pre class="prettyprint lang-js"><code>
 var app = $.sammy(function() {
   
   bind('test', function(e, data) {
@@ -83,7 +61,7 @@ var app = $.sammy(function() {
   });
   
 });
-{% endhighlight%}
+</code></pre>
 
 With this example, taking our browser to @#/@ would fire the event @'test'@ passing and alerting our precious data.
 

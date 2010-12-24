@@ -7564,10 +7564,10 @@ window['_pr_isIE6'] = function () {
       var $code = $(this);
       var text  = [];
       var lines = $code.text().split("\n");
-      var i = 0, sub = 0, match, line;
+      var i = 0, sub, match, line;
       for (; i < lines.length; i++) {
         line = lines[i];
-        if (i === 0) {
+        if (i === 0 || !sub) {
           match = line.match(/^(\s+)?(.*)$/);
           if (match) {
             sub = match[1] ? match[1].length : 0;
