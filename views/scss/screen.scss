@@ -106,6 +106,9 @@ a:hover {
       top: 47px;
       left: 332px;
     }
+    em {
+      font-style: italic;
+    }
     .download {
       background: url(/images/download-corner-small.png) no-repeat;
       width: 264px;
@@ -301,7 +304,17 @@ a:hover {
       }
     }
   }
+  .warning {
+    @include clearfix;
+    background: #FFFCCC;
+    border-top: 2px solid #CCC;
+    border-bottom: 2px solid #CCC;
+    padding: 20px;
+    float:left;
+    margin: 20px 0px;
+  }
 }
+
 
 #api {
   #header {
