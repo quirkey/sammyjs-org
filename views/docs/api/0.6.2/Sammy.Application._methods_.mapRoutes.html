@@ -1,4 +1,7 @@
 <div class='individual meth' id='Sammy.Application-mapRoutes'>
+  <a href='/docs/api/0.6.2/'>
+    <strong>&laquo; Back</strong>
+  </a>
   <h3>
     <strong>Sammy.Application</strong>
     <a href='Sammy.Application._methods_.mapRoutes.html'>mapRoutes</a>
@@ -11,8 +14,8 @@
   <div class='links'>
     <a href='Sammy.Application._methods_.mapRoutes.html#comments'>Comments</a>
     |
-    <a href='https://github.com/quirkey/sammy/tree/v0.6.2/lib/sammy.js#L566'>Show in GitHub</a>
-  </div><div class='doc'><p><code>mapRoutes</code> takes an array of arrays, each array being passed to route()&#x000A;as arguments, this allows for mass definition of routes. Another benefit is&#x000A;this makes it possible/easier to load routes via remote JSON.</p>&#x000A;&#x000A;<h3>Example</h3>&#x000A;&#x000A;<p>   var app = $.sammy(function() {</p>&#x000A;&#x000A;<pre class='prettyprint'><code>&#x000A; this.mapRoutes([&#x000A;     ['get', '#/', function() { this.log('index'); }],&#x000A;     // strings in callbacks are looked up as methods on the app&#x000A;     ['post', '#/create', 'addUser'],&#x000A;     // No verb assumes 'any' as the verb&#x000A;     [/dowhatever/, function() { this.log(this.verb, this.path)}];&#x000A;   ]);&#x000A;</code></pre>&#x000A;&#x000A;<p>   })</p></div><div id='comments'>
+    <a href='https://github.com/quirkey/sammy/tree/v0.6.2/lib/sammy.js#L567' target='all'>Show in GitHub</a>
+  </div><div class='doc'><p><code>mapRoutes</code> takes an array of arrays, each array being passed to route()&#x000A;as arguments, this allows for mass definition of routes. Another benefit is&#x000A;this makes it possible/easier to load routes via remote JSON.</p>&#x000A;&#x000A;<h3>Example</h3>&#x000A;&#x000A;<pre class='prettyprint'><code> var app = $.sammy(function() {&#x000A;&#x000A;   this.mapRoutes([&#x000A;       ['get', '#/', function() { this.log('index'); }],&#x000A;       // strings in callbacks are looked up as methods on the app&#x000A;       ['post', '#/create', 'addUser'],&#x000A;       // No verb assumes 'any' as the verb&#x000A;       [/dowhatever/, function() { this.log(this.verb, this.path)}];&#x000A;     ]);&#x000A; });&#x000A;</code></pre></div><div id='comments'>
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'sammyjsorg'; // required: replace example with your forum shortname
@@ -29,6 +32,6 @@
     })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
   </div>
 </div>

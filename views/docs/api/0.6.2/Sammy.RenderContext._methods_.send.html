@@ -1,4 +1,7 @@
 <div class='individual meth' id='Sammy.RenderContext-send'>
+  <a href='/docs/api/0.6.2/'>
+    <strong>&laquo; Back</strong>
+  </a>
   <h3>
     <strong>Sammy.RenderContext</strong>
     <a href='Sammy.RenderContext._methods_.send.html'>send</a>
@@ -11,8 +14,8 @@
   <div class='links'>
     <a href='Sammy.RenderContext._methods_.send.html#comments'>Comments</a>
     |
-    <a href='https://github.com/quirkey/sammy/tree/v0.6.2/lib/sammy.js#L1508'>Show in GitHub</a>
-  </div><div class='doc'><p>defers the call of function to occur in order of the render queue.&#x000A;The function can accept any number of arguments as long as the last&#x000A;argument is a callback function. This is useful for putting arbitrary&#x000A;asynchronous functions into the queue. The content passed to the&#x000A;callback is passed as <code>content</code> to the next item in the queue.</p>&#x000A;&#x000A;<p>=== Example</p>&#x000A;&#x000A;<pre class='prettyprint'><code>&#x000A;   this.send($.getJSON, '/app.json')&#x000A;       .then(function(json) {&#x000A;         $('#message).text(json['message']);&#x000A;       });&#x000A;</code></pre></div><div id='comments'>
+    <a href='https://github.com/quirkey/sammy/tree/v0.6.2/lib/sammy.js#L1507' target='all'>Show in GitHub</a>
+  </div><div class='doc'><p>defers the call of function to occur in order of the render queue.&#x000A;The function can accept any number of arguments as long as the last&#x000A;argument is a callback function. This is useful for putting arbitrary&#x000A;asynchronous functions into the queue. The content passed to the&#x000A;callback is passed as <code>content</code> to the next item in the queue.</p>&#x000A;&#x000A;<h3>Example</h3>&#x000A;&#x000A;<pre class='prettyprint'><code>this.send($.getJSON, '/app.json')&#x000A;    .then(function(json) {&#x000A;      $('#message).text(json['message']);&#x000A;     });&#x000A;</code></pre></div><div id='comments'>
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'sammyjsorg'; // required: replace example with your forum shortname
@@ -29,6 +32,6 @@
     })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
   </div>
 </div>

@@ -2,26 +2,8 @@
 
 
   $(function() {
-    $('pre.prettyprint code').each(function() {
-      var $code = $(this);
-      var text  = [];
-      var lines = $code.text().split("\n");
-      var i = 0, sub, match, line;
-      for (; i < lines.length; i++) {
-        line = lines[i];
-        if (i === 0 || !sub) {
-          match = line.match(/^(\s+)?(.*)$/);
-          if (match) {
-            sub = match[1] ? match[1].length : 0;
-            text.push(match[2]);
-          } else if (!line.match(/^\s*$/)) { // its not whitespace
-            text.push(line);
-          }
-        } else {
-          text.push(line.substr(sub));
-        }
-      }
-      $code.text(text.join("\n"));
+    $('pre.prettyprint code').text(function(i, text) {
+      return $.trim(text);
     });
     // pretty print code
     prettyPrint();

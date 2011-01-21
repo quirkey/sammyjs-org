@@ -64,6 +64,13 @@ a:hover {
     top: 75px;
     left: 510px;
   }
+  h4 {
+    font-size: 0.8em;
+    color: #666;
+    background: #E5E5E5;
+    padding: 10px;
+    text-align: center;
+  }
   .download {
     background: url(/images/download-corner.png) no-repeat;
     position: absolute;
@@ -255,14 +262,14 @@ a:hover {
     h3 {
       color: $brown;
       font: 1.7em/1.4em $bebas;
-      margin: 0px 0px 20px;
+      margin: 0px 0px 10px;
       // top links
       .top {
         a {
-          color: $bright-blue !important;
+          color: #CCC !important;
           font-family: Arial, sans-serif !important;
           font-size: 0.8em;
-          padding-left: 40px;
+          padding-left: 20px;
           text-decoration: none;
         }
       }
@@ -270,6 +277,7 @@ a:hover {
     h4 {
       color: $light-blue;
       font-size: 1.4em;
+      font-weight: bold;
       margin: 0px 0px 20px;
     }
     ul, ol {
@@ -293,8 +301,8 @@ a:hover {
           a {
             display: block;
             text-decoration: none;
-            padding: 10px;
-            font: 1.4em/0.7em $bebas;
+            padding: 4px 10px;
+            font: 1.4em/1em $bebas;
             color: #666; //$bright-blue;
             &:hover {
               @include tweed-bg(-light);
@@ -432,7 +440,7 @@ a:hover {
   h3 {
     font-size: 1.3em;
     font-weight: bold;
-    margin: 15px 0px 5px;
+    margin: 25px 0px 5px;
     a {
       text-decoration: none;
       color: $green;
@@ -449,12 +457,6 @@ a:hover {
   .doc {
     margin: 10px 0px 0px;
   }
-  ul {
-    margin: 0px 0px 0px 20px;
-    li {
-      padding: 5px 0px;
-    }
-  }
 }
 .doc {
   h3 {
@@ -467,5 +469,11 @@ a:hover {
     width: 600px;
     line-height: 150%;
     padding-bottom: 10px;
+  }
+  ul {
+    margin: 0px 0px 0px 20px;
+    li {
+      padding: 5px 0px;
+    }
   }
 }

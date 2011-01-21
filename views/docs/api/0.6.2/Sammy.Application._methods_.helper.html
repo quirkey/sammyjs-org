@@ -1,4 +1,7 @@
 <div class='individual meth' id='Sammy.Application-helper'>
+  <a href='/docs/api/0.6.2/'>
+    <strong>&laquo; Back</strong>
+  </a>
   <h3>
     <strong>Sammy.Application</strong>
     <a href='Sammy.Application._methods_.helper.html'>helper</a>
@@ -11,8 +14,8 @@
   <div class='links'>
     <a href='Sammy.Application._methods_.helper.html#comments'>Comments</a>
     |
-    <a href='https://github.com/quirkey/sammy/tree/v0.6.2/lib/sammy.js#L799'>Show in GitHub</a>
-  </div><div class='doc'><p>Helper extends the event context just like <code>helpers()</code> but does it&#x000A;a single method at a time. This is especially useful for dynamically named&#x000A;helpers</p>&#x000A;&#x000A;<h3>Example</h3>&#x000A;&#x000A;<pre class='prettyprint'><code>&#x000A;// Trivial example that adds 3 helper methods to the context dynamically&#x000A;var app = $.sammy(function(app) {&#x000A;&#x000A;  $.each([1,2,3], function(i, num) {&#x000A;    app.helper('helper' + num, function() {&#x000A;      this.log("I'm helper number " + num);&#x000A;    });&#x000A;  });&#x000A;&#x000A;  this.get('#/', function() {&#x000A;    this.helper2(); //=&gt; I'm helper number 2&#x000A;  });&#x000A;});&#x000A;</code></pre>&#x000A;&#x000A;<h3>Arguments</h3>&#x000A;&#x000A;<ul>&#x000A;<li><code>name</code> The name of the method</li>&#x000A;<li><code>method</code> The function to be added to the prototype at <code>name</code></li>&#x000A;</ul>&#x000A;</div><div id='comments'>
+    <a href='https://github.com/quirkey/sammy/tree/v0.6.2/lib/sammy.js#L798' target='all'>Show in GitHub</a>
+  </div><div class='doc'><p>Helper extends the event context just like <code>helpers()</code> but does it&#x000A;a single method at a time. This is especially useful for dynamically named&#x000A;helpers</p>&#x000A;&#x000A;<h3>Example</h3>&#x000A;&#x000A;<pre class='prettyprint'><code>// Trivial example that adds 3 helper methods to the context dynamically&#x000A;var app = $.sammy(function(app) {&#x000A;&#x000A;  $.each([1,2,3], function(i, num) {&#x000A;    app.helper('helper' + num, function() {&#x000A;      this.log("I'm helper number " + num);&#x000A;    });&#x000A;  });&#x000A;&#x000A;  this.get('#/', function() {&#x000A;    this.helper2(); //=&gt; I'm helper number 2&#x000A;  });&#x000A;});&#x000A;</code></pre>&#x000A;&#x000A;<h3>Arguments</h3>&#x000A;&#x000A;<ul>&#x000A;<li><code>name</code> The name of the method</li>&#x000A;<li><code>method</code> The function to be added to the prototype at <code>name</code></li>&#x000A;</ul>&#x000A;</div><div id='comments'>
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'sammyjsorg'; // required: replace example with your forum shortname
@@ -29,6 +32,6 @@
     })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
   </div>
 </div>

@@ -1,4 +1,7 @@
 <div class='individual meth' id='Sammy.Store-set'>
+  <a href='/docs/api/0.6.2/'>
+    <strong>&laquo; Back</strong>
+  </a>
   <h3>
     <strong>Sammy.Store</strong>
     <a href='Sammy.Store._methods_.set.html'>set</a>
@@ -11,8 +14,8 @@
   <div class='links'>
     <a href='Sammy.Store._methods_.set.html#comments'>Comments</a>
     |
-    <a href='https://github.com/quirkey/sammy/tree/v0.6.2/lib/plugins/sammy.storage.js#L103'>Show in GitHub</a>
-  </div><div class='doc'><p>Sets the value of <code>key</code> with <code>value</code>. If <code>value</code> is an&#x000A;object, it is turned to and stored as a string with <code>JSON.stringify</code>.&#x000A;It also tries to conform to the KVO pattern triggering jQuery events on the&#x000A;element that the store is bound to.</p>&#x000A;&#x000A;<h3>Example</h3>&#x000A;&#x000A;<pre class='prettyprint'><code>&#x000A; var store = new Sammy.Store({name: 'kvo'});&#x000A; $('body').bind('set-kvo-foo', function(e, data) {&#x000A;   Sammy.log(data.key + ' changed to ' + data.value);&#x000A; });&#x000A; store.set('foo', 'bar'); // logged: foo changed to bar&#x000A;</code></pre></div><div id='comments'>
+    <a href='https://github.com/quirkey/sammy/tree/v0.6.2/lib/plugins/sammy.storage.js#L103' target='all'>Show in GitHub</a>
+  </div><div class='doc'><p>Sets the value of <code>key</code> with <code>value</code>. If <code>value</code> is an&#x000A;object, it is turned to and stored as a string with <code>JSON.stringify</code>.&#x000A;It also tries to conform to the KVO pattern triggering jQuery events on the&#x000A;element that the store is bound to.</p>&#x000A;&#x000A;<h3>Example</h3>&#x000A;&#x000A;<pre class='prettyprint'><code>var store = new Sammy.Store({name: 'kvo'});&#x000A;$('body').bind('set-kvo-foo', function(e, data) {&#x000A;  Sammy.log(data.key + ' changed to ' + data.value);&#x000A;});&#x000A;store.set('foo', 'bar'); // logged: foo changed to bar&#x000A;</code></pre></div><div id='comments'>
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'sammyjsorg'; // required: replace example with your forum shortname
@@ -29,6 +32,6 @@
     })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
   </div>
 </div>

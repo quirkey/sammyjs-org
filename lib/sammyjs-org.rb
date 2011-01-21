@@ -30,12 +30,17 @@ class SammyjsOrg < Sinatra::Application
     haml :index
   end
 
+  get '/wiki' do
+    redirect "http://github.com/quirkey/sammy/wiki"
+  end
+
   get '/css/:name.css' do
     content_type 'text/css', :charset => 'utf-8'
     scss :"scss/#{params[:name]}"
   end
 
-  get '/docs/api/header' do
+  get '/docs/api/header/:version' do
+    @version = params[:version]
     haml :"docs/api/header", :layout => :simple
   end
 

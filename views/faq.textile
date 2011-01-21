@@ -1,0 +1,108 @@
+h2. FAQ
+
+<div class="menu">
+
+* "Troubleshooting":/faq#trouble
+* "Browsers & Frameworks":/faq#browsers
+* "Contributing":/faq#contributing
+* "Using":/faq#using
+* "More":/faq#more
+
+</div>
+
+h3(#trouble). Troubleshooting
+
+h4. Why isn't my app working in Chrome?
+
+Since version 5, Chrome has blocked AJAX resquests to any protocol other than @http://@. Of course, this includes @file://@, so if you're just running this code on your local machine the AJAX requests will seem to work, but just wont.
+
+There's an easy solution, however, just run a local web server. If you're coding in a Django, Sinatra, or Rails app, this shouldn't be a problem. If you just want to serve files from a directory, there are a couple options. If you're on OS X, you have Apache built in. Start Web Sharing in your Sharing Preferences and put you're files under the Apache www directory. To make it even easier, I have "a simple ruby script called 'servefiles'":http://github.com/quirkey/the_json_store/blob/master/servefiles that will start a ruby web server in the directory.
+
+h4. My app seems to load but the routes dont seem to execute.
+
+The common solution is a problem with @run()@. In order to actually _run_ the application you need to invoke @run()@ and the element that the application is bound to (by default `body`) needs to exist in the DOM.
+
+h4. The route runs, but the template seems to not render properly.
+
+Make sure that the template engine plugin (for example Sammy.Mustache) is included in your application and the plugin's JS is included on the page.
+
+h3(#browsers). Browsers/Frameworks
+
+h4. What browsers does Sammy support?
+
+In general Sammy aims to support all modern and current browsers across all plugins and the core. This includes:
+
+* Firefox >= 3
+* Safari >= 3
+* Chrome >= 5
+* IE >= 8
+* Opera >= 10
+* Mobile Webkit
+
+Certain features, like @hashchange@ monitoring or @storage@ are optimized for the latest and greatest browsers.
+
+If there is a feature or browser that doesn't work in the browser of your choice, please file an issue and we'll be happy to look into it.
+
+h4. Does Sammy work with mobile browsers?
+
+Yes. Sammy is tested and working 100% on the latest Webkit based mobile browsers (iPhone, Android, Latest Blackberry) and should work anywhere else that jQuery works. 
+
+h4. Can I use Sammy with a library other than jQuery?
+
+Currently, Sammy depends on jQuery but there is an active branch of the code that uses an adapter pattern to allow you to use Sammy with the framework of your choice. Initial support is planned for MooTools, Prototype, YUI, Dojo, XUI and Zepto. This should be ready for version 1.0. If you want to follow along with the work, it can be found "here":https://github.com/quirkey/sammy/compare/master...internal-bind.
+
+h3(#contributing). Contributing
+
+h4. Where do I report a possible bug/issue?
+
+Sammy uses the "github issue tracker":http://github.com/quirkey/sammy/issues to keep track of bugs and patches. If you're having a problem but don't know if its a bug or just a use issue, please join the "google group":http://groups.google.com/groups/sammyjs ask your question and someone will try their best to help. Remember that the more detailed your report is (with actual code, steps to reproduce) the easier it will be for someone to help.
+
+h4. How can I contribute to the Sammy project?
+
+Since Sammy's core is small and would like to stay that way, more than code, the best way to contribute and make the project better is to help with documentation. Documentation not only includes API docs and the general descriptions on this site, but also blog posts/tutorials on your own site, cleaning up docs in other related projects and more. Answering questions on the mailing list and in irc is also a great way to contribute and improve the project. 
+
+h4. I have a patch/idea for a feature - how can I contribute?
+
+If the feature doesnt require patching the internals of Sammy's core, the best way to contribute is as a plugin. Not only does this make it easier for you to test and distribute your changes, but it also makes it much easier to pull into the project. You can submit the feature as a pull request on github. If the feature or patch does change sammy internals its probably helpful to bring up the idea on the mailing list to get the community's feedback before submitting a pull request. Often there are other people working on similar features and ideas and code can be merged/improved.
+
+h3(#using). Using Sammy
+
+h4. What kind of templating does Sammy use?
+
+Sammy is not tied to a specific type of templating. In fact, templating is not part of Sammy core, but can easily be included as a plugin with the templating syntax of your choice. Currently, Sammy has support for: Mustache, Handlebars, jQuery.template, Pure, Meld, Template and could easily be adapted to more. See "plugins":/docs/plugins for more information on plugins.
+
+h4. What are plugins?
+
+Plugins are executable JS files that include a _named_ Sammy application that can be _included_ or _used_ in another Sammy application. Basically, there reusable helpers, routes, and methods for Sammy Applications. Plugins are very easy to write and share and make it a breeze to extract common functionality out of applications for sharing. See "plugins":/docs/plugins for more information on plugins.
+
+h4. What do I need to start writing a Sammy app?
+
+Sammy's only dependency right now is jQuery (> 1.4). Other than that you just need a browser and the text editor of you're choosing. Sammy is pure JavaScript so no system dependencies are required. For a full walkthrough of getting setup with your first project, check out the "JSON Store Tutorial.":/docs/tutorials/json_store_1
+
+h4. Where can I find the latest documentation?
+
+This site, sammyjs.org is the cannonical source for Sammy documentation. We are now generating seperate docs for each release and even edge which can be found "here":http://sammyjs.org/docs. Its also good to note that the API level documentation is generated from inline comments in the source, so the latest documentation can always be found in the un-minified files themselves.
+
+h4. What license is Sammy open sourced under?
+
+Sammy is released under the very open "MIT License.":https://github.com/quirkey/sammy/raw/master/LICENSE If you're project requires a different type of licensing, let us know, as its possible we can add the license for your use case.
+
+
+h4. Can I include Sammy in a larger open source project?
+
+Yes! We'd love to help, too. As long as you meet the requirements of the "license":https://github.com/quirkey/sammy/raw/master/LICENSE you can use and include away.
+
+h3(#more). More
+
+h4. Is Sammy in use in production sites?
+
+Sammy is in use in many large scale production sites and has been for quite some time. Check the "wiki":/wiki for a growing list of companies and products that use Sammy in production.
+
+h4. How does Sammy work with SEO or crawlers like google?
+
+This is a pretty large topic of discussion thats really bigger than Sammy itself - however - there are some strategies for making "AJAX" sites crawlable by search engines. Google recently released a spec for enabling "AJAX Crawling":http://code.google.com/web/ajaxcrawling/docs/getting-started.html on your site. No matter what, this really requires changes to your server side code so you should consider whether you want you're content to be completely indexed before using Sammy. Many sites in production that use Sammy are 'applications' often behind a login wall and don't require indexing in the first place.
+
+h4. How is Sammy related to CouchDB?
+
+Sammy has no official relation to "CouchDB":http://couchdb.org or "CouchOne":http://couchone.com other than we're really good friends. CouchDB's JSON storage format and ability to serve files directly out of the database make it a perfect match for building Sammy apps. There have been a number of articles and presentations about the relationship (!!!). Sammy will soon be even more integrated with CouchDB as of the future 1.2 release where the document browsing environment, futon, is being rewritten to make use of Sammy.js. 
+
