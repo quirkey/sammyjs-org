@@ -1,0 +1,30 @@
+h2. Community 
+
+<div class="menu">
+
+* "Meetups":/community#meetups
+* "Mailing List":/community#mailinglist
+* "IRC":/community#irc
+
+</div>
+
+Sammy has a strong and growing community of developers, companies and projects in the US and internationaly. An ever expanding list "can be found on the wiki":https://github.com/quirkey/sammy/wiki/People-and-Companies-using-Sammy (please add yourself and your company).
+
+h3(#meetups). Meetups
+
+A dedicated Sammy.js meetup is in the works for San Francisco. If you want to start one up in your city, we'd be happy to help as we can. Sammy has also been presented and talked about at meetups around the world including: NYC.js, PDX.js, Syd(ney).js, Berlin.js and more.
+
+h3(#mailinglist). Mailing List
+
+Sammy has an active Mailing List/Google Group that is a great place to ask a question/get feedback/or announce a project. 
+
+*"Join the Mailing List":http://groups.google.com/group/sammyjs*
+
+<form action="http://groups.google.com/group/sammyjs/boxsubscribe"> 
+<p>Email: <input type='text' name='email'><input type='submit' name="sub" value="Subscribe"></p>
+</form>
+
+h3(#irc). IRC
+
+Sammy also has an IRC channel "#sammy":irc://irc.freenode.net/sammy
+
