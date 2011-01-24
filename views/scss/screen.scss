@@ -164,7 +164,20 @@ a:hover {
   padding: 10px 0px;
   margin-top: 20px;
 
+  ul {
+    @include inline-list;
+    @include clearfix;
+    margin: 10px 0px;
+    li {
+      padding: 0px 10px;
+      font-weight: bold;
+      a {
+        color: $bright-blue;
+      }
+    }
+  }
   p {
+    margin-top: 10px;
     font-size: 0.7em;
   }
 }

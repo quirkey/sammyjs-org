@@ -1,0 +1,37 @@
+<div class='individual meth' id='Sammy.Application-contextMatchesOptions'>
+  <a href='/docs/api/0.6.3/'>
+    <strong>&laquo; Back</strong>
+  </a>
+  <h3>
+    <strong>Sammy.Application</strong>
+    <a href='Sammy.Application._methods_.contextMatchesOptions.html'>contextMatchesOptions</a>
+    <span>
+      (
+      <em>context, match_options, positive</em>
+      )
+    </span>
+  </h3>
+  <div class='links'>
+    <a href='Sammy.Application._methods_.contextMatchesOptions.html#comments'>Comments</a>
+    |
+    <a href='https://github.com/quirkey/sammy/tree/v0.6.3/lib/sammy.js#L1036' target='all'>Show in GitHub</a>
+  </div><div class='doc'><p>Matches an object of options against an <code>EventContext</code> like object that&#x000A;contains <code>path</code> and <code>verb</code> attributes. Internally Sammy uses this&#x000A;for matching <code>before()</code> filters against specific options. You can set the&#x000A;object to <em>only</em> match certain paths or verbs, or match all paths or verbs <em>except</em>&#x000A;those that match the options.</p>&#x000A;&#x000A;<h3>Example</h3>&#x000A;&#x000A;<pre class='prettyprint'><code>var app = $.sammy(),&#x000A;    context = {verb: 'get', path: '#/mypath'};&#x000A;&#x000A;// match against a path string&#x000A;app.contextMatchesOptions(context, '#/mypath'); //=&gt; true&#x000A;app.contextMatchesOptions(context, '#/otherpath'); //=&gt; false&#x000A;// equivilent to&#x000A;app.contextMatchesOptions(context, {only: {path:'#/mypath'}}); //=&gt; true&#x000A;app.contextMatchesOptions(context, {only: {path:'#/otherpath'}}); //=&gt; false&#x000A;// match against a path regexp&#x000A;app.contextMatchesOptions(context, /path/); //=&gt; true&#x000A;app.contextMatchesOptions(context, /^path/); //=&gt; false&#x000A;// match only a verb&#x000A;app.contextMatchesOptions(context, {only: {verb:'get'}}); //=&gt; true&#x000A;app.contextMatchesOptions(context, {only: {verb:'post'}}); //=&gt; false&#x000A;// match all except a verb&#x000A;app.contextMatchesOptions(context, {except: {verb:'post'}}); //=&gt; true&#x000A;app.contextMatchesOptions(context, {except: {verb:'get'}}); //=&gt; false&#x000A;// match all except a path&#x000A;app.contextMatchesOptions(context, {except: {path:'#/otherpath'}}); //=&gt; true&#x000A;app.contextMatchesOptions(context, {except: {path:'#/mypath'}}); //=&gt; false&#x000A;</code></pre></div><div id='comments'>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'sammyjsorg'; // required: replace example with your forum shortname
+
+    // The following are highly recommended additional parameters. Remove the slashes in front to use.
+    var disqus_identifier = "sammyjsdocs-0.6.3-Sammy.Application-contextMatchesOptions";
+    var disqus_url = 'http://www.sammyjs.org/docs/api/0.6.3/Sammy.Application._methods_.contextMatchesOptions.html';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
+</div>

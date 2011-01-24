@@ -1,0 +1,37 @@
+<div class='individual meth' id='Sammy.RenderContext-load'>
+  <a href='/docs/api/master/'>
+    <strong>&laquo; Back</strong>
+  </a>
+  <h3>
+    <strong>Sammy.RenderContext</strong>
+    <a href='Sammy.RenderContext._methods_.load.html'>load</a>
+    <span>
+      (
+      <em>location, options, callback</em>
+      )
+    </span>
+  </h3>
+  <div class='links'>
+    <a href='Sammy.RenderContext._methods_.load.html#comments'>Comments</a>
+    |
+    <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1400' target='all'>Show in GitHub</a>
+  </div><div class='doc'><p>Load a template into the context.&#x000A;The <code>location</code> can either be a string specifiying the remote path to the&#x000A;file, a jQuery object, or a DOM element.</p>&#x000A;&#x000A;<p>No interpolation happens by default, the content is stored in&#x000A;<code>content</code>.</p>&#x000A;&#x000A;<p>In the case of a path, unless the option <code>{cache: false}</code> is passed the&#x000A;data is stored in the app's <code>templateCache()</code>.</p>&#x000A;&#x000A;<p>If a jQuery or DOM object is passed the <code>innerHTML</code> of the node is pulled in.&#x000A;This is useful for nesting templates as part of the initial page load wrapped&#x000A;in invisible elements or <code>&lt;script&gt;</code> tags. With template paths, the template&#x000A;engine is looked up by the extension. For DOM/jQuery embedded templates,&#x000A;this isnt possible, so there are a couple of options:</p>&#x000A;&#x000A;<ul>&#x000A;<li>pass an <code>{engine:}</code> option.</li>&#x000A;<li>define the engine in the <code>data-engine</code> attribute of the passed node.</li>&#x000A;<li>just store the raw template data and use <code>interpolate()</code> manually</li>&#x000A;</ul>&#x000A;&#x000A;&#x000A;<p>If a <code>callback</code> is passed it is executed after the template load.</p></div><div id='comments'>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'sammyjsorg'; // required: replace example with your forum shortname
+
+    // The following are highly recommended additional parameters. Remove the slashes in front to use.
+    var disqus_identifier = "sammyjsdocs-master-Sammy.RenderContext-load";
+    var disqus_url = 'http://www.sammyjs.org/docs/api/master/Sammy.RenderContext._methods_.load.html';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
+</div>
