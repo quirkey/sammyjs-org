@@ -10,3 +10,14 @@
     &copy; 2010 Aaron Quint. All code provided is open source under the
     %a{:href => 'https://github.com/quirkey/sammy/raw/master/LICENSE'} MIT License
 %script{:src => "/javascripts/default.js", :type => 'text/javascript'}
+:javascript
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-3763169-5']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
