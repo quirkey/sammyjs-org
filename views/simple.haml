@@ -12,7 +12,4 @@
   %body
     #api{:class => @general_header ? 'general' : nil}
       = yield
-    #footer
-      %p
-        &copy; 2010 Aaron Quint. All code provided is open source under the MIT License
-    %script{:src => "/javascripts/default.js", :type => 'text/javascript'}
+    = haml :footer, :layout => false
