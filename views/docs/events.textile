@@ -15,7 +15,7 @@ Inside of a Sammy application javascript events can be defined, bound, and trigg
 
 h4. Bind
 
-Custom events can be bound within the application definintion block with the @bind()@ method.
+Custom events can be bound within the application definition block with the @bind()@ method.
 
 <pre class="prettyprint lang-js"><code>
 // bind(name, callback)

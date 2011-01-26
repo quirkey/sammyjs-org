@@ -71,7 +71,7 @@ h4. Paths
 
 Paths can be either full URIs (eg. @/blah/blah/blah@) or just the end hash (eg. @#/mypath@). The benefit of using the hash, is that you can define a single page application (no full refreshes) that preserves the back button/history.
 
-Paths can be defined as strings or regular expressions. In fact internally, all paths are converted to regular expressions. That means these are equivilent:
+Paths can be defined as strings or regular expressions. In fact internally, all paths are converted to regular expressions. That means these are equivalent:
 
 <pre class="prettyprint lang-js"><code>
 // string

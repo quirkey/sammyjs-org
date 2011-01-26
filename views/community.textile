@@ -8,7 +8,7 @@ h2. Community
 
 </div>
 
-Sammy has a strong and growing community of developers, companies and projects in the US and internationaly. An ever expanding list "can be found on the wiki":https://github.com/quirkey/sammy/wiki/People-and-Companies-using-Sammy (please add yourself and your company).
+Sammy has a strong and growing community of developers, companies and projects in the US and internationally. An ever expanding list "can be found on the wiki":https://github.com/quirkey/sammy/wiki/People-and-Companies-using-Sammy (please add yourself and your company).
 
 h3(#meetups). Meetups
 

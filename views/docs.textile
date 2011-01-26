@@ -23,7 +23,7 @@ h3(#blocks). Building Blocks
 Here are some more detailed descriptions of the different building blocks of a Sammy Application:
 
 * "Routes":/docs/routes - Defining the basic structure of your application in a RESTful way
-* "Events":/docs/events - Seperate some of the logic into custom events
+* "Events":/docs/events - Separate some of the logic into custom events
 * "Plugins":/docs/plugins - Reusable and configurable code FTW
 
 

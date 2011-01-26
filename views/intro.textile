@@ -21,7 +21,7 @@ h3(#why). Why
 
 In the modern age of super fast browsers and user expectations about the responsiveness and perceived speed of web applications - single page AJAX applications have become the rage (GMail, etc.) Furthermore, instead of just fetching full HTML and rendering it asynchronously, fetching raw data (JSON) and rendering on the client side has not only become possible - its actually very common. 
 
-Sammy.js was originally built as an experiment in desigining API's in Javascript and was heavily inspired by "Sinatra.rb":http://www.sinatrarb.com. As Sammy evolved it aimed to solve the common problems associated with writing this new style of application. It became clear early on that Sammy was well suited for building simple applications on top of RESTful JSON data stores ("See CouchDB":http://www.quirkey.com/blog/2009/09/15/sammy-js-couchdb-and-the-new-web-architecture/). 
+Sammy.js was originally built as an experiment in designing API's in Javascript and was heavily inspired by "Sinatra.rb":http://www.sinatrarb.com. As Sammy evolved it aimed to solve the common problems associated with writing this new style of application. It became clear early on that Sammy was well suited for building simple applications on top of RESTful JSON data stores ("See CouchDB":http://www.quirkey.com/blog/2009/09/15/sammy-js-couchdb-and-the-new-web-architecture/). 
 
 Sammy continues to be fueled by the community and real world production applications. It's small enough that it can stay out of your way, and soon it will integrate with the DOM/AJAX Framework of your choice.
 
