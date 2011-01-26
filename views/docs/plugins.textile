@@ -152,7 +152,7 @@ If you have a plugin that you'd like to be included in the public repository her
 
 * *All official plugins should extend from the Sammy. namespace (e.g. Sammy.Template, Sammy.Blah, etc.)*. This is not only to ensure uniformity, but also to limit the amount of code that is in the global scope. Sammy itself only adds Sammy. and $.sammy. 
 * *The plugin should be wrapped in a closure and variables should be defined in the closure's scope*. Again, this is to prevent global scope leak and possible collisions.
-* *If possible plugin's should be self contained*. This means if you are writting a template engine plugin, it would be nice, if the license allows, to include the actual engine code with the plugin. This way, only one additional file has to be included at runtime.
+* *If possible plugin's should be self contained*. This means if you are writing a template engine plugin, it would be nice, if the license allows, to include the actual engine code with the plugin. This way, only one additional file has to be included at runtime.
 * *TEST TEST TEST.* Sammy has a full test suite and so should you. Currently the tests for all plugins are contained in the single file @test_sammy_plugins.js@
 
 When in doubt ask in irc or on the mailing list.
