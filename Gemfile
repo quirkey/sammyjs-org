@@ -9,6 +9,5 @@ gem "RedCloth"
 
 group :development do
   gem "thin"
-  gem "jim", "0.3.0.pre" 
   gem "shotgun"
 end
