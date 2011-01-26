@@ -1,0 +1,5 @@
+This is the source for sammyjs.org. 
+
+It's a simple sinatra app with a bunch of static files and makes use of Jim for javascript management and Compass/SCSS for CSS/styles.
+
+Feel free to fork to make corrections.
