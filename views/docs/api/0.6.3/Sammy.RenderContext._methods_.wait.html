@@ -14,7 +14,7 @@
   <div class='links'>
     <a href='Sammy.RenderContext._methods_.wait.html#comments'>Comments</a>
     |
-    <a href='https://github.com/quirkey/sammy/tree/v0.6.3/lib/sammy.js#L1362' target='all'>Show in GitHub</a>
+    <a href='https://github.com/quirkey/sammy/tree/v0.6.3/lib/sammy.js#L1365' target='all'>Show in GitHub</a>
   </div><div class='doc'><p>Pause the <code>RenderContext</code> queue. Combined with <code>next()</code> allows for async&#x000A;operations.</p>&#x000A;&#x000A;<h3>Example</h3>&#x000A;&#x000A;<pre class='prettyprint'><code>   this.get('#/', function() {&#x000A;     this.load('mytext.json')&#x000A;         .then(function(content) {&#x000A;           var context = this,&#x000A;               data    = JSON.parse(content);&#x000A;           // pause execution&#x000A;           context.wait();&#x000A;           // post to a url&#x000A;           $.post(data.url, {}, function(response) {&#x000A;             context.next(JSON.parse(response));&#x000A;           });&#x000A;         })&#x000A;         .then(function(data) {&#x000A;           // data is json from the previous post&#x000A;           $('#message').text(data.status);&#x000A;         });&#x000A;   });&#x000A;</code></pre></div><div id='comments'>
 <div id="disqus_thread"></div>
 <script type="text/javascript">

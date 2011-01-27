@@ -14,7 +14,7 @@
   <div class='links'>
     <a href='Sammy.Application._methods_.before.html#comments'>Comments</a>
     |
-    <a href='https://github.com/quirkey/sammy/tree/v0.6.3/lib/sammy.js#L663' target='all'>Show in GitHub</a>
+    <a href='https://github.com/quirkey/sammy/tree/v0.6.3/lib/sammy.js#L666' target='all'>Show in GitHub</a>
   </div><div class='doc'><p>Takes a single callback that is pushed on to a stack.&#x000A;Before any route is run, the callbacks are evaluated in order within&#x000A;the current <code>Sammy.EventContext</code></p>&#x000A;&#x000A;<p>If any of the callbacks explicitly return false, execution of any&#x000A;further callbacks and the route itself is halted.</p>&#x000A;&#x000A;<p>You can also provide a set of options that will define when to run this&#x000A;before based on the route it proceeds.</p>&#x000A;&#x000A;<h3>Example</h3>&#x000A;&#x000A;<pre class='prettyprint'><code> var app = $.sammy(function() {&#x000A;&#x000A;   // will run at #/route but not at #/&#x000A;   this.before('#/route', function() {&#x000A;     //...&#x000A;   });&#x000A;&#x000A;   // will run at #/ but not at #/route&#x000A;   this.before({except: {path: '#/route'}}, function() {&#x000A;     this.log('not before #/route');&#x000A;   });&#x000A;&#x000A;   this.get('#/', function() {});&#x000A;&#x000A;   this.get('#/route', function() {});&#x000A;&#x000A; });&#x000A;</code></pre>&#x000A;&#x000A;<p>See <code>contextMatchesOptions()</code> for a full list of supported options</p></div><div id='comments'>
 <div id="disqus_thread"></div>
 <script type="text/javascript">

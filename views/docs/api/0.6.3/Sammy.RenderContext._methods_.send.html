@@ -14,7 +14,7 @@
   <div class='links'>
     <a href='Sammy.RenderContext._methods_.send.html#comments'>Comments</a>
     |
-    <a href='https://github.com/quirkey/sammy/tree/v0.6.3/lib/sammy.js#L1496' target='all'>Show in GitHub</a>
+    <a href='https://github.com/quirkey/sammy/tree/v0.6.3/lib/sammy.js#L1499' target='all'>Show in GitHub</a>
   </div><div class='doc'><p>defers the call of function to occur in order of the render queue.&#x000A;The function can accept any number of arguments as long as the last&#x000A;argument is a callback function. This is useful for putting arbitrary&#x000A;asynchronous functions into the queue. The content passed to the&#x000A;callback is passed as <code>content</code> to the next item in the queue.</p>&#x000A;&#x000A;<h3>Example</h3>&#x000A;&#x000A;<pre class='prettyprint'><code>this.send($.getJSON, '/app.json')&#x000A;    .then(function(json) {&#x000A;      $('#message).text(json['message']);&#x000A;     });&#x000A;</code></pre></div><div id='comments'>
 <div id="disqus_thread"></div>
 <script type="text/javascript">
