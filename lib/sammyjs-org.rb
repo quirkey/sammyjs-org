@@ -48,11 +48,10 @@ class SammyjsOrg < Sinatra::Application
     redirect "/docs/api/#{@current_version}/"
   end
 
-  get '/docs/api/?:version?/:page?' do
+  get '/docs/api/?:version?/?:page?' do
     @general_header = true
     @version = params[:version] || @current_version
     @page = params[:page] || 'index'
-    puts @page.inspect
     if @page =~ /\.html$/
       haml "= html('docs/api/#{@version}/#{@page}')", :layout => :simple
     else

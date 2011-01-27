@@ -15,7 +15,7 @@ The API docs are generated from inline comments in the source. The API documenta
 
 *"View the documentation for the latest stable version":/docs/api/stable*
 
-*"View the API docs for master/edge":/docs/api/master*
+*"View the API docs for master/edge":/docs/api/master/*
 
 
 h3(#blocks). Building Blocks
