@@ -41,6 +41,7 @@ class SammyjsOrg < Sinatra::Application
 
   get '/docs/api/header/:version' do
     @version = params[:version]
+    @footer = false
     haml :"docs/api/header", :layout => :simple
   end
 
@@ -52,6 +53,7 @@ class SammyjsOrg < Sinatra::Application
     @general_header = true
     @version = params[:version] || @current_version
     @page = params[:page] || 'index'
+    @footer = false if @page == 'menu.html'
     if @page =~ /\.html$/
       haml "= html('docs/api/#{@version}/#{@page}')", :layout => :simple
     else

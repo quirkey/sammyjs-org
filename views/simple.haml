@@ -12,4 +12,5 @@
   %body
     #api{:class => @general_header ? 'general' : nil}
       = yield
-    = haml :footer, :layout => false
+    - if @footer != false
+      = haml :footer, :layout => false
