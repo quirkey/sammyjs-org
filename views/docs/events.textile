@@ -11,7 +11,7 @@ h2. Documentation
 
 h3. Events
 
-Inside of a Sammy application javascript events can be defined, bound, and triggered. The methods for doing this purposely look identical to the jQuery Event API. Though they look the same, there function is slightly different.
+Inside of a Sammy application javascript events can be defined, bound and triggered. The methods for doing this purposely look identical to the jQuery Event API. Though they look the same their function is slightly different.
 
 h4. Bind
 
@@ -24,13 +24,13 @@ bind('db-loaded', function(e, data) {
 });
 </code></pre>
 
-Internally, Sammy binds the events to the application element within a unique application namespace. This means that if you have two Sammy applications running in the same document, you can trigger and bind events without worrying about double trigger issues. Events are also automatically bound and unbound to the DOM on @run()@ and @unload()@.
+Internally, Sammy binds the events to the application element within a unique application namespace. This means that if you have two Sammy applications running in the same document, you can trigger and bind events without worrying about double-trigger issues. Events are also automatically bound and unbound to the DOM on @run()@ and @unload()@.
 
 Inside of the callback, @this@ is a Sammy.EventContext just like it is for "routes.":routes.html This means you can @redirect@, @partial@, etc.
 
 h4. Trigger
 
-The other side of events is @trigger()@ which trigger's the custom events you've defined. @trigger()@ works within both the context of the app and other events/routes.
+The other side of events is @trigger()@ which triggers the custom events you've defined. @trigger()@ works within both the context of the app and other events/routes.
 
 These triggers are equivalent:
 
@@ -43,6 +43,7 @@ var app = $.sammy(function() {
   });
   
 });
+
 // trigger on the app itself
 app.trigger('other-event');
 </code></pre>
@@ -67,8 +68,8 @@ With this example, taking our browser to @#/@ would fire the event @'test'@ pass
 
 h4. Pre-defined Events
 
-Sammy application has a number of predefined events that are fired throughout an app's life cycle. Its often useful to bind/listen to these existing events in order to invoke functionality at particular points. 
+Sammy applications have a number of predefined events that are fired throughout an app's life cycle. It's often useful to bind/listen to these existing events in order to invoke functionality at particular points. 
 
-The most common use case is listening to @run@. run is the first event fired in the apps lifecycle and can be useful for establishing a connection to a database, build out a list of documents, etc.
+The most common use case is listening to @run@. run is the first event fired in the app's lifecycle and can be useful for establishing a connection to a database, build out a list of documents, etc.
 
 To see a list of all the pre-defined events, "check the API":api.html
