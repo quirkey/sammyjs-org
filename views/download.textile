@@ -28,6 +28,6 @@ GitHub. "See all available versions here.":https://github.com/quirkey/sammy/down
 
 h3(#git). Git
 
-The source and history is fully open and available via GitHub:
+The source and history are fully open and available via GitHub:
 
 "http://github.com/quirkey/sammy":http://github.com/quirkey/sammy

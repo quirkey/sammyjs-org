@@ -14,11 +14,11 @@ h3(#trouble). Troubleshooting
 
 h4. Why isn't my app working in Chrome?
 
-Since version 5, Chrome has blocked AJAX requests to any protocol other than @http://@. Of course, this includes @file://@, so if you're just running this code on your local machine the AJAX requests will seem to work, but just wont.
+Since version 5, Chrome has blocked AJAX requests to any protocol other than @http://@. Of course, this includes @file://@, so if you're just running this code on your local machine the AJAX requests will seem to work, but just won't.
 
-There's an easy solution, however, just run a local web server. If you're coding in a Django, Sinatra, or Rails app, this shouldn't be a problem. If you just want to serve files from a directory, there are a couple options. If you're on OS X, you have Apache built in. Start Web Sharing in your Sharing Preferences and put you're files under the Apache www directory. To make it even easier, I have "a simple ruby script called 'servefiles'":http://github.com/quirkey/the_json_store/blob/master/servefiles that will start a ruby web server in the directory.
+There's an easy solution: run a local web server. If you're coding in a Django, Sinatra, or Rails app, this shouldn't be a problem. If you just want to serve files from a directory, there are a couple options. If you're on OS X, you have Apache built in. Start Web Sharing in your Sharing Preferences and put your files under the Apache www directory. To make it even easier, I have "a simple ruby script called 'servefiles'":http://github.com/quirkey/the_json_store/blob/master/servefiles that will start a ruby web server in the directory.
 
-h4. My app seems to load but the routes dont seem to execute.
+h4. My app seems to load but the routes don't seem to execute.
 
 The common solution is a problem with @run()@. In order to actually _run_ the application you need to invoke @run()@ and the element that the application is bound to (by default `body`) needs to exist in the DOM.
 
@@ -37,7 +37,7 @@ In general Sammy aims to support all modern and current browsers across all plug
 * Chrome >= 5
 * IE >= 8
 * Opera >= 10
-* Mobile Webkit
+* Mobile WebKit
 
 Certain features, like @hashchange@ monitoring or @storage@ are optimized for the latest and greatest browsers.
 
@@ -45,7 +45,7 @@ If there is a feature or browser that doesn't work in the browser of your choice
 
 h4. Does Sammy work with mobile browsers?
 
-Yes. Sammy is tested and working 100% on the latest Webkit based mobile browsers (iPhone, Android, Latest Blackberry) and should work anywhere else that jQuery works. 
+Yes. Sammy is tested and working 100% on the latest WebKit based mobile browsers (iPhone, Android, Latest Blackberry) and should work anywhere else that jQuery works. 
 
 h4. Can I use Sammy with a library other than jQuery?
 
@@ -55,7 +55,7 @@ h3(#contributing). Contributing
 
 h4. Where do I report a possible bug/issue?
 
-Sammy uses the "github issue tracker":http://github.com/quirkey/sammy/issues to keep track of bugs and patches. If you're having a problem but don't know if its a bug or just a use issue, please join the "google group":http://groups.google.com/groups/sammyjs ask your question and someone will try their best to help. Remember that the more detailed your report is (with actual code, steps to reproduce) the easier it will be for someone to help.
+Sammy uses the "github issue tracker":http://github.com/quirkey/sammy/issues to keep track of bugs and patches. If you're having a problem but don't know if it's a bug or just a use issue, please join the "google group":http://groups.google.com/groups/sammyjs , ask your question and someone will try their best to help. Remember that the more detailed your report is (with actual code, steps to reproduce), the easier it will be for someone to help.
 
 h4. How can I contribute to the Sammy project?
 
@@ -63,7 +63,7 @@ Since Sammy's core is small and would like to stay that way, more than code, the
 
 h4. I have a patch/idea for a feature - how can I contribute?
 
-If the feature doesn't require patching the internals of Sammy's core, the best way to contribute is as a plugin. Not only does this make it easier for you to test and distribute your changes, but it also makes it much easier to pull into the project. You can submit the feature as a pull request on github. If the feature or patch does change sammy internals its probably helpful to bring up the idea on the mailing list to get the community's feedback before submitting a pull request. Often there are other people working on similar features and ideas and code can be merged/improved.
+If the feature doesn't require patching the internals of Sammy's core, the best way to contribute is as a plugin. Not only does this make it easier for you to test and distribute your changes, but it also makes it much easier to pull into the project. You can submit the feature as a pull request on github. If the feature or patch does change sammy internals, it is probably helpful to bring up the idea on the mailing list to get the community's feedback before submitting a pull request. Often there are other people working on similar features and ideas and code can be merged/improved.
 
 h3(#using). Using Sammy
 
@@ -77,18 +77,18 @@ Plugins are executable JS files that include a _named_ Sammy application that ca
 
 h4. What do I need to start writing a Sammy app?
 
-Sammy's only dependency right now is jQuery (> 1.4). Other than that you just need a browser and the text editor of you're choosing. Sammy is pure JavaScript so no system dependencies are required. For a full walkthrough of getting setup with your first project, check out the "JSON Store Tutorial.":/docs/tutorials/json_store_1
+Sammy's only dependency right now is jQuery (> 1.4). Other than that you just need a browser and the text editor of your choosing. Sammy is pure JavaScript so no system dependencies are required. For a full walkthrough of getting setup with your first project, check out the "JSON Store Tutorial.":/docs/tutorials/json_store_1
 
 h4. Where can I find the latest documentation?
 
-This site, sammyjs.org is the canonical source for Sammy documentation. We are now generating seperate docs for each release and even edge which can be found "here":http://sammyjs.org/docs. Its also good to note that the API level documentation is generated from inline comments in the source, so the latest documentation can always be found in the un-minified files themselves.
+This site, sammyjs.org is the canonical source for Sammy documentation. We are now generating seperate docs for each release and even edge which can be found "here":http://sammyjs.org/docs. It is also good to note that the API-level documentation is generated from inline comments in the source, so the latest documentation can always be found in the un-minified files themselves.
 
-h4. What license is Sammy open sourced under?
+h4. What license is Sammy open-sourced under?
 
-Sammy is released under the very open "MIT License.":https://github.com/quirkey/sammy/raw/master/LICENSE If you're project requires a different type of licensing, let us know, as its possible we can add the license for your use case.
+Sammy is released under the very open "MIT License.":https://github.com/quirkey/sammy/raw/master/LICENSE If your project requires a different type of licensing, let us know, as it is possible we can add the license for your use case.
 
 
-h4. Can I include Sammy in a larger open source project?
+h4. Can I include Sammy in a larger open-source project?
 
 Yes! We'd love to help, too. As long as you meet the requirements of the "license":https://github.com/quirkey/sammy/raw/master/LICENSE you can use and include away.
 
@@ -96,11 +96,11 @@ h3(#more). More
 
 h4. Is Sammy in use in production sites?
 
-Sammy is in use in many large scale production sites and has been for quite some time. Check the "wiki":/wiki for a growing list of companies and products that use Sammy in production.
+Sammy is in use in many large-scale production sites and has been for quite some time. Check the "wiki":/wiki for a growing list of companies and products that use Sammy in production.
 
 h4. How does Sammy work with SEO or crawlers like google?
 
-This is a pretty large topic of discussion thats really bigger than Sammy itself - however - there are some strategies for making "AJAX" sites crawlable by search engines. Google recently released a spec for enabling "AJAX Crawling":http://code.google.com/web/ajaxcrawling/docs/getting-started.html on your site. No matter what, this really requires changes to your server side code so you should consider whether you want you're content to be completely indexed before using Sammy. Many sites in production that use Sammy are 'applications' often behind a login wall and don't require indexing in the first place.
+This is a pretty large topic of discussion that's really bigger than Sammy itself - however - there are some strategies for making "AJAX" sites crawlable by search engines. Google recently released a spec for enabling "AJAX Crawling":http://code.google.com/web/ajaxcrawling/docs/getting-started.html on your site. No matter what, this really requires changes to your server-side code so you should consider whether you want your content to be completely indexed before using Sammy. Many sites in production that use Sammy are 'applications' often behind a login wall and don't require indexing in the first place.
 
 h4. How is Sammy related to CouchDB?
 

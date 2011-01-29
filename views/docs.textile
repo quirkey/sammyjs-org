@@ -33,7 +33,7 @@ More in-depth walkthroughs and tutorials for learning how to build and tweak Sam
 
 h4. The JSON Store
 
-The first official tutorial. It walks through the building of an Ecommerce front end using Sammy.
+The first official tutorial. It walks through the building of an Ecommerce front-end using Sammy.
 
 * "Part I":/docs/tutorials/json_store_1
 * "Part II":/docs/tutorials/json_store_2
