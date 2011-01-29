@@ -54,11 +54,8 @@ class SammyjsOrg < Sinatra::Application
     @version = params[:version] || @current_version
     @page = params[:page] || 'index'
     @footer = false if @page == 'menu.html'
-    if @page =~ /\.html$/
-      haml "= html('docs/api/#{@version}/#{@page}')", :layout => :simple
-    else
-      haml :api, :layout => false
-    end
+    @page ||= "index"
+    haml "= html(:#{@page})", :layout => :api
   end
 
   get '*' do
@@ -69,6 +66,7 @@ class SammyjsOrg < Sinatra::Application
 
   private
   def html(path)
+    path = File.join('docs', 'api', @version, "#{path}.html") if path.is_a?(Symbol)
     File.read(File.join(APP_ROOT, "views", path))
   end
 end
