@@ -14,7 +14,8 @@
       ],
       "attributes": [
 
-      ]
+      ],
+      "plugin": null
     }
   ],
   [
@@ -410,7 +411,8 @@
           "lineno": 352,
           "doc": "<p>The default template engine to use when using <code>partial()</code> in an\n<code>EventContext</code>. <code>template_engine</code> can either be a string that\ncorresponds to the name of a method/helper on EventContext or it can be a function\nthat takes two arguments, the content of the unrendered partial and an optional\nJS object that contains interpolation data. Template engine is only called/refered\nto if the extension of the partial is null or unknown. See <code>partial()</code>\nfor more information</p>\n"
         }
-      ]
+      ],
+      "plugin": null
     }
   ],
   [
@@ -429,7 +431,8 @@
       ],
       "attributes": [
 
-      ]
+      ],
+      "plugin": 43
     }
   ],
   [
@@ -448,7 +451,8 @@
       ],
       "attributes": [
 
-      ]
+      ],
+      "plugin": 43
     }
   ],
   [
@@ -468,7 +472,8 @@
       ],
       "attributes": [
 
-      ]
+      ],
+      "plugin": 43
     }
   ],
   [
@@ -635,7 +640,8 @@
       ],
       "attributes": [
 
-      ]
+      ],
+      "plugin": null
     }
   ],
   [
@@ -669,7 +675,8 @@
           "lineno": 236,
           "doc": "<p>simple_element is a simple helper for creating HTML tags.</p>\n\n<h3>Arguments</h3>\n\n<ul>\n<li><code>tag</code> the HTML tag to generate e.g. input, p, etc/</li>\n<li><code>attributes</code> an object representing the attributes of the element as\nkey value pairs. e.g. {class: 'element-class'}</li>\n<li><code>content</code> an optional string representing the content for the\nthe element. If ommited, the element becomes self closing</li>\n</ul>\n\n"
         }
-      ]
+      ],
+      "plugin": 43
     }
   ],
   [
@@ -798,7 +805,8 @@
       ],
       "attributes": [
 
-      ]
+      ],
+      "plugin": 43
     }
   ],
   [
@@ -834,7 +842,8 @@
       ],
       "attributes": [
 
-      ]
+      ],
+      "plugin": 43
     }
   ],
   [
@@ -853,7 +862,8 @@
       ],
       "attributes": [
 
-      ]
+      ],
+      "plugin": 43
     }
   ],
   [
@@ -872,7 +882,8 @@
       ],
       "attributes": [
 
-      ]
+      ],
+      "plugin": 43
     }
   ],
   [
@@ -926,7 +937,8 @@
       ],
       "attributes": [
 
-      ]
+      ],
+      "plugin": null
     }
   ],
   [
@@ -952,7 +964,8 @@
       ],
       "attributes": [
 
-      ]
+      ],
+      "plugin": 43
     }
   ],
   [
@@ -971,7 +984,8 @@
       ],
       "attributes": [
 
-      ]
+      ],
+      "plugin": 43
     }
   ],
   [
@@ -989,7 +1003,8 @@
       ],
       "attributes": [
 
-      ]
+      ],
+      "plugin": 43
     }
   ],
   [
@@ -1008,7 +1023,8 @@
       ],
       "attributes": [
 
-      ]
+      ],
+      "plugin": 43
     }
   ],
   [
@@ -1026,7 +1042,8 @@
       ],
       "attributes": [
 
-      ]
+      ],
+      "plugin": 43
     }
   ],
   [
@@ -1044,7 +1061,8 @@
       ],
       "attributes": [
 
-      ]
+      ],
+      "plugin": 43
     }
   ],
   [
@@ -1133,7 +1151,8 @@
       ],
       "attributes": [
 
-      ]
+      ],
+      "plugin": null
     }
   ],
   [
@@ -1151,7 +1170,8 @@
       ],
       "attributes": [
 
-      ]
+      ],
+      "plugin": 43
     }
   ],
   [
@@ -1170,7 +1190,8 @@
       ],
       "attributes": [
 
-      ]
+      ],
+      "plugin": 43
     }
   ],
   [
@@ -1335,7 +1356,8 @@
       ],
       "attributes": [
 
-      ]
+      ],
+      "plugin": null
     }
   ],
   [
@@ -1354,7 +1376,8 @@
       ],
       "attributes": [
 
-      ]
+      ],
+      "plugin": 43
     }
   ],
   [
@@ -1372,7 +1395,8 @@
       ],
       "attributes": [
 
-      ]
+      ],
+      "plugin": 43
     }
   ],
   [
@@ -1501,7 +1525,8 @@
       ],
       "attributes": [
 
-      ]
+      ],
+      "plugin": 43
     }
   ],
   [
@@ -1521,7 +1546,8 @@
       ],
       "attributes": [
 
-      ]
+      ],
+      "plugin": 43
     }
   ],
   [
@@ -1540,7 +1566,8 @@
       ],
       "attributes": [
 
-      ]
+      ],
+      "plugin": 43
     }
   ],
   [
@@ -1559,7 +1586,8 @@
       ],
       "attributes": [
 
-      ]
+      ],
+      "plugin": 43
     }
   ],
   [
@@ -1578,7 +1606,8 @@
       ],
       "attributes": [
 
-      ]
+      ],
+      "plugin": 43
     }
   ],
   [
@@ -1597,7 +1626,8 @@
       ],
       "attributes": [
 
-      ]
+      ],
+      "plugin": 43
     }
   ],
   [
@@ -1615,7 +1645,8 @@
       ],
       "attributes": [
 
-      ]
+      ],
+      "plugin": 43
     }
   ],
   [
@@ -1634,7 +1665,8 @@
       ],
       "attributes": [
 
-      ]
+      ],
+      "plugin": 43
     }
   ],
   [
@@ -1652,7 +1684,8 @@
       ],
       "attributes": [
 
-      ]
+      ],
+      "plugin": 43
     }
   ],
   [
@@ -1670,7 +1703,8 @@
       ],
       "attributes": [
 
-      ]
+      ],
+      "plugin": null
     }
   ],
   [
@@ -1688,7 +1722,8 @@
       ],
       "attributes": [
 
-      ]
+      ],
+      "plugin": null
     }
   ]
 ]

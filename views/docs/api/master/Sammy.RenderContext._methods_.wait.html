@@ -4,7 +4,7 @@
   </a>
   <h3>
     <strong>Sammy.RenderContext</strong>
-    <a href='Sammy.RenderContext._methods_.wait.html'>wait</a>
+    <a href='Sammy.RenderContext._methods_.wait'>wait</a>
     <span>
       (
       <em></em>
@@ -12,7 +12,7 @@
     </span>
   </h3>
   <div class='links'>
-    <a href='Sammy.RenderContext._methods_.wait.html#comments'>Comments</a>
+    <a href='Sammy.RenderContext._methods_.wait#comments'>Comments</a>
     |
     <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1365' target='all'>Show in GitHub</a>
   </div><div class='doc'><p>Pause the <code>RenderContext</code> queue. Combined with <code>next()</code> allows for async&#x000A;operations.</p>&#x000A;&#x000A;<h3>Example</h3>&#x000A;&#x000A;<pre class='prettyprint'><code>   this.get('#/', function() {&#x000A;     this.load('mytext.json')&#x000A;         .then(function(content) {&#x000A;           var context = this,&#x000A;               data    = JSON.parse(content);&#x000A;           // pause execution&#x000A;           context.wait();&#x000A;           // post to a url&#x000A;           $.post(data.url, {}, function(response) {&#x000A;             context.next(JSON.parse(response));&#x000A;           });&#x000A;         })&#x000A;         .then(function(data) {&#x000A;           // data is json from the previous post&#x000A;           $('#message').text(data.status);&#x000A;         });&#x000A;   });&#x000A;</code></pre></div><div id='comments'>
@@ -22,7 +22,7 @@
 
     // The following are highly recommended additional parameters. Remove the slashes in front to use.
     var disqus_identifier = "sammyjsdocs-master-Sammy.RenderContext-wait";
-    var disqus_url = 'http://www.sammyjs.org/docs/api/master/Sammy.RenderContext._methods_.wait.html';
+    var disqus_url = 'http://www.sammyjs.org/docs/api/master/Sammy.RenderContext._methods_.wait';
 
     /* * * DON'T EDIT BELOW THIS LINE * * */
     (function() {
