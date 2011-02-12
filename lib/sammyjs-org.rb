@@ -46,16 +46,17 @@ class SammyjsOrg < Sinatra::Application
   end
 
   get '/docs/api/stable/?' do
-    redirect "/docs/api/#{@current_version}/"
+    redirect "/docs/api/#{@current_version}/all"
   end
 
   get '/docs/api/?:version?/?:page?' do
     @general_header = true
     @version = params[:version] || @current_version
-    @page = params[:page] || 'index'
+    @page = params[:page] || 'all'
     @footer = false if @page == 'menu.html'
-    @page ||= "index"
-    haml "= html(:#{@page})", :layout => :api
+    @page ||= "all"
+    @page = "index" if @page == 'all'
+    haml "= html(:\"#{@page}\")", :layout => :api
   end
 
   get '*' do
