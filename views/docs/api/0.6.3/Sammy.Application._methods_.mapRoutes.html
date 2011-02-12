@@ -4,7 +4,7 @@
   </a>
   <h3>
     <strong>Sammy.Application</strong>
-    <a href='Sammy.Application._methods_.mapRoutes.html'>mapRoutes</a>
+    <a href='Sammy.Application._methods_.mapRoutes'>mapRoutes</a>
     <span>
       (
       <em>route_array</em>
@@ -12,7 +12,7 @@
     </span>
   </h3>
   <div class='links'>
-    <a href='Sammy.Application._methods_.mapRoutes.html#comments'>Comments</a>
+    <a href='Sammy.Application._methods_.mapRoutes#comments'>Comments</a>
     |
     <a href='https://github.com/quirkey/sammy/tree/v0.6.3/lib/sammy.js#L559' target='all'>Show in GitHub</a>
   </div><div class='doc'><p><code>mapRoutes</code> takes an array of arrays, each array being passed to route()&#x000A;as arguments, this allows for mass definition of routes. Another benefit is&#x000A;this makes it possible/easier to load routes via remote JSON.</p>&#x000A;&#x000A;<h3>Example</h3>&#x000A;&#x000A;<pre class='prettyprint'><code> var app = $.sammy(function() {&#x000A;&#x000A;   this.mapRoutes([&#x000A;       ['get', '#/', function() { this.log('index'); }],&#x000A;       // strings in callbacks are looked up as methods on the app&#x000A;       ['post', '#/create', 'addUser'],&#x000A;       // No verb assumes 'any' as the verb&#x000A;       [/dowhatever/, function() { this.log(this.verb, this.path)}];&#x000A;     ]);&#x000A; });&#x000A;</code></pre></div><div id='comments'>
@@ -22,7 +22,7 @@
 
     // The following are highly recommended additional parameters. Remove the slashes in front to use.
     var disqus_identifier = "sammyjsdocs-0.6.3-Sammy.Application-mapRoutes";
-    var disqus_url = 'http://www.sammyjs.org/docs/api/0.6.3/Sammy.Application._methods_.mapRoutes.html';
+    var disqus_url = 'http://www.sammyjs.org/docs/api/0.6.3/Sammy.Application._methods_.mapRoutes';
 
     /* * * DON'T EDIT BELOW THIS LINE * * */
     (function() {

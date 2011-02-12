@@ -9,9 +9,10 @@
 
     %link{:href =>"/css/screen.css", :media=>"screen", :rel=>"stylesheet", :type=>"text/css"}/
 
-  %body
+  %body#api
     #api-sidenav
       = haml :"docs/api/header", :layout => false
       = html :menu
-    = yield
+    #content
+      = yield
     = haml :footer, :layout => false
