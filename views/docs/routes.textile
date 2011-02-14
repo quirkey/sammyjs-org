@@ -24,7 +24,6 @@ Inside the Sammy.Application block, Routes can be defined in two ways: Using @ro
 Directly:
 
 <pre class="prettyprint lang-js"><code>
-<pre class="prettyprint lang-js"><code>
 // route(verb, path, callback)
 route('get', '#/', function() { 
   ...
