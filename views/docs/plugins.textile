@@ -76,8 +76,7 @@ h4. Code Re-use
 One of the best use-cases for Sammy plugins is refactoring common code out of multiple applications. 
 
 <pre class="prettyprint lang-js"><code>
-var app1 = $.sammy(function() {
-  this.element_selector = '#div_1';
+var app1 = Sammy('#div1', function() {
   
   this.get('#/', function() {
     this.record = this.app.db['#div_1'];
@@ -91,8 +90,7 @@ var app1 = $.sammy(function() {
   });
 });
 
-var app2 = $.sammy(function() {
-  this.element_selector = '#div_2';
+var app2 = Sammy('#div_2', function() {
   
   this.get('#/', function() {
     this.record = this.app.db['#div_2'];
@@ -110,11 +108,10 @@ var app2 = $.sammy(function() {
 Obviously, this is a pretty extreme example, but it lends itself well to refactoring. Let's factor the common code out into a plugin.
 
 <pre class="prettyprint lang-js"><code>
-var dbLoadAndDisplay = function(app, element_selector) {
-  this.element_selector = element_selector;
+var dbLoadAndDisplay = function(app) {
   
   this.get('#/', function() {
-    this.record = this.app.db[element_selector];
+    this.record = this.app.db[this.app.element_selector];
     this.app.swap(this.record.toHTML());
   });
 
@@ -123,15 +120,15 @@ var dbLoadAndDisplay = function(app, element_selector) {
   });
 };
 
-var app1 = $.sammy(function() {
-  this.use(dbLoadAndDisplay, '#div_1');
+var app1 = Sammy('#div_1', function() {
+  this.use(dbLoadAndDisplay);
 
   // ... app specific code ...
 
 });
 
-var app2 = $.sammy(function() {
-  this.use(dbLoadAndDisplay, '#div_2');
+var app2 = Sammy('#div_2', function() {
+  this.use(dbLoadAndDisplay);
 
   // ... app specific code ...
 
