@@ -22,6 +22,14 @@ class SammyjsOrg < Sinatra::Application
 
   end
 
+  error do
+    haml :not_found, :layout => :layout
+  end
+
+  not_found do
+    haml :not_found, :layout => :layout
+  end
+
   before do
     @current_version = '0.6.3'
   end
