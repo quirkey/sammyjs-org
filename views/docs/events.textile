@@ -26,7 +26,7 @@ bind('db-loaded', function(e, data) {
 
 Internally, Sammy binds the events to the application element within a unique application namespace. This means that if you have two Sammy applications running in the same document, you can trigger and bind events without worrying about double-trigger issues. Events are also automatically bound and unbound to the DOM on @run()@ and @unload()@.
 
-Inside of the callback, @this@ is a Sammy.EventContext just like it is for "routes.":routes.html This means you can @redirect@, @partial@, etc.
+Inside of the callback, @this@ is a Sammy.EventContext just like it is for "routes.":/docs/routes This means you can @redirect@, @partial@, etc.
 
 h4. Trigger
 
@@ -72,4 +72,4 @@ Sammy applications have a number of predefined events that are fired throughout 
 
 The most common use case is listening to @run@. run is the first event fired in the app's lifecycle and can be useful for establishing a connection to a database, build out a list of documents, etc.
 
-To see a list of all the pre-defined events, "check the API":api.html
+To see a list of all the pre-defined events, "check the API":/docs/api/stable
