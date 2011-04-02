@@ -26,6 +26,10 @@ h4. The route runs, but the template seems to not render properly.
 
 Make sure that the template engine plugin (for example Sammy.Mustache) is included in your application and the plugin's JS is included on the page.
 
+h4. The app is running, but the template isnt loading, or the browser is throwing an error when its being fetched.
+
+A possible cause of this is that your web server isnt sending an appropriate MIME type for the file. This can happen especially if you're using a template extension like `.template` or `.mustache`. You can add these extensions to your web servers MIME definitions as text/plain or text/html. Another option is to change the engine extension to `.txt` or `.html`. For a more detailed description of this issue see: "https://github.com/quirkey/sammy/issues/closed#issue/83":https://github.com/quirkey/sammy/issues/closed#issue/83
+
 h3(#browsers). Browsers/Frameworks
 
 h4. What browsers does Sammy support?
