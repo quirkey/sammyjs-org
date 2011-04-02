@@ -30,7 +30,7 @@ h3(#how). How
 h4. Installation
 
 "Download Sammy.js":/download and install it in your public javascripts directory.
-Include it in your document AFTER jQuery. For more detailed instructions, "check out the first tutorial":/docs/tutorials/json_store/1
+Include it in your document AFTER jQuery. For more detailed instructions, "check out the first tutorial":/docs/tutorials/json_store_1
 
 h4. Basic Usage 
 
