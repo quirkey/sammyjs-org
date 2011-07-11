@@ -8,7 +8,7 @@
       ],
       "doc": "<p><code>Sammy</code> (also aliased as $.sammy) is not only the namespace for a\nnumber of prototypes, its also a top level method that allows for easy\ncreation/management of <code>Sammy.Application</code> instances. There are a\nnumber of different forms for <code>Sammy()</code> but each returns an instance\nof <code>Sammy.Application</code>. When a new instance is created using\n<code>Sammy</code> it is added to an Object called <code>Sammy.apps</code>. This\nprovides for an easy way to get at existing Sammy applications. Only one\ninstance is allowed per <code>element_selector</code> so when calling\n<code>Sammy('selector')</code> multiple times, the first time will create\nthe application and the following times will extend the application\nalready added to that selector.</p>\n\n<h3>Example</h3>\n\n<pre class='prettyprint'><code> // returns the app at #main or a new app\n Sammy('#main')\n\n // equivilent to \"new Sammy.Application\", except appends to apps\n Sammy();\n Sammy(function() { ... });\n\n // extends the app at '#main' with function.\n Sammy('#main', function() { ... });\n</code></pre>\n",
       "filename": "/lib/sammy.js",
-      "lineno": 53,
+      "lineno": 54,
       "methods": [
 
       ],
@@ -27,7 +27,7 @@
       ],
       "doc": "<p>Sammy.Application is the Base prototype for defining 'applications'.\nAn 'application' is a collection of 'routes' and bound events that is\nattached to an element when <code>run()</code> is called.\nThe only argument an 'app_function' is evaluated within the context of the application.</p>\n",
       "filename": "/lib/sammy.js",
-      "lineno": 293,
+      "lineno": 341,
       "methods": [
         {
           "name": "$element",
@@ -35,7 +35,7 @@
             "selector"
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 360,
+          "lineno": 412,
           "doc": "<p>returns a jQuery object of the Applications bound element.</p>\n"
         },
         {
@@ -44,7 +44,7 @@
             "callback"
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 677,
+          "lineno": 729,
           "doc": "<p>A shortcut for binding a callback to be run after a route is executed.\nAfter callbacks have no guarunteed order.</p>\n"
         },
         {
@@ -53,7 +53,7 @@
 
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 540,
+          "lineno": 592,
           "doc": "<p>Alias for route('any', ...)</p>\n"
         },
         {
@@ -62,7 +62,7 @@
             "callback"
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 724,
+          "lineno": 776,
           "doc": "<p>Adds an around filter to the application. around filters are functions\nthat take a single argument <code>callback</code> which is the entire route\nexecution path wrapped up in a closure. This means you can decide whether\nor not to proceed with execution by not invoking <code>callback</code> or,\nmore usefuly wrapping callback inside the result of an asynchronous execution.</p>\n\n<h3>Example</h3>\n\n<p>The most common use case for around() is calling a <em>possibly</em> async function\nand executing the route within the functions callback:</p>\n\n<pre class='prettyprint'><code> var app = $.sammy(function() {\n\n   var current_user = false;\n\n   function checkLoggedIn(callback) {\n     // /session returns a JSON representation of the logged in user\n     // or an empty object\n     if (!current_user) {\n       $.getJSON('/session', function(json) {\n         if (json.login) {\n           // show the user as logged in\n           current_user = json;\n           // execute the route path\n           callback();\n         } else {\n           // show the user as not logged in\n           current_user = false;\n           // the context of aroundFilters is an EventContext\n           this.redirect('#/login');\n         }\n       });\n     } else {\n       // execute the route path\n       callback();\n     }\n   };\n\n   this.around(checkLoggedIn);\n\n });\n</code></pre>\n"
         },
         {
@@ -72,7 +72,7 @@
             "callback"
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 666,
+          "lineno": 718,
           "doc": "<p>Takes a single callback that is pushed on to a stack.\nBefore any route is run, the callbacks are evaluated in order within\nthe current <code>Sammy.EventContext</code></p>\n\n<p>If any of the callbacks explicitly return false, execution of any\nfurther callbacks and the route itself is halted.</p>\n\n<p>You can also provide a set of options that will define when to run this\nbefore based on the route it proceeds.</p>\n\n<h3>Example</h3>\n\n<pre class='prettyprint'><code> var app = $.sammy(function() {\n\n   // will run at #/route but not at #/\n   this.before('#/route', function() {\n     //...\n   });\n\n   // will run at #/ but not at #/route\n   this.before({except: {path: '#/route'}}, function() {\n     this.log('not before #/route');\n   });\n\n   this.get('#/', function() {});\n\n   this.get('#/route', function() {});\n\n });\n</code></pre>\n\n<p>See <code>contextMatchesOptions()</code> for a full list of supported options</p>\n"
         },
         {
@@ -83,7 +83,7 @@
             "callback"
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 580,
+          "lineno": 632,
           "doc": "<p>Works just like <code>jQuery.fn.bind()</code> with a couple noteable differences.</p>\n\n<ul>\n<li>It binds all events to the application element</li>\n<li>All events are bound within the <code>eventNamespace()</code></li>\n<li>Events are not actually bound until the application is started with <code>run()</code></li>\n<li>callbacks are evaluated within the context of a Sammy.EventContext</li>\n</ul>\n\n"
         },
         {
@@ -92,7 +92,7 @@
             "callback"
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 875,
+          "lineno": 927,
           "doc": "<p>Will bind a single callback function to every event that is already\nbeing listened to in the app. This includes all the <code>APP_EVENTS</code>\nas well as any custom events defined with <code>bind()</code>.</p>\n\n<p>Used internally for debug logging.</p>\n"
         },
         {
@@ -101,7 +101,7 @@
 
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 1125,
+          "lineno": 1181,
           "doc": "<p>clear the templateCache</p>\n"
         },
         {
@@ -112,7 +112,7 @@
             "positive"
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 1039,
+          "lineno": 1092,
           "doc": "<p>Matches an object of options against an <code>EventContext</code> like object that\ncontains <code>path</code> and <code>verb</code> attributes. Internally Sammy uses this\nfor matching <code>before()</code> filters against specific options. You can set the\nobject to <em>only</em> match certain paths or verbs, or match all paths or verbs <em>except</em>\nthose that match the options.</p>\n\n<h3>Example</h3>\n\n<pre class='prettyprint'><code>var app = $.sammy(),\n    context = {verb: 'get', path: '#/mypath'};\n\n// match against a path string\napp.contextMatchesOptions(context, '#/mypath'); //=&gt; true\napp.contextMatchesOptions(context, '#/otherpath'); //=&gt; false\n// equivilent to\napp.contextMatchesOptions(context, {only: {path:'#/mypath'}}); //=&gt; true\napp.contextMatchesOptions(context, {only: {path:'#/otherpath'}}); //=&gt; false\n// match against a path regexp\napp.contextMatchesOptions(context, /path/); //=&gt; true\napp.contextMatchesOptions(context, /^path/); //=&gt; false\n// match only a verb\napp.contextMatchesOptions(context, {only: {verb:'get'}}); //=&gt; true\napp.contextMatchesOptions(context, {only: {verb:'post'}}); //=&gt; false\n// match all except a verb\napp.contextMatchesOptions(context, {except: {verb:'post'}}); //=&gt; true\napp.contextMatchesOptions(context, {except: {verb:'get'}}); //=&gt; false\n// match all except a path\napp.contextMatchesOptions(context, {except: {path:'#/otherpath'}}); //=&gt; true\napp.contextMatchesOptions(context, {except: {path:'#/mypath'}}); //=&gt; false\n</code></pre>\n"
         },
         {
@@ -121,7 +121,7 @@
 
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 537,
+          "lineno": 589,
           "doc": "<p>Alias for route('delete', ...)</p>\n"
         },
         {
@@ -131,7 +131,7 @@
             "original_error"
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 1143,
+          "lineno": 1199,
           "doc": "<p>The base error handler takes a string <code>message</code> and an <code>Error</code>\nobject. If <code>raise_errors</code> is set to <code>true</code> on the app level,\nthis will re-throw the error to the browser. Otherwise it will send the error\nto <code>log()</code>. Override this method to provide custom error handling\ne.g logging to a server side component or displaying some feedback to the\nuser.</p>\n"
         },
         {
@@ -140,7 +140,7 @@
 
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 569,
+          "lineno": 621,
           "doc": "<p>A unique event namespace defined per application.\nAll events bound with <code>bind()</code> are automatically bound within this space.</p>\n"
         },
         {
@@ -149,7 +149,7 @@
 
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 528,
+          "lineno": 580,
           "doc": "<p>Alias for route('get', ...)</p>\n"
         },
         {
@@ -158,8 +158,8 @@
 
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 1075,
-          "doc": "<p>Delegates to the <code>location_proxy</code> to get the current location.\nSee <code>Sammy.HashLocationProxy</code> for more info on location proxies.</p>\n"
+          "lineno": 1131,
+          "doc": "<p>Delegates to the <code>location_proxy</code> to get the current location.\nSee <code>Sammy.DefaultLocationProxy</code> for more info on location proxies.</p>\n"
         },
         {
           "name": "helper",
@@ -168,7 +168,7 @@
             "method"
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 790,
+          "lineno": 842,
           "doc": "<p>Helper extends the event context just like <code>helpers()</code> but does it\na single method at a time. This is especially useful for dynamically named\nhelpers</p>\n\n<h3>Example</h3>\n\n<pre class='prettyprint'><code>// Trivial example that adds 3 helper methods to the context dynamically\nvar app = $.sammy(function(app) {\n\n  $.each([1,2,3], function(i, num) {\n    app.helper('helper' + num, function() {\n      this.log(\"I'm helper number \" + num);\n    });\n  });\n\n  this.get('#/', function() {\n    this.helper2(); //=&gt; I'm helper number 2\n  });\n});\n</code></pre>\n\n<h3>Arguments</h3>\n\n<ul>\n<li><code>name</code> The name of the method</li>\n<li><code>method</code> The function to be added to the prototype at <code>name</code></li>\n</ul>\n\n"
         },
         {
@@ -177,7 +177,7 @@
             "extensions"
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 760,
+          "lineno": 812,
           "doc": "<p>Helpers extends the EventContext prototype specific to this app.\nThis allows you to define app specific helper functions that can be used\nwhenever you're inside of an event context (templates, routes, bind).</p>\n\n<h3>Example</h3>\n\n<pre class='prettyprint'><code>var app = $.sammy(function() {\n\n  helpers({\n    upcase: function(text) {\n     return text.toString().toUpperCase();\n    }\n  });\n\n  get('#/', function() { with(this) {\n    // inside of this context I can use the helpers\n    $('#main').html(upcase($('#main').text());\n  }});\n\n});\n</code></pre>\n\n<h3>Arguments</h3>\n\n<ul>\n<li><code>extensions</code> An object collection of functions to extend the context.</li>\n</ul>\n\n"
         },
         {
@@ -186,7 +186,7 @@
 
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 730,
+          "lineno": 782,
           "doc": "<p>Returns <code>true</code> if the current application is running.</p>\n"
         },
         {
@@ -196,7 +196,7 @@
             "path"
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 898,
+          "lineno": 950,
           "doc": "<p>Given a verb and a String path, will return either a route object or false\nif a matching route can be found within the current defined set.</p>\n"
         },
         {
@@ -205,7 +205,7 @@
             "route_array"
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 559,
+          "lineno": 611,
           "doc": "<p><code>mapRoutes</code> takes an array of arrays, each array being passed to route()\nas arguments, this allows for mass definition of routes. Another benefit is\nthis makes it possible/easier to load routes via remote JSON.</p>\n\n<h3>Example</h3>\n\n<pre class='prettyprint'><code> var app = $.sammy(function() {\n\n   this.mapRoutes([\n       ['get', '#/', function() { this.log('index'); }],\n       // strings in callbacks are looked up as methods on the app\n       ['post', '#/create', 'addUser'],\n       // No verb assumes 'any' as the verb\n       [/dowhatever/, function() { this.log(this.verb, this.path)}];\n     ]);\n });\n</code></pre>\n"
         },
         {
@@ -215,7 +215,7 @@
             "path"
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 1132,
+          "lineno": 1188,
           "doc": "<p>This thows a '404 Not Found' error by invoking <code>error()</code>.\nOverride this method or <code>error()</code> to provide custom\n404 behavior (i.e redirecting to / or showing a warning)</p>\n"
         },
         {
@@ -224,7 +224,7 @@
 
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 531,
+          "lineno": 583,
           "doc": "<p>Alias for route('post', ...)</p>\n"
         },
         {
@@ -233,7 +233,7 @@
 
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 534,
+          "lineno": 586,
           "doc": "<p>Alias for route('put', ...)</p>\n"
         },
         {
@@ -242,7 +242,7 @@
 
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 628,
+          "lineno": 680,
           "doc": "<p>Reruns the current route</p>\n"
         },
         {
@@ -251,7 +251,7 @@
             "path"
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 892,
+          "lineno": 944,
           "doc": "<p>Returns a copy of the given path with any query string after the hash\nremoved.</p>\n"
         },
         {
@@ -262,7 +262,7 @@
             "callback"
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 476,
+          "lineno": 528,
           "doc": "<p><code>route()</code> is the main method for defining routes within an application.\nFor great detail on routes, check out:\n<a href=\"http://sammyjs.org/docs/routes\">http://sammyjs.org/docs/routes</a></p>\n\n<p>This method also has aliases for each of the different verbs (eg. <code>get()</code>, <code>post()</code>, etc.)</p>\n\n<h3>Arguments</h3>\n\n<ul>\n<li><code>verb</code> A String in the set of ROUTE_VERBS or 'any'. 'any' will add routes for each\n of the ROUTE_VERBS. If only two arguments are passed,\n the first argument is the path, the second is the callback and the verb\n is assumed to be 'any'.</li>\n<li><code>path</code> A Regexp or a String representing the path to match to invoke this verb.</li>\n<li><code>callback</code> A Function that is called/evaluated whent the route is run see: <code>runRoute()</code>.\n It is also possible to pass a string as the callback, which is looked up as the name\n of a method on the application.</li>\n</ul>\n\n"
         },
         {
@@ -271,7 +271,7 @@
             "start_url"
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 809,
+          "lineno": 861,
           "doc": "<p>Actually starts the application's lifecycle. <code>run()</code> should be invoked\nwithin a document.ready block to ensure the DOM exists before binding events, etc.</p>\n\n<h3>Example</h3>\n\n<pre class='prettyprint'><code>var app = $.sammy(function() { ... }); // your application\n$(function() { // document.ready\n   app.run();\n});\n</code></pre>\n\n<h3>Arguments</h3>\n\n<ul>\n<li><code>start_url</code> Optionally, a String can be passed which the App will redirect to\nafter the events/routes have been bound.</li>\n</ul>\n\n"
         },
         {
@@ -283,7 +283,7 @@
             "target"
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 931,
+          "lineno": 984,
           "doc": "<p>First, invokes <code>lookupRoute()</code> and if a route is found, parses the\npossible URL params and then invokes the route's callback within a new\n<code>Sammy.EventContext</code>. If the route can not be found, it calls\n<code>notFound()</code>. If <code>raise_errors</code> is set to <code>true</code> and\nthe <code>error()</code> has not been overriden, it will throw an actual JS\nerror.</p>\n\n<p>You probably will never have to call this directly.</p>\n\n<h3>Arguments</h3>\n\n<ul>\n<li><code>verb</code> A String for the verb.</li>\n<li><code>path</code> A String path to lookup.</li>\n<li><code>params</code> An Object of Params pulled from the URI or passed directly.</li>\n</ul>\n\n\n<h3>Returns</h3>\n\n<p>Either returns the value returned by the route callback or raises a 404 Not Found error.</p>\n"
         },
         {
@@ -292,8 +292,8 @@
             "new_location"
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 1086,
-          "doc": "<p>Delegates to the <code>location_proxy</code> to set the current location.\nSee <code>Sammy.HashLocationProxy</code> for more info on location proxies.</p>\n\n<h3>Arguments</h3>\n\n<ul>\n<li><code>new_location</code> A new location string (e.g. '#/')</li>\n</ul>\n\n"
+          "lineno": 1142,
+          "doc": "<p>Delegates to the <code>location_proxy</code> to set the current location.\nSee <code>Sammy.DefaultLocationProxy</code> for more info on location proxies.</p>\n\n<h3>Arguments</h3>\n\n<ul>\n<li><code>new_location</code> A new location string (e.g. '#/')</li>\n</ul>\n\n"
         },
         {
           "name": "setLocationProxy",
@@ -301,8 +301,8 @@
             "new_proxy"
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 447,
-          "doc": "<p>Sets the location proxy for the current app. By default this is set to\na new <code>Sammy.HashLocationProxy</code> on initialization. However, you can set\nthe location_proxy inside you're app function to give your app a custom\nlocation mechanism. See <code>Sammy.HashLocationProxy</code> and <code>Sammy.DataLocationProxy</code>\nfor examples.</p>\n\n<p><code>setLocationProxy()</code> takes an initialized location proxy.</p>\n\n<h3>Example</h3>\n\n<pre class='prettyprint'><code>   // to bind to data instead of the default hash;\n   var app = $.sammy(function() {\n     this.setLocationProxy(new Sammy.DataLocationProxy(this));\n   });\n</code></pre>\n"
+          "lineno": 499,
+          "doc": "<p>Sets the location proxy for the current app. By default this is set to\na new <code>Sammy.DefaultLocationProxy</code> on initialization. However, you can set\nthe location_proxy inside you're app function to give your app a custom\nlocation mechanism. See <code>Sammy.DefaultLocationProxy</code> and <code>Sammy.DataLocationProxy</code>\nfor examples.</p>\n\n<p><code>setLocationProxy()</code> takes an initialized location proxy.</p>\n\n<h3>Example</h3>\n\n<pre class='prettyprint'><code>   // to bind to data instead of the default hash;\n   var app = $.sammy(function() {\n     this.setLocationProxy(new Sammy.DataLocationProxy(this));\n   });\n</code></pre>\n"
         },
         {
           "name": "swap",
@@ -310,7 +310,7 @@
             "content"
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 1109,
+          "lineno": 1165,
           "doc": "<p>Swaps the content of <code>$element()</code> with <code>content</code>\nYou can override this method to provide an alternate swap behavior\nfor <code>EventContext.partial()</code>.</p>\n\n<h3>Example</h3>\n\n<pre class='prettyprint'><code> var app = $.sammy(function() {\n\n   // implements a 'fade out'/'fade in'\n   this.swap = function(content) {\n     this.$element().hide('slow').html(content).show('slow');\n   }\n\n   get('#/', function() {\n     this.partial('index.html.erb') // will fade out and in\n   });\n\n });\n</code></pre>\n"
         },
         {
@@ -320,7 +320,7 @@
             "value"
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 1116,
+          "lineno": 1172,
           "doc": "<p>a simple global cache for templates. Uses the same semantics as\n<code>Sammy.Cache</code> and <code>Sammy.Storage</code> so can easily be replaced with\na persistant storage that lasts beyond the current request.</p>\n"
         },
         {
@@ -329,7 +329,7 @@
 
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 355,
+          "lineno": 407,
           "doc": "<p>//=> Sammy.Application: body</p>\n"
         },
         {
@@ -339,7 +339,7 @@
             "data"
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 622,
+          "lineno": 674,
           "doc": "<p>Triggers custom events defined with <code>bind()</code></p>\n\n<h3>Arguments</h3>\n\n<ul>\n<li><code>name</code> The name of the event. Automatically prefixed with the <code>eventNamespace()</code></li>\n<li><code>data</code> An optional Object that can be passed to the bound callback.</li>\n<li><code>context</code> An optional context/Object in which to execute the bound callback.\nIf no context is supplied a the context is a new <code>Sammy.EventContext</code></li>\n</ul>\n\n"
         },
         {
@@ -348,7 +348,7 @@
 
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 852,
+          "lineno": 904,
           "doc": "<p>The opposite of <code>run()</code>, un-binds all event listeners and intervals\n<code>run()</code> Automaticaly binds a <code>onunload</code> event to run this when\nthe document is closed.</p>\n"
         },
         {
@@ -357,7 +357,7 @@
 
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 408,
+          "lineno": 460,
           "doc": "<p><code>use()</code> is the entry point for including Sammy plugins.\nThe first argument to use should be a function() that is evaluated\nin the context of the current application, just like the <code>app_function</code>\nargument to the <code>Sammy.Application</code> constructor.</p>\n\n<p>Any additional arguments are passed to the app function sequentially.</p>\n\n<p>For much more detail about plugins, check out:\n<a href=\"http://sammyjs.org/docs/plugins\">http://sammyjs.org/docs/plugins</a></p>\n\n<h3>Example</h3>\n\n<pre class='prettyprint'><code> var MyPlugin = function(app, prepend) {\n\n   this.helpers({\n     myhelper: function(text) {\n       alert(prepend + \" \" + text);\n     }\n   });\n\n };\n\n var app = $.sammy(function() {\n\n   this.use(MyPlugin, 'This is my plugin');\n\n   this.get('#/', function() {\n     this.myhelper('and dont you forget it!');\n     //=&gt; Alerts: This is my plugin and dont you forget it!\n   });\n\n });\n</code></pre>\n\n<p>If plugin is passed as a string it assumes your are trying to load\nSammy.\"Plugin\". This is the prefered way of loading core Sammy plugins\nas it allows for better error-messaging.</p>\n\n<h3>Example</h3>\n\n<pre class='prettyprint'><code> $.sammy(function() {\n   this.use('Mustache'); //=&gt; Sammy.Mustache\n   this.use('Storage'); //=&gt; Sammy.Storage\n });\n</code></pre>\n"
         }
       ],
@@ -366,49 +366,56 @@
           "name": "APP_EVENTS",
           "default": "['run', 'unload', 'lookup-route', 'run-route', 'route-found', 'event-context-before', 'event-context-after', 'changed', 'error', 'check-form-submission', 'redirect', 'location-changed']",
           "filename": "/lib/sammy.js",
-          "lineno": 325,
+          "lineno": 373,
           "doc": "<p>An array of the default events triggered by the\napplication during its lifecycle</p>\n"
         },
         {
           "name": "ROUTE_VERBS",
           "default": "['get','post','put','delete']",
           "filename": "/lib/sammy.js",
-          "lineno": 321,
+          "lineno": 369,
           "doc": "<p>the four route verbs</p>\n"
         },
         {
           "name": "debug",
           "default": "false",
           "filename": "/lib/sammy.js",
-          "lineno": 336,
+          "lineno": 384,
           "doc": "<p>When set to true, logs all of the default events using <code>log()</code></p>\n"
+        },
+        {
+          "name": "disable_push_state",
+          "default": "false",
+          "filename": "/lib/sammy.js",
+          "lineno": 395,
+          "doc": "<p>if using the <code>DefaultLocationProxy</code> setting this to true will force the app to use\ntraditional hash based routing as opposed to the new HTML5 PushState support</p>\n"
         },
         {
           "name": "element_selector",
           "default": "'body'",
           "filename": "/lib/sammy.js",
-          "lineno": 333,
+          "lineno": 381,
           "doc": "<p>Defines what element the application is bound to. Provide a selector\n(parseable by <code>jQuery()</code>) and this will be used by <code>$element()</code></p>\n"
         },
         {
           "name": "raise_errors",
           "default": "false",
           "filename": "/lib/sammy.js",
-          "lineno": 340,
+          "lineno": 388,
           "doc": "<p>When set to true, and the error() handler is not overriden, will actually\nraise JS errors in routes (500) and when routes can't be found (404)</p>\n"
         },
         {
           "name": "run_interval_every",
           "default": "50",
           "filename": "/lib/sammy.js",
-          "lineno": 343,
+          "lineno": 391,
           "doc": "<p>The time in milliseconds that the URL is queried for changes</p>\n"
         },
         {
           "name": "template_engine",
           "default": "null",
           "filename": "/lib/sammy.js",
-          "lineno": 352,
+          "lineno": 404,
           "doc": "<p>The default template engine to use when using <code>partial()</code> in an\n<code>EventContext</code>. <code>template_engine</code> can either be a string that\ncorresponds to the name of a method/helper on EventContext or it can be a function\nthat takes two arguments, the content of the unrendered partial and an optional\nJS object that contains interpolation data. Template engine is only called/refered\nto if the extension of the partial is null or unknown. See <code>partial()</code>\nfor more information</p>\n"
         }
       ],
@@ -477,6 +484,46 @@
     }
   ],
   [
+    "Sammy.DefaultLocationProxy",
+    {
+      "name": "Sammy.DefaultLocationProxy",
+      "args": [
+        "app",
+        "run_interval_every"
+      ],
+      "doc": "<p>The DefaultLocationProxy is the default location proxy for all Sammy applications.\nA location proxy is a prototype that conforms to a simple interface. The purpose\nof a location proxy is to notify the Sammy.Application its bound to when the location\nor 'external state' changes.</p>\n\n<p>The <code>DefaultLocationProxy</code> watches for changes to the path of the current window and\nis also able to set the path based on changes in the application. It does this by\nusing different methods depending on what is available in the current browser. In\nthe latest and greatest browsers it used the HTML5 History API and the <code>pushState</code>\n<code>popState</code> events/methods. This allows you to use Sammy to serve a site behind normal\nURI paths as opposed to the older default of hash (#) based routing. Because the server\ncan interpret the changed path on a refresh or re-entry, though, it requires additional\nsupport on the server side. If you'd like to force disable HTML5 history support, please\nuse the <code>disable_push_state</code> setting on <code>Sammy.Application</code>. If pushState support\nis enabled, <code>DefaultLocationProxy</code> also binds to all links on the page. If a link is clicked\nthat matches the current set of routes, the URL is changed using pushState instead of\nfully setting the location and the app is notified of the change.</p>\n\n<p>If the browser does not have support for HTML5 History, <code>DefaultLocationProxy</code> automatically\nfalls back to the older hash based routing. The newest browsers (IE, Safari > 4, FF >= 3.6)\nsupport a 'onhashchange' DOM event, thats fired whenever the location.hash changes.\nIn this situation the DefaultLocationProxy just binds to this event and delegates it to\nthe application. In the case of older browsers a poller is set up to track changes to the\nhash.</p>\n",
+      "filename": "/lib/sammy.js",
+      "lineno": 229,
+      "methods": [
+
+      ],
+      "attributes": [
+
+      ],
+      "plugin": null
+    }
+  ],
+  [
+    "Sammy.EJS",
+    {
+      "name": "Sammy.EJS",
+      "args": [
+        "app",
+        "method_alias"
+      ],
+      "doc": "<p><code>Sammy.EJS</code> is a thin wrapper around the EJS templating engine which can be donwloaded\nat http://embeddedjs.com/</p>\n\n<p>Note: As of Sammy 0.7, Sammy.EJS does not include the actual templating engine in the source.\nInclude ejs.js before including sammy.ejs.js</p>\n",
+      "filename": "/lib/plugins/sammy.ejs.js",
+      "lineno": 10,
+      "methods": [
+
+      ],
+      "attributes": [
+
+      ],
+      "plugin": 43
+    }
+  ],
+  [
     "Sammy.EventContext",
     {
       "name": "Sammy.EventContext",
@@ -489,7 +536,7 @@
       ],
       "doc": "<p><code>Sammy.EventContext</code> objects are created every time a route is run or a\nbound event is triggered. The callbacks for these events are evaluated within a <code>Sammy.EventContext</code>\nThis within these callbacks the special methods of <code>EventContext</code> are available.</p>\n\n<h3>Example</h3>\n\n<pre class='prettyprint'><code>  $.sammy(function() {\n    // The context here is this Sammy.Application\n    this.get('#/:name', function() {\n      // The context here is a new Sammy.EventContext\n      if (this.params['name'] == 'sammy') {\n        this.partial('name.html.erb', {name: 'Sammy'});\n      } else {\n        this.redirect('#/somewhere-else')\n      }\n    });\n  });\n</code></pre>\n\n<p>Initialize a new EventContext</p>\n\n<h3>Arguments</h3>\n\n<ul>\n<li><code>app</code> The <code>Sammy.Application</code> this event is called within.</li>\n<li><code>verb</code> The verb invoked to run this context/route.</li>\n<li><code>path</code> The string path invoked to run this context/route.</li>\n<li><code>params</code> An Object of optional params to pass to the context. Is converted\nto a <code>Sammy.Object</code>.</li>\n<li><code>target</code> a DOM element that the event that holds this context originates\nfrom. For post, put and del routes, this is the form element that triggered\nthe route.</li>\n</ul>\n\n",
       "filename": "/lib/sammy.js",
-      "lineno": 1660,
+      "lineno": 1735,
       "methods": [
         {
           "name": "$element",
@@ -497,7 +544,7 @@
 
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 1671,
+          "lineno": 1746,
           "doc": "<p>A shortcut to the app's <code>$element()</code></p>\n"
         },
         {
@@ -506,7 +553,7 @@
             "engine"
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 1685,
+          "lineno": 1760,
           "doc": "<p>Look up a templating engine within the current app and context.\n<code>engine</code> can be one of the following:</p>\n\n<ul>\n<li>a function: should conform to <code>function(content, data) { return interploated; }</code></li>\n<li>a template path: 'template.ejs', looks up the extension to match to\nthe <code>ejs()</code> helper</li>\n<li>a string referering to the helper: \"mustache\" => <code>mustache()</code></li>\n</ul>\n\n\n<p>If no engine is found, use the app's default <code>template_engine</code></p>\n"
         },
         {
@@ -515,7 +562,7 @@
 
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 1799,
+          "lineno": 1889,
           "doc": "<p>A shortcut to app's <code>eventNamespace()</code></p>\n"
         },
         {
@@ -523,10 +570,11 @@
           "args": [
             "content",
             "data",
-            "engine"
+            "engine",
+            "partials"
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 1707,
+          "lineno": 1782,
           "doc": "<p>using the template <code>engine</code> found with <code>engineFor()</code>, interpolate the\n<code>data</code> into <code>content</code></p>\n"
         },
         {
@@ -535,7 +583,7 @@
             "string"
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 1815,
+          "lineno": 1905,
           "doc": "<p>Default JSON parsing uses jQuery's <code>parseJSON()</code>. Include <code>Sammy.JSON</code>\nplugin for the more conformant \"crockford special\".</p>\n"
         },
         {
@@ -546,7 +594,7 @@
             "callback"
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 1747,
+          "lineno": 1822,
           "doc": "<p>create a new <code>Sammy.RenderContext</code> calling <code>load()</code> with <code>location</code> and\n<code>options</code>. Called without interpolation or placement, this allows for\npreloading/caching the templates.</p>\n"
         },
         {
@@ -555,7 +603,7 @@
 
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 1809,
+          "lineno": 1899,
           "doc": "<p>Raises a possible <code>notFound()</code> error for the current path.</p>\n"
         },
         {
@@ -565,7 +613,7 @@
             "data"
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 1753,
+          "lineno": 1828,
           "doc": "<p><code>render()</code> the the <code>location</code> with <code>data</code> and then <code>swap()</code> the\napp's <code>$element</code> with the rendered content.</p>\n"
         },
         {
@@ -574,7 +622,7 @@
 
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 1774,
+          "lineno": 1849,
           "doc": "<p>Changes the location of the current window. If <code>to</code> begins with\n'#' it only changes the document's hash. If passed more than 1 argument\nredirect will join them together with forward slashes.</p>\n\n<h3>Example</h3>\n\n<pre class='prettyprint'><code> redirect('#/other/route');\n // equivilent to\n redirect('#', 'other', 'route');\n</code></pre>\n"
         },
         {
@@ -582,10 +630,11 @@
           "args": [
             "location",
             "data",
-            "callback"
+            "callback",
+            "partials"
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 1724,
+          "lineno": 1799,
           "doc": "<p>Create and return a <code>Sammy.RenderContext</code> calling <code>render()</code> on it.\nLoads the template and interpolate the data, however does not actual\nplace it in the DOM.</p>\n\n<h3>Example</h3>\n\n<pre class='prettyprint'><code> // mytemplate.mustache &lt;div class=\"name\"&gt;{{name}}&lt;/div&gt;\n render('mytemplate.mustache', {name: 'quirkey'});\n // sets the `content` to &lt;div class=\"name\"&gt;quirkey&lt;/div&gt;\n render('mytemplate.mustache', {name: 'quirkey'})\n   .appendTo('ul');\n // appends the rendered content to $('ul')\n</code></pre>\n"
         },
         {
@@ -597,7 +646,7 @@
             "callback"
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 1740,
+          "lineno": 1815,
           "doc": "<p>Create and return a <code>Sammy.RenderContext</code> calling <code>renderEach()</code> on it.\nLoads the template and interpolates the data for each item,\nhowever does not actual place it in the DOM.</p>\n\n<h3>Example</h3>\n\n<pre class='prettyprint'><code> // mytemplate.mustache &lt;div class=\"name\"&gt;{{name}}&lt;/div&gt;\n renderEach('mytemplate.mustache', [{name: 'quirkey'}, {name: 'endor'}])\n // sets the `content` to &lt;div class=\"name\"&gt;quirkey&lt;/div&gt;&lt;div class=\"name\"&gt;endor&lt;/div&gt;\n renderEach('mytemplate.mustache', [{name: 'quirkey'}, {name: 'endor'}]).appendTo('ul');\n // appends the rendered content to $('ul')\n</code></pre>\n"
         },
         {
@@ -606,7 +655,7 @@
 
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 1759,
+          "lineno": 1834,
           "doc": "<p>create a new <code>Sammy.RenderContext</code> calling <code>send()</code> with an arbitrary\nfunction</p>\n"
         },
         {
@@ -615,7 +664,7 @@
             "contents"
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 1804,
+          "lineno": 1894,
           "doc": "<p>A shortcut to app's <code>swap()</code></p>\n"
         },
         {
@@ -624,7 +673,7 @@
 
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 1820,
+          "lineno": 1910,
           "doc": "<p>//=> Sammy.EventContext: get #/ {}</p>\n"
         },
         {
@@ -634,7 +683,7 @@
             "data"
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 1792,
+          "lineno": 1882,
           "doc": "<p>Triggers events on <code>app</code> within the current context.</p>\n"
         }
       ],
@@ -642,6 +691,45 @@
 
       ],
       "plugin": null
+    }
+  ],
+  [
+    "Sammy.Exceptional",
+    {
+      "name": "Sammy.Exceptional",
+      "args": [
+        "app",
+        "errorReporter"
+      ],
+      "doc": "<p>A plugin that posts errors to Exceptional.</p>\n\n<h3>Arguments</h3>\n\n<p>Sammy.Exceptional accepts an optional argument that is the Exceptional\nimplementation. It will default to the global <code>Exceptional</code> object.</p>\n\n<h3>Requirements</h3>\n\n<p>The sole requirement is a global Exceptional object with a handle\nfunction. Contrast have published an implementation (see below).</p>\n\n<h3>See Also</h3>\n\n<ul>\n<li>http://www.getexceptional.com/</li>\n<li>https://github.com/contrast/exceptional-js</li>\n</ul>\n\n",
+      "filename": "/lib/plugins/sammy.exceptional.js",
+      "lineno": 20,
+      "methods": [
+
+      ],
+      "attributes": [
+
+      ],
+      "plugin": 43
+    }
+  ],
+  [
+    "Sammy.Flash",
+    {
+      "name": "Sammy.Flash",
+      "args": [
+        "app"
+      ],
+      "doc": "<p>Sammy.Flash is a plugin for storing and sending status messages to the client. It's API and use\nis similar to Ruby on Rails' <code>flash</code> explained here:\n<a href=\"http://apidock.com/rails/ActionController/Flash\">http://apidock.com/rails/ActionController/Flash</a></p>\n",
+      "filename": "/lib/plugins/sammy.flash.js",
+      "lineno": 62,
+      "methods": [
+
+      ],
+      "attributes": [
+
+      ],
+      "plugin": 43
     }
   ],
   [
@@ -817,7 +905,7 @@
         "app",
         "tracker"
       ],
-      "doc": "<p>A simple plugin that pings Google Analytics tracker\nevery time a route is triggered. Originally by Brit Gardner (britg),\nwith updates from Aaron Quint (quirkey).</p>\n\n<h3>Arguments</h3>\n\n<p>+tracker+:: the Google Analytics pageTracker object.  Defaults to\nthe default object defined by the GA snippet, or pass your own if you\nhave a custom install</p>\n\n<h3>Example</h3>\n\n<p>Install Google Analytics to your site as you normally would. Be sure that\nthe 'pageTracker' global variable exists.</p>\n\n<p>Then, simply add the plugin to your Sammy App and it will automatically\ntrack all of your routes in Google Analytics.\nThey will appear as page views to the route's path.</p>\n\n<pre class='prettyprint'><code> $.sammy(function() {\n   this.use('GoogleAnalytics');\n\n   ...\n });\n</code></pre>\n\n<p>If you have routes that you do not want to track, simply call <code>noTrack</code>\nwithin the route.</p>\n\n<pre class='prettyprint'><code> $.sammy(function() {\n   this.use('GoogleAnalytics')\n\n   get('#/dont/track/me', function() {\n     this.noTrack();  // This route will not be tracked\n   });\n });\n</code></pre>\n",
+      "doc": "<p>A simple plugin that pings Google Analytics tracker\nevery time a route is triggered. Originally by Brit Gardner (britg),\nwith updates from Aaron Quint (quirkey).</p>\n\n<h3>Arguments</h3>\n\n<p>+tracker+:: the Google Analytics pageTracker object.  Defaults to\nthe default object defined by the GA snippet, or pass your own if you\nhave a custom install</p>\n\n<h3>Example</h3>\n\n<p>Install Google Analytics to your site as you normally would. Be sure that\nthe 'pageTracker' global variable exists.</p>\n\n<p>Then, simply add the plugin to your Sammy App and it will automatically\ntrack all of your routes in Google Analytics.\nThey will appear as page views to the route's path.</p>\n\n<pre class='prettyprint'><code> $.sammy(function() {\n   this.use('GoogleAnalytics');\n\n   ...\n });\n</code></pre>\n\n<p>If you have routes that you do not want to track, simply call <code>noTrack</code>\nwithin the route.</p>\n\n<pre class='prettyprint'><code> $.sammy(function() {\n   this.use('GoogleAnalytics')\n\n   this.get('#/dont/track/me', function() {\n     this.noTrack();  // This route will not be tracked\n   });\n });\n</code></pre>\n",
       "filename": "/lib/plugins/sammy.googleanalytics.js",
       "lineno": 41,
       "methods": [
@@ -827,7 +915,7 @@
 
           ],
           "filename": "/lib/plugins/sammy.googleanalytics.js",
-          "lineno": 56,
+          "lineno": 64,
           "doc": "<p>Disable tracking for the current route. Put at the begining of the\nroute's callback</p>\n"
         },
         {
@@ -836,7 +924,7 @@
             "path"
           ],
           "filename": "/lib/plugins/sammy.googleanalytics.js",
-          "lineno": 60,
+          "lineno": 68,
           "doc": "<p>send a page view to the tracker with <code>path</code></p>\n"
         }
       ],
@@ -854,9 +942,9 @@
         "app",
         "method_alias"
       ],
-      "doc": "<p><tt>Sammy.Haml</tt> provides a quick way of using haml style templates in your app.\nThe plugin itself includes the haml-js library created by Tim Caswell at\nat http://github.com/creationix/haml-js</p>\n\n<p>Haml is an alternative HTML syntax that is really great for describing\nthe structure of HTML documents.</p>\n\n<p>By default using Sammy.Haml in your app adds the <tt>haml()</tt> method to the EventContext\nprototype. However, just like <tt>Sammy.Template</tt> you can change the default name of the method\nby passing a second argument (e.g. you could use the hml() as the method alias so that all the template\nfiles could be in the form file.hml instead of file.haml)</p>\n\n<h3>Example</h3>\n\n<p>The template (mytemplate.haml):</p>\n\n<pre class='prettyprint'><code>  %h1&amp;= title\n\n  Hey, #{name}! Welcome to Haml!\n</code></pre>\n\n<p>The app:</p>\n\n<pre class='prettyprint'><code>  var $.app = $.sammy(function() {\n    // include the plugin\n    this.use(Sammy.Haml);\n\n    this.get('#/hello/:name', function() {\n      // set local vars\n      this.title = 'Hello!'\n      this.name = this.params.name;\n      // render the template and pass it through haml\n      this.partial('mytemplate.haml');\n    });\n\n  });\n</code></pre>\n\n<p>If I go to <code>#/hello/AQ</code> in the browser, Sammy will render this to the <tt>body</tt>:</p>\n\n<pre class='prettyprint'><code>  &lt;h1&gt;Hello!&lt;/h1&gt;\n\n  Hey, AQ! Welcome to HAML!\n</code></pre>\n\n<p>Note: You dont have to include the haml.js file on top of the plugin as the plugin\nincludes the full source.</p>\n",
+      "doc": "<p><code>Sammy.Haml</code> provides a quick way of using haml style templates in your app.\nThe plugin wraps haml-js library created by Tim Caswell at\nat http://github.com/creationix/haml-js</p>\n\n<p>Note: As of Sammy 0.7, Sammy.Haml does not include the actual templating engine in the source.\nInclude haml.js before including sammy.haml.js</p>\n\n<p>Haml is an alternative HTML syntax that is really great for describing\nthe structure of HTML documents.</p>\n\n<p>By default using Sammy.Haml in your app adds the <tt>haml()</tt> method to the EventContext\nprototype. However, just like <code>Sammy.Template</code> you can change the default name of the method\nby passing a second argument (e.g. you could use the hml() as the method alias so that all the template\nfiles could be in the form file.hml instead of file.haml)</p>\n\n<h3>Example</h3>\n\n<p>The template (mytemplate.haml):</p>\n\n<pre class='prettyprint'><code>  %h1&amp;= title\n\n  Hey, #{name}! Welcome to Haml!\n</code></pre>\n\n<p>The app:</p>\n\n<pre class='prettyprint'><code>  var $.app = $.sammy(function() {\n    // include the plugin\n    this.use(Sammy.Haml);\n\n    this.get('#/hello/:name', function() {\n      // set local vars\n      this.title = 'Hello!'\n      this.name = this.params.name;\n      // render the template and pass it through haml\n      this.partial('mytemplate.haml');\n    });\n\n  });\n</code></pre>\n\n<p>If I go to <code>#/hello/AQ</code> in the browser, Sammy will render this to the <code>body</code>:</p>\n\n<pre class='prettyprint'><code>  &lt;h1&gt;Hello!&lt;/h1&gt;\n\n  Hey, AQ! Welcome to HAML!\n</code></pre>\n\n<p>Note: You dont have to include the haml.js file on top of the plugin as the plugin\nincludes the full source.</p>\n",
       "filename": "/lib/plugins/sammy.haml.js",
-      "lineno": 548,
+      "lineno": 53,
       "methods": [
 
       ],
@@ -874,9 +962,9 @@
         "app",
         "method_alias"
       ],
-      "doc": "<p><tt>Sammy.Handlebars</tt> provides a quick way of using Handlebars templates in your app.\nThe plugin itself includes the handlebars.js library created by Yehuda Katz at\nat http://github.com/wycats/handlebars.js</p>\n\n<p>Handlebars.js is an extension to the Mustache templating language  created by Chris Wanstrath. Handlebars.js\nand Mustache are both logicless templating languages that keep the view and the code separated like\nwe all know they should be.</p>\n\n<p>By default using Sammy.Handlbars in your app adds the <tt>handlebars()</tt> method to the EventContext\nprototype. However, just like <tt>Sammy.Template</tt> you can change the default name of the method\nby passing a second argument (e.g. you could use the hbr() as the method alias so that all the template\nfiles could be in the form file.hbr instead of file.handlebars)</p>\n\n<h3>Example #1</h3>\n\n<p>The template (mytemplate.hb):</p>\n\n<pre class='prettyprint'><code>  &lt;h1&gt;\\{\\{title\\}\\}&lt;h1&gt;\n\n  Hey, {{name}}! Welcome to Handlebars!\n</code></pre>\n\n<p>The app:</p>\n\n<pre class='prettyprint'><code>  var $.app = $.sammy(function() {\n    // include the plugin and alias handlebars() to hb()\n    this.use(Sammy.Handlebars, 'hb');\n\n    this.get('#/hello/:name', function() {\n      // set local vars\n      this.title = 'Hello!'\n      this.name = this.params.name;\n      // render the template and pass it through handlebars\n      this.partial('mytemplate.hb');\n    });\n\n  });\n</code></pre>\n\n<p>If I go to #/hello/AQ in the browser, Sammy will render this to the <tt>body</tt>:</p>\n\n<pre class='prettyprint'><code>  &lt;h1&gt;Hello!&lt;/h1&gt;\n\n  Hey, AQ! Welcome to Handlebars!\n</code></pre>\n\n<h3>Example #2 - Handlebars partials</h3>\n\n<p>The template (mytemplate.hb)</p>\n\n<pre class='prettyprint'><code>  Hey, {{name}}! {{&gt;hello_friend}}\n</code></pre>\n\n<p>The partial (mypartial.hb)</p>\n\n<pre class='prettyprint'><code>  Say hello to your friend {{friend}}!\n</code></pre>\n\n<p>The app:</p>\n\n<pre class='prettyprint'><code>  var $.app = $.sammy(function() {\n    // include the plugin and alias handlebars() to hb()\n    this.use(Sammy.Handlebars, 'hb');\n\n    this.get('#/hello/:name/to/:friend', function() {\n      var context = this;\n\n      // fetch handlebars-partial first\n      $.get('mypartial.hb', function(response){\n        context.partials = response;\n\n        // set local vars\n        context.name = this.params.name;\n        context.hello_friend = {name: this.params.friend};\n\n        // render the template and pass it through handlebars\n        context.partial('mytemplate.hb');\n      });\n    });\n\n  });\n</code></pre>\n\n<p>If I go to #/hello/AQ/to/dP in the browser, Sammy will render this to the <tt>body</tt>:</p>\n\n<pre class='prettyprint'><code>  Hey, AQ! Say hello to your friend dP!\n</code></pre>\n\n<p>Note: You dont have to include the handlebars.js file on top of the plugin as the plugin\nincludes the full source.</p>\n",
+      "doc": "<p><tt>Sammy.Handlebars</tt> provides a quick way of using Handlebars templates in your app.</p>\n\n<p>Note: As of Sammy 0.7 Handlebars itself is not included in the source. Please download and\ninclude handlebars.js before Sammy.Handlebars.</p>\n\n<p>Handlebars.js is an extension to the Mustache templating language created by Chris Wanstrath. Handlebars.js\nand Mustache are both logicless templating languages that keep the view and the code separated like\nwe all know they should be.</p>\n\n<p>By default using Sammy.Handlbars in your app adds the <tt>handlebars()</tt> method to the EventContext\nprototype. However, just like <tt>Sammy.Template</tt> you can change the default name of the method\nby passing a second argument (e.g. you could use the hbr() as the method alias so that all the template\nfiles could be in the form file.hbr instead of file.handlebars)</p>\n\n<h3>Example #1</h3>\n\n<p>The template (mytemplate.hb):</p>\n\n<pre class='prettyprint'><code>  &lt;h1&gt;\\{\\{title\\}\\}&lt;h1&gt;\n\n  Hey, {{name}}! Welcome to Handlebars!\n</code></pre>\n\n<p>The app:</p>\n\n<pre class='prettyprint'><code>  var $.app = $.sammy(function() {\n    // include the plugin and alias handlebars() to hb()\n    this.use('Handlebars', 'hb');\n\n    this.get('#/hello/:name', function() {\n      // set local vars\n      this.title = 'Hello!'\n      this.name = this.params.name;\n      // render the template and pass it through handlebars\n      this.partial('mytemplate.hb');\n    });\n\n  });\n</code></pre>\n\n<p>If I go to #/hello/AQ in the browser, Sammy will render this to the <tt>body</tt>:</p>\n\n<pre class='prettyprint'><code>  &lt;h1&gt;Hello!&lt;/h1&gt;\n\n  Hey, AQ! Welcome to Handlebars!\n</code></pre>\n\n<h3>Example #2 - Handlebars partials</h3>\n\n<p>The template (mytemplate.hb)</p>\n\n<pre class='prettyprint'><code>  Hey, {{name}}! {{&gt;hello_friend}}\n</code></pre>\n\n<p>The partial (mypartial.hb)</p>\n\n<pre class='prettyprint'><code>  Say hello to your friend {{friend}}!\n</code></pre>\n\n<p>The app:</p>\n\n<pre class='prettyprint'><code>  var $.app = $.sammy(function() {\n    // include the plugin and alias handlebars() to hb()\n    this.use('Handlebars', 'hb');\n\n    this.get('#/hello/:name/to/:friend', function() {\n      var context = this;\n\n      // fetch handlebars-partial first\n      $.get('mypartial.hb', function(response){\n        context.partials = response;\n\n        // set local vars\n        context.name = this.params.name;\n        context.hello_friend = {name: this.params.friend};\n\n        // render the template and pass it through handlebars\n        context.partial('mytemplate.hb');\n      });\n    });\n\n  });\n</code></pre>\n\n<p>If I go to #/hello/AQ/to/dP in the browser, Sammy will render this to the <tt>body</tt>:</p>\n\n<pre class='prettyprint'><code>  Hey, AQ! Say hello to your friend dP!\n</code></pre>\n\n<p>Note: You dont have to include the handlebars.js file on top of the plugin as the plugin\nincludes the full source.</p>\n",
       "filename": "/lib/plugins/sammy.handlebars.js",
-      "lineno": 581,
+      "lineno": 92,
       "methods": [
 
       ],
@@ -887,58 +975,23 @@
     }
   ],
   [
-    "Sammy.HashLocationProxy",
+    "Sammy.Hoptoad",
     {
-      "name": "Sammy.HashLocationProxy",
+      "name": "Sammy.Hoptoad",
       "args": [
         "app",
-        "run_interval_every"
+        "errorReporter"
       ],
-      "doc": "<p>The HashLocationProxy is the default location proxy for all Sammy applications.\nA location proxy is a prototype that conforms to a simple interface. The purpose\nof a location proxy is to notify the Sammy.Application its bound to when the location\nor 'external state' changes. The HashLocationProxy considers the state to be\nchanged when the 'hash' (window.location.hash / '#') changes. It does this in two\ndifferent ways depending on what browser you are using. The newest browsers\n(IE, Safari > 4, FF >= 3.6) support a 'onhashchange' DOM event, thats fired whenever\nthe location.hash changes. In this situation the HashLocationProxy just binds\nto this event and delegates it to the application. In the case of older browsers\na poller is set up to track changes to the hash. Unlike Sammy 0.3 or earlier,\nthe HashLocationProxy allows the poller to be a global object, eliminating the\nneed for multiple pollers even when thier are multiple apps on the page.</p>\n",
-      "filename": "/lib/sammy.js",
-      "lineno": 216,
+      "doc": "<p>A plugin that posts errors to Hoptoad.</p>\n\n<h3>Requirements</h3>\n\n<p>The sole requirement is a Hoptoad object with a notify function.\nThoughtbot have published an implementation (see below).</p>\n\n<h3>Arguments</h3>\n\n<p>Sammy.Hoptoad accepts an optional argument that is the\nHoptoad implementation. It will default to the global <code>Hoptoad</code> object.</p>\n\n<h3>See Also</h3>\n\n<ul>\n<li>http://hoptoadapp.com/</li>\n<li>http://robots.thoughtbot.com/post/899737797</li>\n<li>http://hoptoadapp.com/javascripts/notifier.js</li>\n</ul>\n\n",
+      "filename": "/lib/plugins/sammy.hoptoad.js",
+      "lineno": 21,
       "methods": [
-        {
-          "name": "bind",
-          "args": [
 
-          ],
-          "filename": "/lib/sammy.js",
-          "lineno": 226,
-          "doc": "<p>bind the proxy events to the current app.</p>\n"
-        },
-        {
-          "name": "getLocation",
-          "args": [
-
-          ],
-          "filename": "/lib/sammy.js",
-          "lineno": 254,
-          "doc": "<p>get the current location from the hash.</p>\n"
-        },
-        {
-          "name": "setLocation",
-          "args": [
-            "new_location"
-          ],
-          "filename": "/lib/sammy.js",
-          "lineno": 263,
-          "doc": "<p>set the current location to <code>new_location</code></p>\n"
-        },
-        {
-          "name": "unbind",
-          "args": [
-
-          ],
-          "filename": "/lib/sammy.js",
-          "lineno": 245,
-          "doc": "<p>unbind the proxy events from the current app</p>\n"
-        }
       ],
       "attributes": [
 
       ],
-      "plugin": null
+      "plugin": 43
     }
   ],
   [
@@ -1015,9 +1068,9 @@
         "app",
         "method_alias"
       ],
-      "doc": "<p><tt>Sammy.Mustache</tt> provides a quick way of using mustache style templates in your app.\nThe plugin itself includes the awesome mustache.js lib created and maintained by Jan Lehnardt\nat http://github.com/janl/mustache.js</p>\n\n<p>Mustache is a clever templating system that relys on double brackets {{}} for interpolation.\nFor full details on syntax check out the original Ruby implementation created by Chris Wanstrath at\nhttp://github.com/defunkt/mustache</p>\n\n<p>By default using Sammy.Mustache in your app adds the <tt>mustache()</tt> method to the EventContext\nprototype. However, just like <tt>Sammy.Template</tt> you can change the default name of the method\nby passing a second argument (e.g. you could use the ms() as the method alias so that all the template\nfiles could be in the form file.ms instead of file.mustache)</p>\n\n<h3>Example #1</h3>\n\n<p>The template (mytemplate.ms):</p>\n\n<pre class='prettyprint'><code>  &lt;h1&gt;\\{\\{title\\}\\}&lt;h1&gt;\n\n  Hey, {{name}}! Welcome to Mustache!\n</code></pre>\n\n<p>The app:</p>\n\n<pre class='prettyprint'><code>  var $.app = $.sammy(function() {\n    // include the plugin and alias mustache() to ms()\n    this.use(Sammy.Mustache, 'ms');\n\n    this.get('#/hello/:name', function() {\n      // set local vars\n      this.title = 'Hello!'\n      this.name = this.params.name;\n      // render the template and pass it through mustache\n      this.partial('mytemplate.ms');\n    });\n\n  });\n</code></pre>\n\n<p>If I go to #/hello/AQ in the browser, Sammy will render this to the <tt>body</tt>:</p>\n\n<pre class='prettyprint'><code>  &lt;h1&gt;Hello!&lt;/h1&gt;\n\n  Hey, AQ! Welcome to Mustache!\n</code></pre>\n\n<h3>Example #2 - Mustache partials</h3>\n\n<p>The template (mytemplate.ms)</p>\n\n<pre class='prettyprint'><code>  Hey, {{name}}! {{&gt;hello_friend}}\n</code></pre>\n\n<p>The partial (mypartial.ms)</p>\n\n<pre class='prettyprint'><code>  Say hello to your friend {{friend}}!\n</code></pre>\n\n<p>The app:</p>\n\n<pre class='prettyprint'><code>  var $.app = $.sammy(function() {\n    // include the plugin and alias mustache() to ms()\n    this.use(Sammy.Mustache, 'ms');\n\n    this.get('#/hello/:name/to/:friend', function() {\n      var context = this;\n\n      // fetch mustache-partial first\n      $.get('mypartial.ms', function(response){\n        context.partials = response;\n\n        // set local vars\n        context.name = this.params.name;\n        context.hello_friend = {name: this.params.friend};\n\n        // render the template and pass it through mustache\n        context.partial('mytemplate.ms');\n      });\n    });\n\n  });\n</code></pre>\n\n<p>If I go to #/hello/AQ/to/dP in the browser, Sammy will render this to the <tt>body</tt>:</p>\n\n<pre class='prettyprint'><code>  Hey, AQ! Say hello to your friend dP!\n</code></pre>\n\n<p>Note: You dont have to include the mustache.js file on top of the plugin as the plugin\nincludes the full source.</p>\n",
+      "doc": "<p><tt>Sammy.Mustache</tt> provides a quick way of using mustache style templates in your app.\nThe plugin wraps the awesome mustache.js lib created and maintained by Jan Lehnardt\nat http://github.com/janl/mustache.js</p>\n\n<p>Note: As of Sammy 0.7 the Mustache lib is not included in the templates source. Please download\nmustache.js and include it before Sammy.Mustache.</p>\n\n<p>Mustache is a clever templating system that relys on double brackets {{}} for interpolation.\nFor full details on syntax check out the original Ruby implementation created by Chris Wanstrath at\nhttp://github.com/defunkt/mustache</p>\n\n<p>By default using Sammy.Mustache in your app adds the <tt>mustache()</tt> method to the EventContext\nprototype. However, just like <tt>Sammy.Template</tt> you can change the default name of the method\nby passing a second argument (e.g. you could use the ms() as the method alias so that all the template\nfiles could be in the form file.ms instead of file.mustache)</p>\n\n<h3>Example #1</h3>\n\n<p>The template (mytemplate.ms):</p>\n\n<pre class='prettyprint'><code>  &lt;h1&gt;\\{\\{title\\}\\}&lt;h1&gt;\n\n  Hey, {{name}}! Welcome to Mustache!\n</code></pre>\n\n<p>The app:</p>\n\n<pre class='prettyprint'><code>  var $.app = $.sammy(function() {\n    // include the plugin and alias mustache() to ms()\n    this.use('Mustache', 'ms');\n\n    this.get('#/hello/:name', function() {\n      // set local vars\n      this.title = 'Hello!'\n      this.name = this.params.name;\n      // render the template and pass it through mustache\n      this.partial('mytemplate.ms');\n    });\n\n  });\n</code></pre>\n\n<p>If I go to #/hello/AQ in the browser, Sammy will render this to the <tt>body</tt>:</p>\n\n<pre class='prettyprint'><code>  &lt;h1&gt;Hello!&lt;/h1&gt;\n\n  Hey, AQ! Welcome to Mustache!\n</code></pre>\n\n<h3>Example #2 - Mustache partials</h3>\n\n<p>The template (mytemplate.ms)</p>\n\n<pre class='prettyprint'><code>  Hey, {{name}}! {{&gt;hello_friend}}\n</code></pre>\n\n<p>The partial (mypartial.ms)</p>\n\n<pre class='prettyprint'><code>  Say hello to your friend {{friend}}!\n</code></pre>\n\n<p>The app:</p>\n\n<pre class='prettyprint'><code>  var $.app = $.sammy(function() {\n    // include the plugin and alias mustache() to ms()\n    this.use('Mustache', 'ms');\n\n    this.get('#/hello/:name/to/:friend', function() {\n      var context = this;\n\n      // fetch mustache-partial first\n      $.get('mypartial.ms', function(response){\n        context.partials = response;\n\n        // set local vars\n        context.name = this.params.name;\n        context.hello_friend = {name: this.params.friend};\n\n        // render the template and pass it through mustache\n        context.partial('mytemplate.ms');\n      });\n    });\n\n  });\n</code></pre>\n\n<p>If I go to #/hello/AQ/to/dP in the browser, Sammy will render this to the <tt>body</tt>:</p>\n\n<pre class='prettyprint'><code>  Hey, AQ! Say hello to your friend dP!\n</code></pre>\n\n<p>Note: You dont have to include the mustache.js file on top of the plugin as the plugin\nincludes the full source.</p>\n",
       "filename": "/lib/plugins/sammy.mustache.js",
-      "lineno": 420,
+      "lineno": 94,
       "methods": [
 
       ],
@@ -1074,7 +1127,7 @@
       ],
       "doc": "<p>Sammy.Object is the base for all other Sammy classes. It provides some useful\nfunctionality, including cloning, iterating, etc.</p>\n",
       "filename": "/lib/sammy.js",
-      "lineno": 120,
+      "lineno": 121,
       "methods": [
         {
           "name": "escapeHTML",
@@ -1082,7 +1135,7 @@
 
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 128,
+          "lineno": 129,
           "doc": "<p>Escape HTML in string, use in templates to prevent script injection.\nAlso aliased as <code>h()</code></p>\n"
         },
         {
@@ -1091,7 +1144,7 @@
             "key"
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 173,
+          "lineno": 174,
           "doc": "<p>Checks if the object has a value at <code>key</code> and that the value is not empty</p>\n"
         },
         {
@@ -1100,7 +1153,7 @@
 
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 179,
+          "lineno": 180,
           "doc": "<p>convenience method to join as many arguments as you want\nby the first argument - useful for making paths</p>\n"
         },
         {
@@ -1109,7 +1162,7 @@
             "attributes_only"
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 162,
+          "lineno": 163,
           "doc": "<p>Returns an array of keys for this object. If <code>attributes_only</code>\nis true will not return keys that map to a <code>function()</code></p>\n"
         },
         {
@@ -1118,7 +1171,7 @@
 
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 186,
+          "lineno": 187,
           "doc": "<p>Shortcut to Sammy.log</p>\n"
         },
         {
@@ -1127,7 +1180,7 @@
 
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 150,
+          "lineno": 151,
           "doc": "<p>Renders a simple HTML version of this Objects attributes.\nDoes not render functions.\nFor example. Given this Sammy.Object:</p>\n\n<pre class='prettyprint'><code>var s = new Sammy.Object({first_name: 'Sammy', last_name: 'Davis Jr.'});\ns.toHTML()\n//=&gt; '&lt;strong&gt;first_name&lt;/strong&gt; Sammy&lt;br /&gt;&lt;strong&gt;last_name&lt;/strong&gt; Davis Jr.&lt;br /&gt;'\n</code></pre>\n"
         },
         {
@@ -1136,7 +1189,7 @@
 
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 132,
+          "lineno": 133,
           "doc": "<p>Returns a copy of the object with Functions removed.</p>\n"
         },
         {
@@ -1145,7 +1198,7 @@
             "include_functions"
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 193,
+          "lineno": 194,
           "doc": "<p>Returns a string representation of this object.\nif <code>include_functions</code> is true, it will also toString() the\nmethods of this object. By default only prints the attributes.</p>\n"
         }
       ],
@@ -1182,9 +1235,28 @@
         "app",
         "method_alias"
       ],
-      "doc": "<p><code>Sammy.Pure</code> is a simple wrapper around the pure.js templating engine for\nuse in Sammy apps.</p>\n\n<p>See http://beebole.com/pure/ for detailed documentation.</p>\n",
+      "doc": "<p><code>Sammy.Pure</code> is a simple wrapper around the pure.js templating engine for\nuse in Sammy apps.</p>\n\n<p>Note: You must include the pure.js source before including sammy.pure.js.</p>\n\n<p>See http://beebole.com/pure/ for detailed documentation.</p>\n",
       "filename": "/lib/plugins/sammy.pure.js",
-      "lineno": 744,
+      "lineno": 11,
+      "methods": [
+
+      ],
+      "attributes": [
+
+      ],
+      "plugin": 43
+    }
+  ],
+  [
+    "Sammy.PushLocationProxy",
+    {
+      "name": "Sammy.PushLocationProxy",
+      "args": [
+        "app"
+      ],
+      "doc": "<p>The PushLocationProxy is an optional location proxy prototype.\nPushLocationProxy gets its location from history API. No hash needed here.\nOnly compatible with Firefox >= Chrom 6, Firefox 4.0, Safari 5.0</p>\n\n<h3>Example</h3>\n\n<pre class='prettyprint'><code>var app = $.sammy(function() {\n    // set up the location proxy\n    this.setLocationProxy(new Sammy.PushLocationProxy(this));\n\n    this.get('/about', function() {\n      // Do something here\n    });\n\n});\n</code></pre>\n\n<p>Clicking on that link would not go to /about, but would set the apps location\nto 'about' and trigger the route.</p>\n",
+      "filename": "/lib/plugins/sammy.push_location_proxy.js",
+      "lineno": 23,
       "methods": [
 
       ],
@@ -1203,7 +1275,7 @@
       ],
       "doc": "<p><code>Sammy.RenderContext</code> is an object that makes sequential template loading,\nrendering and interpolation seamless even when dealing with asyncronous\noperations.</p>\n\n<p><code>RenderContext</code> objects are not usually created directly, rather they are\ninstatiated from an <code>Sammy.EventContext</code> by using <code>render()</code>, <code>load()</code> or\n<code>partial()</code> which all return <code>RenderContext</code> objects.</p>\n\n<p><code>RenderContext</code> methods always returns a modified <code>RenderContext</code>\nfor chaining (like jQuery itself).</p>\n\n<p>The core magic is in the <code>then()</code> method which puts the callback passed as\nan argument into a queue to be executed once the previous callback is complete.\nAll the methods of <code>RenderContext</code> are wrapped in <code>then()</code> which allows you\nto queue up methods by chaining, but maintaing a guarunteed execution order\neven with remote calls to fetch templates.</p>\n",
       "filename": "/lib/sammy.js",
-      "lineno": 1275,
+      "lineno": 1331,
       "methods": [
         {
           "name": "appendTo",
@@ -1211,7 +1283,7 @@
             "selector"
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 1596,
+          "lineno": 1671,
           "doc": "<p>Same usage as <code>jQuery.fn.appendTo()</code> but uses <code>then()</code> to ensure order</p>\n"
         },
         {
@@ -1222,7 +1294,7 @@
             "now"
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 1518,
+          "lineno": 1593,
           "doc": "<p>itterates over an array, applying the callback for each item item. the\ncallback takes the same style of arguments as <code>jQuery.each()</code> (index, item).\nThe return value of each callback is collected as a single string and stored\nas <code>content</code> to be used in the next iteration of the <code>RenderContext</code>.</p>\n"
         },
         {
@@ -1233,7 +1305,7 @@
             "retain"
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 1575,
+          "lineno": 1650,
           "doc": "<p>uses the previous loaded <code>content</code> and the <code>data</code> object to interpolate\na template. <code>engine</code> defines the templating/interpolation method/engine\nthat should be used. If <code>engine</code> is not passed, the <code>next_engine</code> is\nused. If <code>retain</code> is <code>true</code>, the final interpolated data is appended to\nthe <code>previous_content</code> instead of just replacing it.</p>\n"
         },
         {
@@ -1244,8 +1316,17 @@
             "callback"
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 1403,
+          "lineno": 1459,
           "doc": "<p>Load a template into the context.\nThe <code>location</code> can either be a string specifiying the remote path to the\nfile, a jQuery object, or a DOM element.</p>\n\n<p>No interpolation happens by default, the content is stored in\n<code>content</code>.</p>\n\n<p>In the case of a path, unless the option <code>{cache: false}</code> is passed the\ndata is stored in the app's <code>templateCache()</code>.</p>\n\n<p>If a jQuery or DOM object is passed the <code>innerHTML</code> of the node is pulled in.\nThis is useful for nesting templates as part of the initial page load wrapped\nin invisible elements or <code>&lt;script&gt;</code> tags. With template paths, the template\nengine is looked up by the extension. For DOM/jQuery embedded templates,\nthis isnt possible, so there are a couple of options:</p>\n\n<ul>\n<li>pass an <code>{engine:}</code> option.</li>\n<li>define the engine in the <code>data-engine</code> attribute of the passed node.</li>\n<li>just store the raw template data and use <code>interpolate()</code> manually</li>\n</ul>\n\n\n<p>If a <code>callback</code> is passed it is executed after the template load.</p>\n"
+        },
+        {
+          "name": "loadPartials",
+          "args": [
+            "partials"
+          ],
+          "filename": "/lib/sammy.js",
+          "lineno": 1522,
+          "doc": "<p>Load partials</p>\n\n<h3>Example</h3>\n\n<pre class='prettyprint'><code> this.loadPartials({mypartial: '/path/to/partial'});\n</code></pre>\n"
         },
         {
           "name": "next",
@@ -1253,7 +1334,7 @@
             "content"
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 1371,
+          "lineno": 1427,
           "doc": "<p>Resume the queue, setting <code>content</code> to be used in the next operation.\nSee <code>wait()</code> for an example.</p>\n"
         },
         {
@@ -1263,7 +1344,7 @@
             "data"
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 1481,
+          "lineno": 1556,
           "doc": "<p><code>render()</code> the the <code>location</code> with <code>data</code> and then <code>swap()</code> the\napp's <code>$element</code> with the rendered content.</p>\n"
         },
         {
@@ -1272,7 +1353,7 @@
             "selector"
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 1603,
+          "lineno": 1678,
           "doc": "<p>Same usage as <code>jQuery.fn.prependTo()</code> but uses <code>then()</code> to ensure order</p>\n"
         },
         {
@@ -1280,10 +1361,11 @@
           "args": [
             "location",
             "data",
-            "callback"
+            "callback",
+            "partials"
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 1468,
+          "lineno": 1543,
           "doc": "<p><code>load()</code> a template and then <code>interpolate()</code> it with data.</p>\n\n<h3>Example</h3>\n\n<pre class='prettyprint'><code> this.get('#/', function() {\n   this.render('mytemplate.template', {name: 'test'});\n });\n</code></pre>\n"
         },
         {
@@ -1295,7 +1377,7 @@
             "callback"
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 1543,
+          "lineno": 1618,
           "doc": "<p>loads a template, and then interpolates it for each item in the <code>data</code>\narray. If a callback is passed, it will call the callback with each\nitem in the array <em>after</em> interpolation</p>\n"
         },
         {
@@ -1304,7 +1386,7 @@
             "selector"
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 1611,
+          "lineno": 1686,
           "doc": "<p>Replaces the <code>$(selector)</code> using <code>html()</code> with the previously loaded\n<code>content</code></p>\n"
         },
         {
@@ -1313,7 +1395,7 @@
 
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 1499,
+          "lineno": 1574,
           "doc": "<p>defers the call of function to occur in order of the render queue.\nThe function can accept any number of arguments as long as the last\nargument is a callback function. This is useful for putting arbitrary\nasynchronous functions into the queue. The content passed to the\ncallback is passed as <code>content</code> to the next item in the queue.</p>\n\n<h3>Example</h3>\n\n<pre class='prettyprint'><code>this.send($.getJSON, '/app.json')\n    .then(function(json) {\n      $('#message).text(json['message']);\n     });\n</code></pre>\n"
         },
         {
@@ -1322,7 +1404,7 @@
 
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 1589,
+          "lineno": 1664,
           "doc": "<p>executes <code>EventContext#swap()</code> with the <code>content</code></p>\n"
         },
         {
@@ -1331,7 +1413,7 @@
             "callback"
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 1315,
+          "lineno": 1371,
           "doc": "<p>The \"core\" of the <code>RenderContext</code> object, adds the <code>callback</code> to the\nqueue. If the context is <code>waiting</code> (meaning an async operation is happening)\nthen the callback will be executed in order, once the other operations are\ncomplete. If there is no currently executing operation, the <code>callback</code>\nis executed immediately.</p>\n\n<p>The value returned from the callback is stored in <code>content</code> for the\nsubsiquent operation. If you return <code>false</code>, the queue will pause, and\nthe next callback in the queue will not be executed until <code>next()</code> is\ncalled. This allows for the guarunteed order of execution while working\nwith async operations.</p>\n\n<p>If then() is passed a string instead of a function, the string is looked\nup as a helper method on the event context.</p>\n\n<h3>Example</h3>\n\n<pre class='prettyprint'><code> this.get('#/', function() {\n   // initialize the RenderContext\n   // Even though `load()` executes async, the next `then()`\n   // wont execute until the load finishes\n   this.load('myfile.txt')\n       .then(function(content) {\n         // the first argument to then is the content of the\n         // prev operation\n         $('#main').html(content);\n       });\n });\n</code></pre>\n"
         },
         {
@@ -1341,7 +1423,7 @@
             "data"
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 1620,
+          "lineno": 1695,
           "doc": "<p>trigger the event in the order of the event context. Same semantics\nas <code>Sammy.EventContext#trigger()</code>. If data is ommitted, <code>content</code>\nis sent as <code>{content: content}</code></p>\n"
         },
         {
@@ -1350,7 +1432,7 @@
 
           ],
           "filename": "/lib/sammy.js",
-          "lineno": 1365,
+          "lineno": 1421,
           "doc": "<p>Pause the <code>RenderContext</code> queue. Combined with <code>next()</code> allows for async\noperations.</p>\n\n<h3>Example</h3>\n\n<pre class='prettyprint'><code>   this.get('#/', function() {\n     this.load('mytext.json')\n         .then(function(content) {\n           var context = this,\n               data    = JSON.parse(content);\n           // pause execution\n           context.wait();\n           // post to a url\n           $.post(data.url, {}, function(response) {\n             context.next(JSON.parse(response));\n           });\n         })\n         .then(function(data) {\n           // data is json from the previous post\n           $('#message').text(data.status);\n         });\n   });\n</code></pre>\n"
         }
       ],
@@ -1689,6 +1771,26 @@
     }
   ],
   [
+    "Sammy.Tmpl",
+    {
+      "name": "Sammy.Tmpl",
+      "args": [
+        "app",
+        "method_alias"
+      ],
+      "doc": "<p><code>Sammy.Tmpl</code> is a small wrapper around the jquery.tmpl templating engine. You\ncan find more information and download the engine itself at\nhttps://github.com/jquery/jquery-tmpl</p>\n\n<p>Note: This does not include jquery.tmpl in the source. Please include jquery.tmpl.js before\nsammy.tmpl.js</p>\n",
+      "filename": "/lib/plugins/sammy.tmpl.js",
+      "lineno": 11,
+      "methods": [
+
+      ],
+      "attributes": [
+
+      ],
+      "plugin": 43
+    }
+  ],
+  [
     "Sammy.addLogger",
     {
       "name": "Sammy.addLogger",
@@ -1697,7 +1799,7 @@
       ],
       "doc": "<p>Add to the global logger pool. Takes a function that accepts an\nunknown number of arguments and should print them or send them somewhere\nThe first argument is always a timestamp.</p>\n",
       "filename": "/lib/sammy.js",
-      "lineno": 81,
+      "lineno": 82,
       "methods": [
 
       ],
@@ -1716,7 +1818,7 @@
       ],
       "doc": "<p>Sends a log message to each logger listed in the global\nloggers pool. Can take any number of arguments.\nAlso prefixes the arguments with a timestamp.</p>\n",
       "filename": "/lib/sammy.js",
-      "lineno": 88,
+      "lineno": 89,
       "methods": [
 
       ],

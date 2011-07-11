@@ -7,14 +7,14 @@
     <a href='Sammy.EventContext._methods_.render'>render</a>
     <span>
       (
-      <em>location, data, callback</em>
+      <em>location, data, callback, partials</em>
       )
     </span>
   </h3>
   <div class='links'>
     <a href='Sammy.EventContext._methods_.render#comments'>Comments</a>
     |
-    <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1724' target='all'>Show in GitHub</a>
+    <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1799' target='all'>Show in GitHub</a>
   </div><div class='doc'><p>Create and return a <code>Sammy.RenderContext</code> calling <code>render()</code> on it.&#x000A;Loads the template and interpolate the data, however does not actual&#x000A;place it in the DOM.</p>&#x000A;&#x000A;<h3>Example</h3>&#x000A;&#x000A;<pre class='prettyprint'><code> // mytemplate.mustache &lt;div class="name"&gt;{{name}}&lt;/div&gt;&#x000A; render('mytemplate.mustache', {name: 'quirkey'});&#x000A; // sets the `content` to &lt;div class="name"&gt;quirkey&lt;/div&gt;&#x000A; render('mytemplate.mustache', {name: 'quirkey'})&#x000A;   .appendTo('ul');&#x000A; // appends the rendered content to $('ul')&#x000A;</code></pre></div><div id='comments'>
 <div id="disqus_thread"></div>
 <script type="text/javascript">

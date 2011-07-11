@@ -27,6 +27,9 @@
       <a href='#Sammy.Application-debug'>debug</a>
     </li>
     <li>
+      <a href='#Sammy.Application-disable_push_state'>disable_push_state</a>
+    </li>
+    <li>
       <a href='#Sammy.Application-element_selector'>element_selector</a>
     </li>
     <li>
@@ -165,6 +168,12 @@
       =
       <span>false</span>
     </h4><div class='doc'><p>When set to true, logs all of the default events using <code>log()</code></p></div></div>
+  <div class='attr' id='Sammy.Application-disable_push_state'>
+    <h4>
+      disable_push_state
+      =
+      <span>false</span>
+    </h4><div class='doc'><p>if using the <code>DefaultLocationProxy</code> setting this to true will force the app to use&#x000A;traditional hash based routing as opposed to the new HTML5 PushState support</p></div></div>
   <div class='attr' id='Sammy.Application-element_selector'>
     <h4>
       element_selector
@@ -201,7 +210,7 @@
     <div class='links'>
       <a href='Sammy.Application._methods_.$element#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L360' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L412' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>returns a jQuery object of the Applications bound element.</p></div></div>
   <div class='meth' id='Sammy.Application-after'>
     <h3>
@@ -215,7 +224,7 @@
     <div class='links'>
       <a href='Sammy.Application._methods_.after#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L677' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L729' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>A shortcut for binding a callback to be run after a route is executed.&#x000A;After callbacks have no guarunteed order.</p></div></div>
   <div class='meth' id='Sammy.Application-any'>
     <h3>
@@ -229,7 +238,7 @@
     <div class='links'>
       <a href='Sammy.Application._methods_.any#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L540' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L592' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>Alias for route('any', ...)</p></div></div>
   <div class='meth' id='Sammy.Application-around'>
     <h3>
@@ -243,7 +252,7 @@
     <div class='links'>
       <a href='Sammy.Application._methods_.around#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L724' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L776' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>Adds an around filter to the application. around filters are functions&#x000A;that take a single argument <code>callback</code> which is the entire route&#x000A;execution path wrapped up in a closure. This means you can decide whether&#x000A;or not to proceed with execution by not invoking <code>callback</code> or,&#x000A;more usefuly wrapping callback inside the result of an asynchronous execution.</p>&#x000A;&#x000A;<h3>Example</h3>&#x000A;&#x000A;<p>The most common use case for around() is calling a <em>possibly</em> async function&#x000A;and executing the route within the functions callback:</p>&#x000A;&#x000A;<pre class='prettyprint'><code> var app = $.sammy(function() {&#x000A;&#x000A;   var current_user = false;&#x000A;&#x000A;   function checkLoggedIn(callback) {&#x000A;     // /session returns a JSON representation of the logged in user&#x000A;     // or an empty object&#x000A;     if (!current_user) {&#x000A;       $.getJSON('/session', function(json) {&#x000A;         if (json.login) {&#x000A;           // show the user as logged in&#x000A;           current_user = json;&#x000A;           // execute the route path&#x000A;           callback();&#x000A;         } else {&#x000A;           // show the user as not logged in&#x000A;           current_user = false;&#x000A;           // the context of aroundFilters is an EventContext&#x000A;           this.redirect('#/login');&#x000A;         }&#x000A;       });&#x000A;     } else {&#x000A;       // execute the route path&#x000A;       callback();&#x000A;     }&#x000A;   };&#x000A;&#x000A;   this.around(checkLoggedIn);&#x000A;&#x000A; });&#x000A;</code></pre></div></div>
   <div class='meth' id='Sammy.Application-before'>
     <h3>
@@ -257,7 +266,7 @@
     <div class='links'>
       <a href='Sammy.Application._methods_.before#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L666' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L718' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>Takes a single callback that is pushed on to a stack.&#x000A;Before any route is run, the callbacks are evaluated in order within&#x000A;the current <code>Sammy.EventContext</code></p>&#x000A;&#x000A;<p>If any of the callbacks explicitly return false, execution of any&#x000A;further callbacks and the route itself is halted.</p>&#x000A;&#x000A;<p>You can also provide a set of options that will define when to run this&#x000A;before based on the route it proceeds.</p>&#x000A;&#x000A;<h3>Example</h3>&#x000A;&#x000A;<pre class='prettyprint'><code> var app = $.sammy(function() {&#x000A;&#x000A;   // will run at #/route but not at #/&#x000A;   this.before('#/route', function() {&#x000A;     //...&#x000A;   });&#x000A;&#x000A;   // will run at #/ but not at #/route&#x000A;   this.before({except: {path: '#/route'}}, function() {&#x000A;     this.log('not before #/route');&#x000A;   });&#x000A;&#x000A;   this.get('#/', function() {});&#x000A;&#x000A;   this.get('#/route', function() {});&#x000A;&#x000A; });&#x000A;</code></pre>&#x000A;&#x000A;<p>See <code>contextMatchesOptions()</code> for a full list of supported options</p></div></div>
   <div class='meth' id='Sammy.Application-bind'>
     <h3>
@@ -271,7 +280,7 @@
     <div class='links'>
       <a href='Sammy.Application._methods_.bind#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L580' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L632' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>Works just like <code>jQuery.fn.bind()</code> with a couple noteable differences.</p>&#x000A;&#x000A;<ul>&#x000A;<li>It binds all events to the application element</li>&#x000A;<li>All events are bound within the <code>eventNamespace()</code></li>&#x000A;<li>Events are not actually bound until the application is started with <code>run()</code></li>&#x000A;<li>callbacks are evaluated within the context of a Sammy.EventContext</li>&#x000A;</ul>&#x000A;</div></div>
   <div class='meth' id='Sammy.Application-bindToAllEvents'>
     <h3>
@@ -285,7 +294,7 @@
     <div class='links'>
       <a href='Sammy.Application._methods_.bindToAllEvents#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L875' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L927' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>Will bind a single callback function to every event that is already&#x000A;being listened to in the app. This includes all the <code>APP_EVENTS</code>&#x000A;as well as any custom events defined with <code>bind()</code>.</p>&#x000A;&#x000A;<p>Used internally for debug logging.</p></div></div>
   <div class='meth' id='Sammy.Application-clearTemplateCache'>
     <h3>
@@ -299,7 +308,7 @@
     <div class='links'>
       <a href='Sammy.Application._methods_.clearTemplateCache#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1125' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1181' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>clear the templateCache</p></div></div>
   <div class='meth' id='Sammy.Application-contextMatchesOptions'>
     <h3>
@@ -313,7 +322,7 @@
     <div class='links'>
       <a href='Sammy.Application._methods_.contextMatchesOptions#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1039' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1092' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>Matches an object of options against an <code>EventContext</code> like object that&#x000A;contains <code>path</code> and <code>verb</code> attributes. Internally Sammy uses this&#x000A;for matching <code>before()</code> filters against specific options. You can set the&#x000A;object to <em>only</em> match certain paths or verbs, or match all paths or verbs <em>except</em>&#x000A;those that match the options.</p>&#x000A;&#x000A;<h3>Example</h3>&#x000A;&#x000A;<pre class='prettyprint'><code>var app = $.sammy(),&#x000A;    context = {verb: 'get', path: '#/mypath'};&#x000A;&#x000A;// match against a path string&#x000A;app.contextMatchesOptions(context, '#/mypath'); //=&gt; true&#x000A;app.contextMatchesOptions(context, '#/otherpath'); //=&gt; false&#x000A;// equivilent to&#x000A;app.contextMatchesOptions(context, {only: {path:'#/mypath'}}); //=&gt; true&#x000A;app.contextMatchesOptions(context, {only: {path:'#/otherpath'}}); //=&gt; false&#x000A;// match against a path regexp&#x000A;app.contextMatchesOptions(context, /path/); //=&gt; true&#x000A;app.contextMatchesOptions(context, /^path/); //=&gt; false&#x000A;// match only a verb&#x000A;app.contextMatchesOptions(context, {only: {verb:'get'}}); //=&gt; true&#x000A;app.contextMatchesOptions(context, {only: {verb:'post'}}); //=&gt; false&#x000A;// match all except a verb&#x000A;app.contextMatchesOptions(context, {except: {verb:'post'}}); //=&gt; true&#x000A;app.contextMatchesOptions(context, {except: {verb:'get'}}); //=&gt; false&#x000A;// match all except a path&#x000A;app.contextMatchesOptions(context, {except: {path:'#/otherpath'}}); //=&gt; true&#x000A;app.contextMatchesOptions(context, {except: {path:'#/mypath'}}); //=&gt; false&#x000A;</code></pre></div></div>
   <div class='meth' id='Sammy.Application-del'>
     <h3>
@@ -327,7 +336,7 @@
     <div class='links'>
       <a href='Sammy.Application._methods_.del#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L537' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L589' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>Alias for route('delete', ...)</p></div></div>
   <div class='meth' id='Sammy.Application-error'>
     <h3>
@@ -341,7 +350,7 @@
     <div class='links'>
       <a href='Sammy.Application._methods_.error#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1143' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1199' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>The base error handler takes a string <code>message</code> and an <code>Error</code>&#x000A;object. If <code>raise_errors</code> is set to <code>true</code> on the app level,&#x000A;this will re-throw the error to the browser. Otherwise it will send the error&#x000A;to <code>log()</code>. Override this method to provide custom error handling&#x000A;e.g logging to a server side component or displaying some feedback to the&#x000A;user.</p></div></div>
   <div class='meth' id='Sammy.Application-eventNamespace'>
     <h3>
@@ -355,7 +364,7 @@
     <div class='links'>
       <a href='Sammy.Application._methods_.eventNamespace#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L569' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L621' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>A unique event namespace defined per application.&#x000A;All events bound with <code>bind()</code> are automatically bound within this space.</p></div></div>
   <div class='meth' id='Sammy.Application-get'>
     <h3>
@@ -369,7 +378,7 @@
     <div class='links'>
       <a href='Sammy.Application._methods_.get#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L528' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L580' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>Alias for route('get', ...)</p></div></div>
   <div class='meth' id='Sammy.Application-getLocation'>
     <h3>
@@ -383,8 +392,8 @@
     <div class='links'>
       <a href='Sammy.Application._methods_.getLocation#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1075' target='all'>Show in GitHub</a>
-    </div><div class='doc'><p>Delegates to the <code>location_proxy</code> to get the current location.&#x000A;See <code>Sammy.HashLocationProxy</code> for more info on location proxies.</p></div></div>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1131' target='all'>Show in GitHub</a>
+    </div><div class='doc'><p>Delegates to the <code>location_proxy</code> to get the current location.&#x000A;See <code>Sammy.DefaultLocationProxy</code> for more info on location proxies.</p></div></div>
   <div class='meth' id='Sammy.Application-helper'>
     <h3>
       <a href='Sammy.Application._methods_.helper'>helper</a>
@@ -397,7 +406,7 @@
     <div class='links'>
       <a href='Sammy.Application._methods_.helper#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L790' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L842' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>Helper extends the event context just like <code>helpers()</code> but does it&#x000A;a single method at a time. This is especially useful for dynamically named&#x000A;helpers</p>&#x000A;&#x000A;<h3>Example</h3>&#x000A;&#x000A;<pre class='prettyprint'><code>// Trivial example that adds 3 helper methods to the context dynamically&#x000A;var app = $.sammy(function(app) {&#x000A;&#x000A;  $.each([1,2,3], function(i, num) {&#x000A;    app.helper('helper' + num, function() {&#x000A;      this.log("I'm helper number " + num);&#x000A;    });&#x000A;  });&#x000A;&#x000A;  this.get('#/', function() {&#x000A;    this.helper2(); //=&gt; I'm helper number 2&#x000A;  });&#x000A;});&#x000A;</code></pre>&#x000A;&#x000A;<h3>Arguments</h3>&#x000A;&#x000A;<ul>&#x000A;<li><code>name</code> The name of the method</li>&#x000A;<li><code>method</code> The function to be added to the prototype at <code>name</code></li>&#x000A;</ul>&#x000A;</div></div>
   <div class='meth' id='Sammy.Application-helpers'>
     <h3>
@@ -411,7 +420,7 @@
     <div class='links'>
       <a href='Sammy.Application._methods_.helpers#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L760' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L812' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>Helpers extends the EventContext prototype specific to this app.&#x000A;This allows you to define app specific helper functions that can be used&#x000A;whenever you're inside of an event context (templates, routes, bind).</p>&#x000A;&#x000A;<h3>Example</h3>&#x000A;&#x000A;<pre class='prettyprint'><code>var app = $.sammy(function() {&#x000A;&#x000A;  helpers({&#x000A;    upcase: function(text) {&#x000A;     return text.toString().toUpperCase();&#x000A;    }&#x000A;  });&#x000A;&#x000A;  get('#/', function() { with(this) {&#x000A;    // inside of this context I can use the helpers&#x000A;    $('#main').html(upcase($('#main').text());&#x000A;  }});&#x000A;&#x000A;});&#x000A;</code></pre>&#x000A;&#x000A;<h3>Arguments</h3>&#x000A;&#x000A;<ul>&#x000A;<li><code>extensions</code> An object collection of functions to extend the context.</li>&#x000A;</ul>&#x000A;</div></div>
   <div class='meth' id='Sammy.Application-isRunning'>
     <h3>
@@ -425,7 +434,7 @@
     <div class='links'>
       <a href='Sammy.Application._methods_.isRunning#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L730' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L782' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>Returns <code>true</code> if the current application is running.</p></div></div>
   <div class='meth' id='Sammy.Application-lookupRoute'>
     <h3>
@@ -439,7 +448,7 @@
     <div class='links'>
       <a href='Sammy.Application._methods_.lookupRoute#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L898' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L950' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>Given a verb and a String path, will return either a route object or false&#x000A;if a matching route can be found within the current defined set.</p></div></div>
   <div class='meth' id='Sammy.Application-mapRoutes'>
     <h3>
@@ -453,7 +462,7 @@
     <div class='links'>
       <a href='Sammy.Application._methods_.mapRoutes#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L559' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L611' target='all'>Show in GitHub</a>
     </div><div class='doc'><p><code>mapRoutes</code> takes an array of arrays, each array being passed to route()&#x000A;as arguments, this allows for mass definition of routes. Another benefit is&#x000A;this makes it possible/easier to load routes via remote JSON.</p>&#x000A;&#x000A;<h3>Example</h3>&#x000A;&#x000A;<pre class='prettyprint'><code> var app = $.sammy(function() {&#x000A;&#x000A;   this.mapRoutes([&#x000A;       ['get', '#/', function() { this.log('index'); }],&#x000A;       // strings in callbacks are looked up as methods on the app&#x000A;       ['post', '#/create', 'addUser'],&#x000A;       // No verb assumes 'any' as the verb&#x000A;       [/dowhatever/, function() { this.log(this.verb, this.path)}];&#x000A;     ]);&#x000A; });&#x000A;</code></pre></div></div>
   <div class='meth' id='Sammy.Application-notFound'>
     <h3>
@@ -467,7 +476,7 @@
     <div class='links'>
       <a href='Sammy.Application._methods_.notFound#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1132' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1188' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>This thows a '404 Not Found' error by invoking <code>error()</code>.&#x000A;Override this method or <code>error()</code> to provide custom&#x000A;404 behavior (i.e redirecting to / or showing a warning)</p></div></div>
   <div class='meth' id='Sammy.Application-post'>
     <h3>
@@ -481,7 +490,7 @@
     <div class='links'>
       <a href='Sammy.Application._methods_.post#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L531' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L583' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>Alias for route('post', ...)</p></div></div>
   <div class='meth' id='Sammy.Application-put'>
     <h3>
@@ -495,7 +504,7 @@
     <div class='links'>
       <a href='Sammy.Application._methods_.put#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L534' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L586' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>Alias for route('put', ...)</p></div></div>
   <div class='meth' id='Sammy.Application-refresh'>
     <h3>
@@ -509,7 +518,7 @@
     <div class='links'>
       <a href='Sammy.Application._methods_.refresh#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L628' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L680' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>Reruns the current route</p></div></div>
   <div class='meth' id='Sammy.Application-routablePath'>
     <h3>
@@ -523,7 +532,7 @@
     <div class='links'>
       <a href='Sammy.Application._methods_.routablePath#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L892' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L944' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>Returns a copy of the given path with any query string after the hash&#x000A;removed.</p></div></div>
   <div class='meth' id='Sammy.Application-route'>
     <h3>
@@ -537,7 +546,7 @@
     <div class='links'>
       <a href='Sammy.Application._methods_.route#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L476' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L528' target='all'>Show in GitHub</a>
     </div><div class='doc'><p><code>route()</code> is the main method for defining routes within an application.&#x000A;For great detail on routes, check out:&#x000A;<a href="http://sammyjs.org/docs/routes">http://sammyjs.org/docs/routes</a></p>&#x000A;&#x000A;<p>This method also has aliases for each of the different verbs (eg. <code>get()</code>, <code>post()</code>, etc.)</p>&#x000A;&#x000A;<h3>Arguments</h3>&#x000A;&#x000A;<ul>&#x000A;<li><code>verb</code> A String in the set of ROUTE_VERBS or 'any'. 'any' will add routes for each&#x000A; of the ROUTE_VERBS. If only two arguments are passed,&#x000A; the first argument is the path, the second is the callback and the verb&#x000A; is assumed to be 'any'.</li>&#x000A;<li><code>path</code> A Regexp or a String representing the path to match to invoke this verb.</li>&#x000A;<li><code>callback</code> A Function that is called/evaluated whent the route is run see: <code>runRoute()</code>.&#x000A; It is also possible to pass a string as the callback, which is looked up as the name&#x000A; of a method on the application.</li>&#x000A;</ul>&#x000A;</div></div>
   <div class='meth' id='Sammy.Application-run'>
     <h3>
@@ -551,7 +560,7 @@
     <div class='links'>
       <a href='Sammy.Application._methods_.run#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L809' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L861' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>Actually starts the application's lifecycle. <code>run()</code> should be invoked&#x000A;within a document.ready block to ensure the DOM exists before binding events, etc.</p>&#x000A;&#x000A;<h3>Example</h3>&#x000A;&#x000A;<pre class='prettyprint'><code>var app = $.sammy(function() { ... }); // your application&#x000A;$(function() { // document.ready&#x000A;   app.run();&#x000A;});&#x000A;</code></pre>&#x000A;&#x000A;<h3>Arguments</h3>&#x000A;&#x000A;<ul>&#x000A;<li><code>start_url</code> Optionally, a String can be passed which the App will redirect to&#x000A;after the events/routes have been bound.</li>&#x000A;</ul>&#x000A;</div></div>
   <div class='meth' id='Sammy.Application-runRoute'>
     <h3>
@@ -565,7 +574,7 @@
     <div class='links'>
       <a href='Sammy.Application._methods_.runRoute#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L931' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L984' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>First, invokes <code>lookupRoute()</code> and if a route is found, parses the&#x000A;possible URL params and then invokes the route's callback within a new&#x000A;<code>Sammy.EventContext</code>. If the route can not be found, it calls&#x000A;<code>notFound()</code>. If <code>raise_errors</code> is set to <code>true</code> and&#x000A;the <code>error()</code> has not been overriden, it will throw an actual JS&#x000A;error.</p>&#x000A;&#x000A;<p>You probably will never have to call this directly.</p>&#x000A;&#x000A;<h3>Arguments</h3>&#x000A;&#x000A;<ul>&#x000A;<li><code>verb</code> A String for the verb.</li>&#x000A;<li><code>path</code> A String path to lookup.</li>&#x000A;<li><code>params</code> An Object of Params pulled from the URI or passed directly.</li>&#x000A;</ul>&#x000A;&#x000A;&#x000A;<h3>Returns</h3>&#x000A;&#x000A;<p>Either returns the value returned by the route callback or raises a 404 Not Found error.</p></div></div>
   <div class='meth' id='Sammy.Application-setLocation'>
     <h3>
@@ -579,8 +588,8 @@
     <div class='links'>
       <a href='Sammy.Application._methods_.setLocation#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1086' target='all'>Show in GitHub</a>
-    </div><div class='doc'><p>Delegates to the <code>location_proxy</code> to set the current location.&#x000A;See <code>Sammy.HashLocationProxy</code> for more info on location proxies.</p>&#x000A;&#x000A;<h3>Arguments</h3>&#x000A;&#x000A;<ul>&#x000A;<li><code>new_location</code> A new location string (e.g. '#/')</li>&#x000A;</ul>&#x000A;</div></div>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1142' target='all'>Show in GitHub</a>
+    </div><div class='doc'><p>Delegates to the <code>location_proxy</code> to set the current location.&#x000A;See <code>Sammy.DefaultLocationProxy</code> for more info on location proxies.</p>&#x000A;&#x000A;<h3>Arguments</h3>&#x000A;&#x000A;<ul>&#x000A;<li><code>new_location</code> A new location string (e.g. '#/')</li>&#x000A;</ul>&#x000A;</div></div>
   <div class='meth' id='Sammy.Application-setLocationProxy'>
     <h3>
       <a href='Sammy.Application._methods_.setLocationProxy'>setLocationProxy</a>
@@ -593,8 +602,8 @@
     <div class='links'>
       <a href='Sammy.Application._methods_.setLocationProxy#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L447' target='all'>Show in GitHub</a>
-    </div><div class='doc'><p>Sets the location proxy for the current app. By default this is set to&#x000A;a new <code>Sammy.HashLocationProxy</code> on initialization. However, you can set&#x000A;the location_proxy inside you're app function to give your app a custom&#x000A;location mechanism. See <code>Sammy.HashLocationProxy</code> and <code>Sammy.DataLocationProxy</code>&#x000A;for examples.</p>&#x000A;&#x000A;<p><code>setLocationProxy()</code> takes an initialized location proxy.</p>&#x000A;&#x000A;<h3>Example</h3>&#x000A;&#x000A;<pre class='prettyprint'><code>   // to bind to data instead of the default hash;&#x000A;   var app = $.sammy(function() {&#x000A;     this.setLocationProxy(new Sammy.DataLocationProxy(this));&#x000A;   });&#x000A;</code></pre></div></div>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L499' target='all'>Show in GitHub</a>
+    </div><div class='doc'><p>Sets the location proxy for the current app. By default this is set to&#x000A;a new <code>Sammy.DefaultLocationProxy</code> on initialization. However, you can set&#x000A;the location_proxy inside you're app function to give your app a custom&#x000A;location mechanism. See <code>Sammy.DefaultLocationProxy</code> and <code>Sammy.DataLocationProxy</code>&#x000A;for examples.</p>&#x000A;&#x000A;<p><code>setLocationProxy()</code> takes an initialized location proxy.</p>&#x000A;&#x000A;<h3>Example</h3>&#x000A;&#x000A;<pre class='prettyprint'><code>   // to bind to data instead of the default hash;&#x000A;   var app = $.sammy(function() {&#x000A;     this.setLocationProxy(new Sammy.DataLocationProxy(this));&#x000A;   });&#x000A;</code></pre></div></div>
   <div class='meth' id='Sammy.Application-swap'>
     <h3>
       <a href='Sammy.Application._methods_.swap'>swap</a>
@@ -607,7 +616,7 @@
     <div class='links'>
       <a href='Sammy.Application._methods_.swap#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1109' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1165' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>Swaps the content of <code>$element()</code> with <code>content</code>&#x000A;You can override this method to provide an alternate swap behavior&#x000A;for <code>EventContext.partial()</code>.</p>&#x000A;&#x000A;<h3>Example</h3>&#x000A;&#x000A;<pre class='prettyprint'><code> var app = $.sammy(function() {&#x000A;&#x000A;   // implements a 'fade out'/'fade in'&#x000A;   this.swap = function(content) {&#x000A;     this.$element().hide('slow').html(content).show('slow');&#x000A;   }&#x000A;&#x000A;   get('#/', function() {&#x000A;     this.partial('index.html.erb') // will fade out and in&#x000A;   });&#x000A;&#x000A; });&#x000A;</code></pre></div></div>
   <div class='meth' id='Sammy.Application-templateCache'>
     <h3>
@@ -621,7 +630,7 @@
     <div class='links'>
       <a href='Sammy.Application._methods_.templateCache#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1116' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1172' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>a simple global cache for templates. Uses the same semantics as&#x000A;<code>Sammy.Cache</code> and <code>Sammy.Storage</code> so can easily be replaced with&#x000A;a persistant storage that lasts beyond the current request.</p></div></div>
   <div class='meth' id='Sammy.Application-toString'>
     <h3>
@@ -635,7 +644,7 @@
     <div class='links'>
       <a href='Sammy.Application._methods_.toString#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L355' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L407' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>//=> Sammy.Application: body</p></div></div>
   <div class='meth' id='Sammy.Application-trigger'>
     <h3>
@@ -649,7 +658,7 @@
     <div class='links'>
       <a href='Sammy.Application._methods_.trigger#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L622' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L674' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>Triggers custom events defined with <code>bind()</code></p>&#x000A;&#x000A;<h3>Arguments</h3>&#x000A;&#x000A;<ul>&#x000A;<li><code>name</code> The name of the event. Automatically prefixed with the <code>eventNamespace()</code></li>&#x000A;<li><code>data</code> An optional Object that can be passed to the bound callback.</li>&#x000A;<li><code>context</code> An optional context/Object in which to execute the bound callback.&#x000A;If no context is supplied a the context is a new <code>Sammy.EventContext</code></li>&#x000A;</ul>&#x000A;</div></div>
   <div class='meth' id='Sammy.Application-unload'>
     <h3>
@@ -663,7 +672,7 @@
     <div class='links'>
       <a href='Sammy.Application._methods_.unload#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L852' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L904' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>The opposite of <code>run()</code>, un-binds all event listeners and intervals&#x000A;<code>run()</code> Automaticaly binds a <code>onunload</code> event to run this when&#x000A;the document is closed.</p></div></div>
   <div class='meth' id='Sammy.Application-use'>
     <h3>
@@ -677,7 +686,7 @@
     <div class='links'>
       <a href='Sammy.Application._methods_.use#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L408' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L460' target='all'>Show in GitHub</a>
     </div><div class='doc'><p><code>use()</code> is the entry point for including Sammy plugins.&#x000A;The first argument to use should be a function() that is evaluated&#x000A;in the context of the current application, just like the <code>app_function</code>&#x000A;argument to the <code>Sammy.Application</code> constructor.</p>&#x000A;&#x000A;<p>Any additional arguments are passed to the app function sequentially.</p>&#x000A;&#x000A;<p>For much more detail about plugins, check out:&#x000A;<a href="http://sammyjs.org/docs/plugins">http://sammyjs.org/docs/plugins</a></p>&#x000A;&#x000A;<h3>Example</h3>&#x000A;&#x000A;<pre class='prettyprint'><code> var MyPlugin = function(app, prepend) {&#x000A;&#x000A;   this.helpers({&#x000A;     myhelper: function(text) {&#x000A;       alert(prepend + " " + text);&#x000A;     }&#x000A;   });&#x000A;&#x000A; };&#x000A;&#x000A; var app = $.sammy(function() {&#x000A;&#x000A;   this.use(MyPlugin, 'This is my plugin');&#x000A;&#x000A;   this.get('#/', function() {&#x000A;     this.myhelper('and dont you forget it!');&#x000A;     //=&gt; Alerts: This is my plugin and dont you forget it!&#x000A;   });&#x000A;&#x000A; });&#x000A;</code></pre>&#x000A;&#x000A;<p>If plugin is passed as a string it assumes your are trying to load&#x000A;Sammy."Plugin". This is the prefered way of loading core Sammy plugins&#x000A;as it allows for better error-messaging.</p>&#x000A;&#x000A;<h3>Example</h3>&#x000A;&#x000A;<pre class='prettyprint'><code> $.sammy(function() {&#x000A;   this.use('Mustache'); //=&gt; Sammy.Mustache&#x000A;   this.use('Storage'); //=&gt; Sammy.Storage&#x000A; });&#x000A;</code></pre></div></div>
 </div>
 <div class='klass' id='Sammy.Cache'>
@@ -707,6 +716,24 @@
       )
     </span>
   </h2><div class='doc'><p>The DataLocationProxy is an optional location proxy prototype. As opposed to&#x000A;the <code>HashLocationProxy</code> it gets its location from a jQuery.data attribute&#x000A;tied to the application's element. You can set the name of the attribute by&#x000A;passing a string as the second argument to the constructor. The default attribute&#x000A;name is 'sammy-location'. To read more about location proxies, check out the&#x000A;documentation for <code>Sammy.HashLocationProxy</code></p>&#x000A;&#x000A;<p>An optional <code>href_attribute</code> can be passed, which specifies a DOM element&#x000A;attribute that holds "links" to different locations in the app. When the&#x000A;proxy is bound, clicks to element that have this attribute activate a&#x000A;<code>setLocation()</code> using the contents of the <code>href_attribute</code>.</p>&#x000A;&#x000A;<h3>Example</h3>&#x000A;&#x000A;<pre class='prettyprint'><code> var app = $.sammy(function() {&#x000A;   // set up the location proxy&#x000A;   this.setLocationProxy(new Sammy.DataLocationProxy(this, 'location', 'rel'));&#x000A;&#x000A;   this.get('about', function() {&#x000A;     this.partial('about.html');&#x000A;   });&#x000A;&#x000A; });&#x000A;</code></pre>&#x000A;&#x000A;<p>In this scenario, if an element existed within the template:</p>&#x000A;&#x000A;<pre class='prettyprint'><code> &lt;a href="/about" rel="about"&gt;About Us&lt;/a&gt;&#x000A;</code></pre>&#x000A;&#x000A;<p>Clicking on that link would not go to /about, but would set the apps location&#x000A;to 'about' and trigger the route.</p></div></div>
+<div class='klass' id='Sammy.DefaultLocationProxy'>
+  <h2 class='klass-name'>
+    Sammy.DefaultLocationProxy
+    <span>
+      (
+      app, run_interval_every
+      )
+    </span>
+  </h2><div class='doc'><p>The DefaultLocationProxy is the default location proxy for all Sammy applications.&#x000A;A location proxy is a prototype that conforms to a simple interface. The purpose&#x000A;of a location proxy is to notify the Sammy.Application its bound to when the location&#x000A;or 'external state' changes.</p>&#x000A;&#x000A;<p>The <code>DefaultLocationProxy</code> watches for changes to the path of the current window and&#x000A;is also able to set the path based on changes in the application. It does this by&#x000A;using different methods depending on what is available in the current browser. In&#x000A;the latest and greatest browsers it used the HTML5 History API and the <code>pushState</code>&#x000A;<code>popState</code> events/methods. This allows you to use Sammy to serve a site behind normal&#x000A;URI paths as opposed to the older default of hash (#) based routing. Because the server&#x000A;can interpret the changed path on a refresh or re-entry, though, it requires additional&#x000A;support on the server side. If you'd like to force disable HTML5 history support, please&#x000A;use the <code>disable_push_state</code> setting on <code>Sammy.Application</code>. If pushState support&#x000A;is enabled, <code>DefaultLocationProxy</code> also binds to all links on the page. If a link is clicked&#x000A;that matches the current set of routes, the URL is changed using pushState instead of&#x000A;fully setting the location and the app is notified of the change.</p>&#x000A;&#x000A;<p>If the browser does not have support for HTML5 History, <code>DefaultLocationProxy</code> automatically&#x000A;falls back to the older hash based routing. The newest browsers (IE, Safari > 4, FF >= 3.6)&#x000A;support a 'onhashchange' DOM event, thats fired whenever the location.hash changes.&#x000A;In this situation the DefaultLocationProxy just binds to this event and delegates it to&#x000A;the application. In the case of older browsers a poller is set up to track changes to the&#x000A;hash.</p></div></div>
+<div class='klass' id='Sammy.EJS'>
+  <h2 class='klass-name'>
+    Sammy.EJS
+    <span>
+      (
+      app, method_alias
+      )
+    </span>
+  </h2><div class='doc'><p><code>Sammy.EJS</code> is a thin wrapper around the EJS templating engine which can be donwloaded&#x000A;at http://embeddedjs.com/</p>&#x000A;&#x000A;<p>Note: As of Sammy 0.7, Sammy.EJS does not include the actual templating engine in the source.&#x000A;Include ejs.js before including sammy.ejs.js</p></div></div>
 <div class='klass' id='Sammy.EventContext'>
   <h2 class='klass-name'>
     Sammy.EventContext
@@ -775,7 +802,7 @@
     <div class='links'>
       <a href='Sammy.EventContext._methods_.$element#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1671' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1746' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>A shortcut to the app's <code>$element()</code></p></div></div>
   <div class='meth' id='Sammy.EventContext-engineFor'>
     <h3>
@@ -789,7 +816,7 @@
     <div class='links'>
       <a href='Sammy.EventContext._methods_.engineFor#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1685' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1760' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>Look up a templating engine within the current app and context.&#x000A;<code>engine</code> can be one of the following:</p>&#x000A;&#x000A;<ul>&#x000A;<li>a function: should conform to <code>function(content, data) { return interploated; }</code></li>&#x000A;<li>a template path: 'template.ejs', looks up the extension to match to&#x000A;the <code>ejs()</code> helper</li>&#x000A;<li>a string referering to the helper: "mustache" => <code>mustache()</code></li>&#x000A;</ul>&#x000A;&#x000A;&#x000A;<p>If no engine is found, use the app's default <code>template_engine</code></p></div></div>
   <div class='meth' id='Sammy.EventContext-eventNamespace'>
     <h3>
@@ -803,21 +830,21 @@
     <div class='links'>
       <a href='Sammy.EventContext._methods_.eventNamespace#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1799' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1889' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>A shortcut to app's <code>eventNamespace()</code></p></div></div>
   <div class='meth' id='Sammy.EventContext-interpolate'>
     <h3>
       <a href='Sammy.EventContext._methods_.interpolate'>interpolate</a>
       <span>
         (
-        <em>content, data, engine</em>
+        <em>content, data, engine, partials</em>
         )
       </span>
     </h3>
     <div class='links'>
       <a href='Sammy.EventContext._methods_.interpolate#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1707' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1782' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>using the template <code>engine</code> found with <code>engineFor()</code>, interpolate the&#x000A;<code>data</code> into <code>content</code></p></div></div>
   <div class='meth' id='Sammy.EventContext-json'>
     <h3>
@@ -831,7 +858,7 @@
     <div class='links'>
       <a href='Sammy.EventContext._methods_.json#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1815' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1905' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>Default JSON parsing uses jQuery's <code>parseJSON()</code>. Include <code>Sammy.JSON</code>&#x000A;plugin for the more conformant "crockford special".</p></div></div>
   <div class='meth' id='Sammy.EventContext-load'>
     <h3>
@@ -845,7 +872,7 @@
     <div class='links'>
       <a href='Sammy.EventContext._methods_.load#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1747' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1822' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>create a new <code>Sammy.RenderContext</code> calling <code>load()</code> with <code>location</code> and&#x000A;<code>options</code>. Called without interpolation or placement, this allows for&#x000A;preloading/caching the templates.</p></div></div>
   <div class='meth' id='Sammy.EventContext-notFound'>
     <h3>
@@ -859,7 +886,7 @@
     <div class='links'>
       <a href='Sammy.EventContext._methods_.notFound#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1809' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1899' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>Raises a possible <code>notFound()</code> error for the current path.</p></div></div>
   <div class='meth' id='Sammy.EventContext-partial'>
     <h3>
@@ -873,7 +900,7 @@
     <div class='links'>
       <a href='Sammy.EventContext._methods_.partial#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1753' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1828' target='all'>Show in GitHub</a>
     </div><div class='doc'><p><code>render()</code> the the <code>location</code> with <code>data</code> and then <code>swap()</code> the&#x000A;app's <code>$element</code> with the rendered content.</p></div></div>
   <div class='meth' id='Sammy.EventContext-redirect'>
     <h3>
@@ -887,21 +914,21 @@
     <div class='links'>
       <a href='Sammy.EventContext._methods_.redirect#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1774' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1849' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>Changes the location of the current window. If <code>to</code> begins with&#x000A;'#' it only changes the document's hash. If passed more than 1 argument&#x000A;redirect will join them together with forward slashes.</p>&#x000A;&#x000A;<h3>Example</h3>&#x000A;&#x000A;<pre class='prettyprint'><code> redirect('#/other/route');&#x000A; // equivilent to&#x000A; redirect('#', 'other', 'route');&#x000A;</code></pre></div></div>
   <div class='meth' id='Sammy.EventContext-render'>
     <h3>
       <a href='Sammy.EventContext._methods_.render'>render</a>
       <span>
         (
-        <em>location, data, callback</em>
+        <em>location, data, callback, partials</em>
         )
       </span>
     </h3>
     <div class='links'>
       <a href='Sammy.EventContext._methods_.render#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1724' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1799' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>Create and return a <code>Sammy.RenderContext</code> calling <code>render()</code> on it.&#x000A;Loads the template and interpolate the data, however does not actual&#x000A;place it in the DOM.</p>&#x000A;&#x000A;<h3>Example</h3>&#x000A;&#x000A;<pre class='prettyprint'><code> // mytemplate.mustache &lt;div class="name"&gt;{{name}}&lt;/div&gt;&#x000A; render('mytemplate.mustache', {name: 'quirkey'});&#x000A; // sets the `content` to &lt;div class="name"&gt;quirkey&lt;/div&gt;&#x000A; render('mytemplate.mustache', {name: 'quirkey'})&#x000A;   .appendTo('ul');&#x000A; // appends the rendered content to $('ul')&#x000A;</code></pre></div></div>
   <div class='meth' id='Sammy.EventContext-renderEach'>
     <h3>
@@ -915,7 +942,7 @@
     <div class='links'>
       <a href='Sammy.EventContext._methods_.renderEach#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1740' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1815' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>Create and return a <code>Sammy.RenderContext</code> calling <code>renderEach()</code> on it.&#x000A;Loads the template and interpolates the data for each item,&#x000A;however does not actual place it in the DOM.</p>&#x000A;&#x000A;<h3>Example</h3>&#x000A;&#x000A;<pre class='prettyprint'><code> // mytemplate.mustache &lt;div class="name"&gt;{{name}}&lt;/div&gt;&#x000A; renderEach('mytemplate.mustache', [{name: 'quirkey'}, {name: 'endor'}])&#x000A; // sets the `content` to &lt;div class="name"&gt;quirkey&lt;/div&gt;&lt;div class="name"&gt;endor&lt;/div&gt;&#x000A; renderEach('mytemplate.mustache', [{name: 'quirkey'}, {name: 'endor'}]).appendTo('ul');&#x000A; // appends the rendered content to $('ul')&#x000A;</code></pre></div></div>
   <div class='meth' id='Sammy.EventContext-send'>
     <h3>
@@ -929,7 +956,7 @@
     <div class='links'>
       <a href='Sammy.EventContext._methods_.send#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1759' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1834' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>create a new <code>Sammy.RenderContext</code> calling <code>send()</code> with an arbitrary&#x000A;function</p></div></div>
   <div class='meth' id='Sammy.EventContext-swap'>
     <h3>
@@ -943,7 +970,7 @@
     <div class='links'>
       <a href='Sammy.EventContext._methods_.swap#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1804' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1894' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>A shortcut to app's <code>swap()</code></p></div></div>
   <div class='meth' id='Sammy.EventContext-toString'>
     <h3>
@@ -957,7 +984,7 @@
     <div class='links'>
       <a href='Sammy.EventContext._methods_.toString#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1820' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1910' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>//=> Sammy.EventContext: get #/ {}</p></div></div>
   <div class='meth' id='Sammy.EventContext-trigger'>
     <h3>
@@ -971,9 +998,27 @@
     <div class='links'>
       <a href='Sammy.EventContext._methods_.trigger#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1792' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1882' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>Triggers events on <code>app</code> within the current context.</p></div></div>
 </div>
+<div class='klass' id='Sammy.Exceptional'>
+  <h2 class='klass-name'>
+    Sammy.Exceptional
+    <span>
+      (
+      app, errorReporter
+      )
+    </span>
+  </h2><div class='doc'><p>A plugin that posts errors to Exceptional.</p>&#x000A;&#x000A;<h3>Arguments</h3>&#x000A;&#x000A;<p>Sammy.Exceptional accepts an optional argument that is the Exceptional&#x000A;implementation. It will default to the global <code>Exceptional</code> object.</p>&#x000A;&#x000A;<h3>Requirements</h3>&#x000A;&#x000A;<p>The sole requirement is a global Exceptional object with a handle&#x000A;function. Contrast have published an implementation (see below).</p>&#x000A;&#x000A;<h3>See Also</h3>&#x000A;&#x000A;<ul>&#x000A;<li>http://www.getexceptional.com/</li>&#x000A;<li>https://github.com/contrast/exceptional-js</li>&#x000A;</ul>&#x000A;</div></div>
+<div class='klass' id='Sammy.Flash'>
+  <h2 class='klass-name'>
+    Sammy.Flash
+    <span>
+      (
+      app
+      )
+    </span>
+  </h2><div class='doc'><p>Sammy.Flash is a plugin for storing and sending status messages to the client. It's API and use&#x000A;is similar to Ruby on Rails' <code>flash</code> explained here:&#x000A;<a href="http://apidock.com/rails/ActionController/Flash">http://apidock.com/rails/ActionController/Flash</a></p></div></div>
 <div class='klass' id='Sammy.Form'>
   <h2 class='klass-name'>
     Sammy.Form
@@ -1222,7 +1267,7 @@
       app, tracker
       )
     </span>
-  </h2><div class='doc'><p>A simple plugin that pings Google Analytics tracker&#x000A;every time a route is triggered. Originally by Brit Gardner (britg),&#x000A;with updates from Aaron Quint (quirkey).</p>&#x000A;&#x000A;<h3>Arguments</h3>&#x000A;&#x000A;<p>+tracker+:: the Google Analytics pageTracker object.  Defaults to&#x000A;the default object defined by the GA snippet, or pass your own if you&#x000A;have a custom install</p>&#x000A;&#x000A;<h3>Example</h3>&#x000A;&#x000A;<p>Install Google Analytics to your site as you normally would. Be sure that&#x000A;the 'pageTracker' global variable exists.</p>&#x000A;&#x000A;<p>Then, simply add the plugin to your Sammy App and it will automatically&#x000A;track all of your routes in Google Analytics.&#x000A;They will appear as page views to the route's path.</p>&#x000A;&#x000A;<pre class='prettyprint'><code> $.sammy(function() {&#x000A;   this.use('GoogleAnalytics');&#x000A;&#x000A;   ...&#x000A; });&#x000A;</code></pre>&#x000A;&#x000A;<p>If you have routes that you do not want to track, simply call <code>noTrack</code>&#x000A;within the route.</p>&#x000A;&#x000A;<pre class='prettyprint'><code> $.sammy(function() {&#x000A;   this.use('GoogleAnalytics')&#x000A;&#x000A;   get('#/dont/track/me', function() {&#x000A;     this.noTrack();  // This route will not be tracked&#x000A;   });&#x000A; });&#x000A;</code></pre></div>  <h3 class='list'>Methods</h3>
+  </h2><div class='doc'><p>A simple plugin that pings Google Analytics tracker&#x000A;every time a route is triggered. Originally by Brit Gardner (britg),&#x000A;with updates from Aaron Quint (quirkey).</p>&#x000A;&#x000A;<h3>Arguments</h3>&#x000A;&#x000A;<p>+tracker+:: the Google Analytics pageTracker object.  Defaults to&#x000A;the default object defined by the GA snippet, or pass your own if you&#x000A;have a custom install</p>&#x000A;&#x000A;<h3>Example</h3>&#x000A;&#x000A;<p>Install Google Analytics to your site as you normally would. Be sure that&#x000A;the 'pageTracker' global variable exists.</p>&#x000A;&#x000A;<p>Then, simply add the plugin to your Sammy App and it will automatically&#x000A;track all of your routes in Google Analytics.&#x000A;They will appear as page views to the route's path.</p>&#x000A;&#x000A;<pre class='prettyprint'><code> $.sammy(function() {&#x000A;   this.use('GoogleAnalytics');&#x000A;&#x000A;   ...&#x000A; });&#x000A;</code></pre>&#x000A;&#x000A;<p>If you have routes that you do not want to track, simply call <code>noTrack</code>&#x000A;within the route.</p>&#x000A;&#x000A;<pre class='prettyprint'><code> $.sammy(function() {&#x000A;   this.use('GoogleAnalytics')&#x000A;&#x000A;   this.get('#/dont/track/me', function() {&#x000A;     this.noTrack();  // This route will not be tracked&#x000A;   });&#x000A; });&#x000A;</code></pre></div>  <h3 class='list'>Methods</h3>
   <ul>
     <li>
       <a href='#Sammy.GoogleAnalytics-noTrack'>noTrack</a>
@@ -1243,7 +1288,7 @@
     <div class='links'>
       <a href='Sammy.GoogleAnalytics._methods_.noTrack#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/plugins/sammy.googleanalytics.js#L56' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/plugins/sammy.googleanalytics.js#L64' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>Disable tracking for the current route. Put at the begining of the&#x000A;route's callback</p></div></div>
   <div class='meth' id='Sammy.GoogleAnalytics-track'>
     <h3>
@@ -1257,7 +1302,7 @@
     <div class='links'>
       <a href='Sammy.GoogleAnalytics._methods_.track#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/plugins/sammy.googleanalytics.js#L60' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/plugins/sammy.googleanalytics.js#L68' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>send a page view to the tracker with <code>path</code></p></div></div>
 </div>
 <div class='klass' id='Sammy.Haml'>
@@ -1268,7 +1313,7 @@
       app, method_alias
       )
     </span>
-  </h2><div class='doc'><p><tt>Sammy.Haml</tt> provides a quick way of using haml style templates in your app.&#x000A;The plugin itself includes the haml-js library created by Tim Caswell at&#x000A;at http://github.com/creationix/haml-js</p>&#x000A;&#x000A;<p>Haml is an alternative HTML syntax that is really great for describing&#x000A;the structure of HTML documents.</p>&#x000A;&#x000A;<p>By default using Sammy.Haml in your app adds the <tt>haml()</tt> method to the EventContext&#x000A;prototype. However, just like <tt>Sammy.Template</tt> you can change the default name of the method&#x000A;by passing a second argument (e.g. you could use the hml() as the method alias so that all the template&#x000A;files could be in the form file.hml instead of file.haml)</p>&#x000A;&#x000A;<h3>Example</h3>&#x000A;&#x000A;<p>The template (mytemplate.haml):</p>&#x000A;&#x000A;<pre class='prettyprint'><code>  %h1&amp;= title&#x000A;&#x000A;  Hey, #{name}! Welcome to Haml!&#x000A;</code></pre>&#x000A;&#x000A;<p>The app:</p>&#x000A;&#x000A;<pre class='prettyprint'><code>  var $.app = $.sammy(function() {&#x000A;    // include the plugin&#x000A;    this.use(Sammy.Haml);&#x000A;&#x000A;    this.get('#/hello/:name', function() {&#x000A;      // set local vars&#x000A;      this.title = 'Hello!'&#x000A;      this.name = this.params.name;&#x000A;      // render the template and pass it through haml&#x000A;      this.partial('mytemplate.haml');&#x000A;    });&#x000A;&#x000A;  });&#x000A;</code></pre>&#x000A;&#x000A;<p>If I go to <code>#/hello/AQ</code> in the browser, Sammy will render this to the <tt>body</tt>:</p>&#x000A;&#x000A;<pre class='prettyprint'><code>  &lt;h1&gt;Hello!&lt;/h1&gt;&#x000A;&#x000A;  Hey, AQ! Welcome to HAML!&#x000A;</code></pre>&#x000A;&#x000A;<p>Note: You dont have to include the haml.js file on top of the plugin as the plugin&#x000A;includes the full source.</p></div></div>
+  </h2><div class='doc'><p><code>Sammy.Haml</code> provides a quick way of using haml style templates in your app.&#x000A;The plugin wraps haml-js library created by Tim Caswell at&#x000A;at http://github.com/creationix/haml-js</p>&#x000A;&#x000A;<p>Note: As of Sammy 0.7, Sammy.Haml does not include the actual templating engine in the source.&#x000A;Include haml.js before including sammy.haml.js</p>&#x000A;&#x000A;<p>Haml is an alternative HTML syntax that is really great for describing&#x000A;the structure of HTML documents.</p>&#x000A;&#x000A;<p>By default using Sammy.Haml in your app adds the <tt>haml()</tt> method to the EventContext&#x000A;prototype. However, just like <code>Sammy.Template</code> you can change the default name of the method&#x000A;by passing a second argument (e.g. you could use the hml() as the method alias so that all the template&#x000A;files could be in the form file.hml instead of file.haml)</p>&#x000A;&#x000A;<h3>Example</h3>&#x000A;&#x000A;<p>The template (mytemplate.haml):</p>&#x000A;&#x000A;<pre class='prettyprint'><code>  %h1&amp;= title&#x000A;&#x000A;  Hey, #{name}! Welcome to Haml!&#x000A;</code></pre>&#x000A;&#x000A;<p>The app:</p>&#x000A;&#x000A;<pre class='prettyprint'><code>  var $.app = $.sammy(function() {&#x000A;    // include the plugin&#x000A;    this.use(Sammy.Haml);&#x000A;&#x000A;    this.get('#/hello/:name', function() {&#x000A;      // set local vars&#x000A;      this.title = 'Hello!'&#x000A;      this.name = this.params.name;&#x000A;      // render the template and pass it through haml&#x000A;      this.partial('mytemplate.haml');&#x000A;    });&#x000A;&#x000A;  });&#x000A;</code></pre>&#x000A;&#x000A;<p>If I go to <code>#/hello/AQ</code> in the browser, Sammy will render this to the <code>body</code>:</p>&#x000A;&#x000A;<pre class='prettyprint'><code>  &lt;h1&gt;Hello!&lt;/h1&gt;&#x000A;&#x000A;  Hey, AQ! Welcome to HAML!&#x000A;</code></pre>&#x000A;&#x000A;<p>Note: You dont have to include the haml.js file on top of the plugin as the plugin&#x000A;includes the full source.</p></div></div>
 <div class='klass' id='Sammy.Handlebars'>
   <h2 class='klass-name'>
     Sammy.Handlebars
@@ -1277,87 +1322,16 @@
       app, method_alias
       )
     </span>
-  </h2><div class='doc'><p><tt>Sammy.Handlebars</tt> provides a quick way of using Handlebars templates in your app.&#x000A;The plugin itself includes the handlebars.js library created by Yehuda Katz at&#x000A;at http://github.com/wycats/handlebars.js</p>&#x000A;&#x000A;<p>Handlebars.js is an extension to the Mustache templating language  created by Chris Wanstrath. Handlebars.js&#x000A;and Mustache are both logicless templating languages that keep the view and the code separated like&#x000A;we all know they should be.</p>&#x000A;&#x000A;<p>By default using Sammy.Handlbars in your app adds the <tt>handlebars()</tt> method to the EventContext&#x000A;prototype. However, just like <tt>Sammy.Template</tt> you can change the default name of the method&#x000A;by passing a second argument (e.g. you could use the hbr() as the method alias so that all the template&#x000A;files could be in the form file.hbr instead of file.handlebars)</p>&#x000A;&#x000A;<h3>Example #1</h3>&#x000A;&#x000A;<p>The template (mytemplate.hb):</p>&#x000A;&#x000A;<pre class='prettyprint'><code>  &lt;h1&gt;\{\{title\}\}&lt;h1&gt;&#x000A;&#x000A;  Hey, {{name}}! Welcome to Handlebars!&#x000A;</code></pre>&#x000A;&#x000A;<p>The app:</p>&#x000A;&#x000A;<pre class='prettyprint'><code>  var $.app = $.sammy(function() {&#x000A;    // include the plugin and alias handlebars() to hb()&#x000A;    this.use(Sammy.Handlebars, 'hb');&#x000A;&#x000A;    this.get('#/hello/:name', function() {&#x000A;      // set local vars&#x000A;      this.title = 'Hello!'&#x000A;      this.name = this.params.name;&#x000A;      // render the template and pass it through handlebars&#x000A;      this.partial('mytemplate.hb');&#x000A;    });&#x000A;&#x000A;  });&#x000A;</code></pre>&#x000A;&#x000A;<p>If I go to #/hello/AQ in the browser, Sammy will render this to the <tt>body</tt>:</p>&#x000A;&#x000A;<pre class='prettyprint'><code>  &lt;h1&gt;Hello!&lt;/h1&gt;&#x000A;&#x000A;  Hey, AQ! Welcome to Handlebars!&#x000A;</code></pre>&#x000A;&#x000A;<h3>Example #2 - Handlebars partials</h3>&#x000A;&#x000A;<p>The template (mytemplate.hb)</p>&#x000A;&#x000A;<pre class='prettyprint'><code>  Hey, {{name}}! {{&gt;hello_friend}}&#x000A;</code></pre>&#x000A;&#x000A;<p>The partial (mypartial.hb)</p>&#x000A;&#x000A;<pre class='prettyprint'><code>  Say hello to your friend {{friend}}!&#x000A;</code></pre>&#x000A;&#x000A;<p>The app:</p>&#x000A;&#x000A;<pre class='prettyprint'><code>  var $.app = $.sammy(function() {&#x000A;    // include the plugin and alias handlebars() to hb()&#x000A;    this.use(Sammy.Handlebars, 'hb');&#x000A;&#x000A;    this.get('#/hello/:name/to/:friend', function() {&#x000A;      var context = this;&#x000A;&#x000A;      // fetch handlebars-partial first&#x000A;      $.get('mypartial.hb', function(response){&#x000A;        context.partials = response;&#x000A;&#x000A;        // set local vars&#x000A;        context.name = this.params.name;&#x000A;        context.hello_friend = {name: this.params.friend};&#x000A;&#x000A;        // render the template and pass it through handlebars&#x000A;        context.partial('mytemplate.hb');&#x000A;      });&#x000A;    });&#x000A;&#x000A;  });&#x000A;</code></pre>&#x000A;&#x000A;<p>If I go to #/hello/AQ/to/dP in the browser, Sammy will render this to the <tt>body</tt>:</p>&#x000A;&#x000A;<pre class='prettyprint'><code>  Hey, AQ! Say hello to your friend dP!&#x000A;</code></pre>&#x000A;&#x000A;<p>Note: You dont have to include the handlebars.js file on top of the plugin as the plugin&#x000A;includes the full source.</p></div></div>
-<div class='klass' id='Sammy.HashLocationProxy'>
+  </h2><div class='doc'><p><tt>Sammy.Handlebars</tt> provides a quick way of using Handlebars templates in your app.</p>&#x000A;&#x000A;<p>Note: As of Sammy 0.7 Handlebars itself is not included in the source. Please download and&#x000A;include handlebars.js before Sammy.Handlebars.</p>&#x000A;&#x000A;<p>Handlebars.js is an extension to the Mustache templating language created by Chris Wanstrath. Handlebars.js&#x000A;and Mustache are both logicless templating languages that keep the view and the code separated like&#x000A;we all know they should be.</p>&#x000A;&#x000A;<p>By default using Sammy.Handlbars in your app adds the <tt>handlebars()</tt> method to the EventContext&#x000A;prototype. However, just like <tt>Sammy.Template</tt> you can change the default name of the method&#x000A;by passing a second argument (e.g. you could use the hbr() as the method alias so that all the template&#x000A;files could be in the form file.hbr instead of file.handlebars)</p>&#x000A;&#x000A;<h3>Example #1</h3>&#x000A;&#x000A;<p>The template (mytemplate.hb):</p>&#x000A;&#x000A;<pre class='prettyprint'><code>  &lt;h1&gt;\{\{title\}\}&lt;h1&gt;&#x000A;&#x000A;  Hey, {{name}}! Welcome to Handlebars!&#x000A;</code></pre>&#x000A;&#x000A;<p>The app:</p>&#x000A;&#x000A;<pre class='prettyprint'><code>  var $.app = $.sammy(function() {&#x000A;    // include the plugin and alias handlebars() to hb()&#x000A;    this.use('Handlebars', 'hb');&#x000A;&#x000A;    this.get('#/hello/:name', function() {&#x000A;      // set local vars&#x000A;      this.title = 'Hello!'&#x000A;      this.name = this.params.name;&#x000A;      // render the template and pass it through handlebars&#x000A;      this.partial('mytemplate.hb');&#x000A;    });&#x000A;&#x000A;  });&#x000A;</code></pre>&#x000A;&#x000A;<p>If I go to #/hello/AQ in the browser, Sammy will render this to the <tt>body</tt>:</p>&#x000A;&#x000A;<pre class='prettyprint'><code>  &lt;h1&gt;Hello!&lt;/h1&gt;&#x000A;&#x000A;  Hey, AQ! Welcome to Handlebars!&#x000A;</code></pre>&#x000A;&#x000A;<h3>Example #2 - Handlebars partials</h3>&#x000A;&#x000A;<p>The template (mytemplate.hb)</p>&#x000A;&#x000A;<pre class='prettyprint'><code>  Hey, {{name}}! {{&gt;hello_friend}}&#x000A;</code></pre>&#x000A;&#x000A;<p>The partial (mypartial.hb)</p>&#x000A;&#x000A;<pre class='prettyprint'><code>  Say hello to your friend {{friend}}!&#x000A;</code></pre>&#x000A;&#x000A;<p>The app:</p>&#x000A;&#x000A;<pre class='prettyprint'><code>  var $.app = $.sammy(function() {&#x000A;    // include the plugin and alias handlebars() to hb()&#x000A;    this.use('Handlebars', 'hb');&#x000A;&#x000A;    this.get('#/hello/:name/to/:friend', function() {&#x000A;      var context = this;&#x000A;&#x000A;      // fetch handlebars-partial first&#x000A;      $.get('mypartial.hb', function(response){&#x000A;        context.partials = response;&#x000A;&#x000A;        // set local vars&#x000A;        context.name = this.params.name;&#x000A;        context.hello_friend = {name: this.params.friend};&#x000A;&#x000A;        // render the template and pass it through handlebars&#x000A;        context.partial('mytemplate.hb');&#x000A;      });&#x000A;    });&#x000A;&#x000A;  });&#x000A;</code></pre>&#x000A;&#x000A;<p>If I go to #/hello/AQ/to/dP in the browser, Sammy will render this to the <tt>body</tt>:</p>&#x000A;&#x000A;<pre class='prettyprint'><code>  Hey, AQ! Say hello to your friend dP!&#x000A;</code></pre>&#x000A;&#x000A;<p>Note: You dont have to include the handlebars.js file on top of the plugin as the plugin&#x000A;includes the full source.</p></div></div>
+<div class='klass' id='Sammy.Hoptoad'>
   <h2 class='klass-name'>
-    Sammy.HashLocationProxy
+    Sammy.Hoptoad
     <span>
       (
-      app, run_interval_every
+      app, errorReporter
       )
     </span>
-  </h2><div class='doc'><p>The HashLocationProxy is the default location proxy for all Sammy applications.&#x000A;A location proxy is a prototype that conforms to a simple interface. The purpose&#x000A;of a location proxy is to notify the Sammy.Application its bound to when the location&#x000A;or 'external state' changes. The HashLocationProxy considers the state to be&#x000A;changed when the 'hash' (window.location.hash / '#') changes. It does this in two&#x000A;different ways depending on what browser you are using. The newest browsers&#x000A;(IE, Safari > 4, FF >= 3.6) support a 'onhashchange' DOM event, thats fired whenever&#x000A;the location.hash changes. In this situation the HashLocationProxy just binds&#x000A;to this event and delegates it to the application. In the case of older browsers&#x000A;a poller is set up to track changes to the hash. Unlike Sammy 0.3 or earlier,&#x000A;the HashLocationProxy allows the poller to be a global object, eliminating the&#x000A;need for multiple pollers even when thier are multiple apps on the page.</p></div>  <h3 class='list'>Methods</h3>
-  <ul>
-    <li>
-      <a href='#Sammy.HashLocationProxy-bind'>bind</a>
-    </li>
-    <li>
-      <a href='#Sammy.HashLocationProxy-getLocation'>getLocation</a>
-    </li>
-    <li>
-      <a href='#Sammy.HashLocationProxy-setLocation'>setLocation</a>
-    </li>
-    <li>
-      <a href='#Sammy.HashLocationProxy-unbind'>unbind</a>
-    </li>
-  </ul>
-  <div class='meth' id='Sammy.HashLocationProxy-bind'>
-    <h3>
-      <a href='Sammy.HashLocationProxy._methods_.bind'>bind</a>
-      <span>
-        (
-        <em></em>
-        )
-      </span>
-    </h3>
-    <div class='links'>
-      <a href='Sammy.HashLocationProxy._methods_.bind#comments'>Comments</a>
-      |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L226' target='all'>Show in GitHub</a>
-    </div><div class='doc'><p>bind the proxy events to the current app.</p></div></div>
-  <div class='meth' id='Sammy.HashLocationProxy-getLocation'>
-    <h3>
-      <a href='Sammy.HashLocationProxy._methods_.getLocation'>getLocation</a>
-      <span>
-        (
-        <em></em>
-        )
-      </span>
-    </h3>
-    <div class='links'>
-      <a href='Sammy.HashLocationProxy._methods_.getLocation#comments'>Comments</a>
-      |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L254' target='all'>Show in GitHub</a>
-    </div><div class='doc'><p>get the current location from the hash.</p></div></div>
-  <div class='meth' id='Sammy.HashLocationProxy-setLocation'>
-    <h3>
-      <a href='Sammy.HashLocationProxy._methods_.setLocation'>setLocation</a>
-      <span>
-        (
-        <em>new_location</em>
-        )
-      </span>
-    </h3>
-    <div class='links'>
-      <a href='Sammy.HashLocationProxy._methods_.setLocation#comments'>Comments</a>
-      |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L263' target='all'>Show in GitHub</a>
-    </div><div class='doc'><p>set the current location to <code>new_location</code></p></div></div>
-  <div class='meth' id='Sammy.HashLocationProxy-unbind'>
-    <h3>
-      <a href='Sammy.HashLocationProxy._methods_.unbind'>unbind</a>
-      <span>
-        (
-        <em></em>
-        )
-      </span>
-    </h3>
-    <div class='links'>
-      <a href='Sammy.HashLocationProxy._methods_.unbind#comments'>Comments</a>
-      |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L245' target='all'>Show in GitHub</a>
-    </div><div class='doc'><p>unbind the proxy events from the current app</p></div></div>
-</div>
+  </h2><div class='doc'><p>A plugin that posts errors to Hoptoad.</p>&#x000A;&#x000A;<h3>Requirements</h3>&#x000A;&#x000A;<p>The sole requirement is a Hoptoad object with a notify function.&#x000A;Thoughtbot have published an implementation (see below).</p>&#x000A;&#x000A;<h3>Arguments</h3>&#x000A;&#x000A;<p>Sammy.Hoptoad accepts an optional argument that is the&#x000A;Hoptoad implementation. It will default to the global <code>Hoptoad</code> object.</p>&#x000A;&#x000A;<h3>See Also</h3>&#x000A;&#x000A;<ul>&#x000A;<li>http://hoptoadapp.com/</li>&#x000A;<li>http://robots.thoughtbot.com/post/899737797</li>&#x000A;<li>http://hoptoadapp.com/javascripts/notifier.js</li>&#x000A;</ul>&#x000A;</div></div>
 <div class='klass' id='Sammy.JSON'>
   <h2 class='klass-name'>
     Sammy.JSON
@@ -1413,7 +1387,7 @@
       app, method_alias
       )
     </span>
-  </h2><div class='doc'><p><tt>Sammy.Mustache</tt> provides a quick way of using mustache style templates in your app.&#x000A;The plugin itself includes the awesome mustache.js lib created and maintained by Jan Lehnardt&#x000A;at http://github.com/janl/mustache.js</p>&#x000A;&#x000A;<p>Mustache is a clever templating system that relys on double brackets {{}} for interpolation.&#x000A;For full details on syntax check out the original Ruby implementation created by Chris Wanstrath at&#x000A;http://github.com/defunkt/mustache</p>&#x000A;&#x000A;<p>By default using Sammy.Mustache in your app adds the <tt>mustache()</tt> method to the EventContext&#x000A;prototype. However, just like <tt>Sammy.Template</tt> you can change the default name of the method&#x000A;by passing a second argument (e.g. you could use the ms() as the method alias so that all the template&#x000A;files could be in the form file.ms instead of file.mustache)</p>&#x000A;&#x000A;<h3>Example #1</h3>&#x000A;&#x000A;<p>The template (mytemplate.ms):</p>&#x000A;&#x000A;<pre class='prettyprint'><code>  &lt;h1&gt;\{\{title\}\}&lt;h1&gt;&#x000A;&#x000A;  Hey, {{name}}! Welcome to Mustache!&#x000A;</code></pre>&#x000A;&#x000A;<p>The app:</p>&#x000A;&#x000A;<pre class='prettyprint'><code>  var $.app = $.sammy(function() {&#x000A;    // include the plugin and alias mustache() to ms()&#x000A;    this.use(Sammy.Mustache, 'ms');&#x000A;&#x000A;    this.get('#/hello/:name', function() {&#x000A;      // set local vars&#x000A;      this.title = 'Hello!'&#x000A;      this.name = this.params.name;&#x000A;      // render the template and pass it through mustache&#x000A;      this.partial('mytemplate.ms');&#x000A;    });&#x000A;&#x000A;  });&#x000A;</code></pre>&#x000A;&#x000A;<p>If I go to #/hello/AQ in the browser, Sammy will render this to the <tt>body</tt>:</p>&#x000A;&#x000A;<pre class='prettyprint'><code>  &lt;h1&gt;Hello!&lt;/h1&gt;&#x000A;&#x000A;  Hey, AQ! Welcome to Mustache!&#x000A;</code></pre>&#x000A;&#x000A;<h3>Example #2 - Mustache partials</h3>&#x000A;&#x000A;<p>The template (mytemplate.ms)</p>&#x000A;&#x000A;<pre class='prettyprint'><code>  Hey, {{name}}! {{&gt;hello_friend}}&#x000A;</code></pre>&#x000A;&#x000A;<p>The partial (mypartial.ms)</p>&#x000A;&#x000A;<pre class='prettyprint'><code>  Say hello to your friend {{friend}}!&#x000A;</code></pre>&#x000A;&#x000A;<p>The app:</p>&#x000A;&#x000A;<pre class='prettyprint'><code>  var $.app = $.sammy(function() {&#x000A;    // include the plugin and alias mustache() to ms()&#x000A;    this.use(Sammy.Mustache, 'ms');&#x000A;&#x000A;    this.get('#/hello/:name/to/:friend', function() {&#x000A;      var context = this;&#x000A;&#x000A;      // fetch mustache-partial first&#x000A;      $.get('mypartial.ms', function(response){&#x000A;        context.partials = response;&#x000A;&#x000A;        // set local vars&#x000A;        context.name = this.params.name;&#x000A;        context.hello_friend = {name: this.params.friend};&#x000A;&#x000A;        // render the template and pass it through mustache&#x000A;        context.partial('mytemplate.ms');&#x000A;      });&#x000A;    });&#x000A;&#x000A;  });&#x000A;</code></pre>&#x000A;&#x000A;<p>If I go to #/hello/AQ/to/dP in the browser, Sammy will render this to the <tt>body</tt>:</p>&#x000A;&#x000A;<pre class='prettyprint'><code>  Hey, AQ! Say hello to your friend dP!&#x000A;</code></pre>&#x000A;&#x000A;<p>Note: You dont have to include the mustache.js file on top of the plugin as the plugin&#x000A;includes the full source.</p></div></div>
+  </h2><div class='doc'><p><tt>Sammy.Mustache</tt> provides a quick way of using mustache style templates in your app.&#x000A;The plugin wraps the awesome mustache.js lib created and maintained by Jan Lehnardt&#x000A;at http://github.com/janl/mustache.js</p>&#x000A;&#x000A;<p>Note: As of Sammy 0.7 the Mustache lib is not included in the templates source. Please download&#x000A;mustache.js and include it before Sammy.Mustache.</p>&#x000A;&#x000A;<p>Mustache is a clever templating system that relys on double brackets {{}} for interpolation.&#x000A;For full details on syntax check out the original Ruby implementation created by Chris Wanstrath at&#x000A;http://github.com/defunkt/mustache</p>&#x000A;&#x000A;<p>By default using Sammy.Mustache in your app adds the <tt>mustache()</tt> method to the EventContext&#x000A;prototype. However, just like <tt>Sammy.Template</tt> you can change the default name of the method&#x000A;by passing a second argument (e.g. you could use the ms() as the method alias so that all the template&#x000A;files could be in the form file.ms instead of file.mustache)</p>&#x000A;&#x000A;<h3>Example #1</h3>&#x000A;&#x000A;<p>The template (mytemplate.ms):</p>&#x000A;&#x000A;<pre class='prettyprint'><code>  &lt;h1&gt;\{\{title\}\}&lt;h1&gt;&#x000A;&#x000A;  Hey, {{name}}! Welcome to Mustache!&#x000A;</code></pre>&#x000A;&#x000A;<p>The app:</p>&#x000A;&#x000A;<pre class='prettyprint'><code>  var $.app = $.sammy(function() {&#x000A;    // include the plugin and alias mustache() to ms()&#x000A;    this.use('Mustache', 'ms');&#x000A;&#x000A;    this.get('#/hello/:name', function() {&#x000A;      // set local vars&#x000A;      this.title = 'Hello!'&#x000A;      this.name = this.params.name;&#x000A;      // render the template and pass it through mustache&#x000A;      this.partial('mytemplate.ms');&#x000A;    });&#x000A;&#x000A;  });&#x000A;</code></pre>&#x000A;&#x000A;<p>If I go to #/hello/AQ in the browser, Sammy will render this to the <tt>body</tt>:</p>&#x000A;&#x000A;<pre class='prettyprint'><code>  &lt;h1&gt;Hello!&lt;/h1&gt;&#x000A;&#x000A;  Hey, AQ! Welcome to Mustache!&#x000A;</code></pre>&#x000A;&#x000A;<h3>Example #2 - Mustache partials</h3>&#x000A;&#x000A;<p>The template (mytemplate.ms)</p>&#x000A;&#x000A;<pre class='prettyprint'><code>  Hey, {{name}}! {{&gt;hello_friend}}&#x000A;</code></pre>&#x000A;&#x000A;<p>The partial (mypartial.ms)</p>&#x000A;&#x000A;<pre class='prettyprint'><code>  Say hello to your friend {{friend}}!&#x000A;</code></pre>&#x000A;&#x000A;<p>The app:</p>&#x000A;&#x000A;<pre class='prettyprint'><code>  var $.app = $.sammy(function() {&#x000A;    // include the plugin and alias mustache() to ms()&#x000A;    this.use('Mustache', 'ms');&#x000A;&#x000A;    this.get('#/hello/:name/to/:friend', function() {&#x000A;      var context = this;&#x000A;&#x000A;      // fetch mustache-partial first&#x000A;      $.get('mypartial.ms', function(response){&#x000A;        context.partials = response;&#x000A;&#x000A;        // set local vars&#x000A;        context.name = this.params.name;&#x000A;        context.hello_friend = {name: this.params.friend};&#x000A;&#x000A;        // render the template and pass it through mustache&#x000A;        context.partial('mytemplate.ms');&#x000A;      });&#x000A;    });&#x000A;&#x000A;  });&#x000A;</code></pre>&#x000A;&#x000A;<p>If I go to #/hello/AQ/to/dP in the browser, Sammy will render this to the <tt>body</tt>:</p>&#x000A;&#x000A;<pre class='prettyprint'><code>  Hey, AQ! Say hello to your friend dP!&#x000A;</code></pre>&#x000A;&#x000A;<p>Note: You dont have to include the mustache.js file on top of the plugin as the plugin&#x000A;includes the full source.</p></div></div>
 <div class='klass' id='Sammy.NestedParams'>
   <h2 class='klass-name'>
     Sammy.NestedParams
@@ -1479,7 +1453,7 @@
     <div class='links'>
       <a href='Sammy.Object._methods_.escapeHTML#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L128' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L129' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>Escape HTML in string, use in templates to prevent script injection.&#x000A;Also aliased as <code>h()</code></p></div></div>
   <div class='meth' id='Sammy.Object-has'>
     <h3>
@@ -1493,7 +1467,7 @@
     <div class='links'>
       <a href='Sammy.Object._methods_.has#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L173' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L174' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>Checks if the object has a value at <code>key</code> and that the value is not empty</p></div></div>
   <div class='meth' id='Sammy.Object-join'>
     <h3>
@@ -1507,7 +1481,7 @@
     <div class='links'>
       <a href='Sammy.Object._methods_.join#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L179' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L180' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>convenience method to join as many arguments as you want&#x000A;by the first argument - useful for making paths</p></div></div>
   <div class='meth' id='Sammy.Object-keys'>
     <h3>
@@ -1521,7 +1495,7 @@
     <div class='links'>
       <a href='Sammy.Object._methods_.keys#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L162' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L163' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>Returns an array of keys for this object. If <code>attributes_only</code>&#x000A;is true will not return keys that map to a <code>function()</code></p></div></div>
   <div class='meth' id='Sammy.Object-log'>
     <h3>
@@ -1535,7 +1509,7 @@
     <div class='links'>
       <a href='Sammy.Object._methods_.log#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L186' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L187' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>Shortcut to Sammy.log</p></div></div>
   <div class='meth' id='Sammy.Object-toHTML'>
     <h3>
@@ -1549,7 +1523,7 @@
     <div class='links'>
       <a href='Sammy.Object._methods_.toHTML#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L150' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L151' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>Renders a simple HTML version of this Objects attributes.&#x000A;Does not render functions.&#x000A;For example. Given this Sammy.Object:</p>&#x000A;&#x000A;<pre class='prettyprint'><code>var s = new Sammy.Object({first_name: 'Sammy', last_name: 'Davis Jr.'});&#x000A;s.toHTML()&#x000A;//=&gt; '&lt;strong&gt;first_name&lt;/strong&gt; Sammy&lt;br /&gt;&lt;strong&gt;last_name&lt;/strong&gt; Davis Jr.&lt;br /&gt;'&#x000A;</code></pre></div></div>
   <div class='meth' id='Sammy.Object-toHash'>
     <h3>
@@ -1563,7 +1537,7 @@
     <div class='links'>
       <a href='Sammy.Object._methods_.toHash#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L132' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L133' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>Returns a copy of the object with Functions removed.</p></div></div>
   <div class='meth' id='Sammy.Object-toString'>
     <h3>
@@ -1577,7 +1551,7 @@
     <div class='links'>
       <a href='Sammy.Object._methods_.toString#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L193' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L194' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>Returns a string representation of this object.&#x000A;if <code>include_functions</code> is true, it will also toString() the&#x000A;methods of this object. By default only prints the attributes.</p></div></div>
 </div>
 <div class='klass' id='Sammy.PathLocationProxy'>
@@ -1597,7 +1571,16 @@
       app, method_alias
       )
     </span>
-  </h2><div class='doc'><p><code>Sammy.Pure</code> is a simple wrapper around the pure.js templating engine for&#x000A;use in Sammy apps.</p>&#x000A;&#x000A;<p>See http://beebole.com/pure/ for detailed documentation.</p></div></div>
+  </h2><div class='doc'><p><code>Sammy.Pure</code> is a simple wrapper around the pure.js templating engine for&#x000A;use in Sammy apps.</p>&#x000A;&#x000A;<p>Note: You must include the pure.js source before including sammy.pure.js.</p>&#x000A;&#x000A;<p>See http://beebole.com/pure/ for detailed documentation.</p></div></div>
+<div class='klass' id='Sammy.PushLocationProxy'>
+  <h2 class='klass-name'>
+    Sammy.PushLocationProxy
+    <span>
+      (
+      app
+      )
+    </span>
+  </h2><div class='doc'><p>The PushLocationProxy is an optional location proxy prototype.&#x000A;PushLocationProxy gets its location from history API. No hash needed here.&#x000A;Only compatible with Firefox >= Chrom 6, Firefox 4.0, Safari 5.0</p>&#x000A;&#x000A;<h3>Example</h3>&#x000A;&#x000A;<pre class='prettyprint'><code>var app = $.sammy(function() {&#x000A;    // set up the location proxy&#x000A;    this.setLocationProxy(new Sammy.PushLocationProxy(this));&#x000A;&#x000A;    this.get('/about', function() {&#x000A;      // Do something here&#x000A;    });&#x000A;&#x000A;});&#x000A;</code></pre>&#x000A;&#x000A;<p>Clicking on that link would not go to /about, but would set the apps location&#x000A;to 'about' and trigger the route.</p></div></div>
 <div class='klass' id='Sammy.RenderContext'>
   <h2 class='klass-name'>
     Sammy.RenderContext
@@ -1619,6 +1602,9 @@
     </li>
     <li>
       <a href='#Sammy.RenderContext-load'>load</a>
+    </li>
+    <li>
+      <a href='#Sammy.RenderContext-loadPartials'>loadPartials</a>
     </li>
     <li>
       <a href='#Sammy.RenderContext-next'>next</a>
@@ -1666,7 +1652,7 @@
     <div class='links'>
       <a href='Sammy.RenderContext._methods_.appendTo#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1596' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1671' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>Same usage as <code>jQuery.fn.appendTo()</code> but uses <code>then()</code> to ensure order</p></div></div>
   <div class='meth' id='Sammy.RenderContext-collect'>
     <h3>
@@ -1680,7 +1666,7 @@
     <div class='links'>
       <a href='Sammy.RenderContext._methods_.collect#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1518' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1593' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>itterates over an array, applying the callback for each item item. the&#x000A;callback takes the same style of arguments as <code>jQuery.each()</code> (index, item).&#x000A;The return value of each callback is collected as a single string and stored&#x000A;as <code>content</code> to be used in the next iteration of the <code>RenderContext</code>.</p></div></div>
   <div class='meth' id='Sammy.RenderContext-interpolate'>
     <h3>
@@ -1694,7 +1680,7 @@
     <div class='links'>
       <a href='Sammy.RenderContext._methods_.interpolate#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1575' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1650' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>uses the previous loaded <code>content</code> and the <code>data</code> object to interpolate&#x000A;a template. <code>engine</code> defines the templating/interpolation method/engine&#x000A;that should be used. If <code>engine</code> is not passed, the <code>next_engine</code> is&#x000A;used. If <code>retain</code> is <code>true</code>, the final interpolated data is appended to&#x000A;the <code>previous_content</code> instead of just replacing it.</p></div></div>
   <div class='meth' id='Sammy.RenderContext-load'>
     <h3>
@@ -1708,8 +1694,22 @@
     <div class='links'>
       <a href='Sammy.RenderContext._methods_.load#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1403' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1459' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>Load a template into the context.&#x000A;The <code>location</code> can either be a string specifiying the remote path to the&#x000A;file, a jQuery object, or a DOM element.</p>&#x000A;&#x000A;<p>No interpolation happens by default, the content is stored in&#x000A;<code>content</code>.</p>&#x000A;&#x000A;<p>In the case of a path, unless the option <code>{cache: false}</code> is passed the&#x000A;data is stored in the app's <code>templateCache()</code>.</p>&#x000A;&#x000A;<p>If a jQuery or DOM object is passed the <code>innerHTML</code> of the node is pulled in.&#x000A;This is useful for nesting templates as part of the initial page load wrapped&#x000A;in invisible elements or <code>&lt;script&gt;</code> tags. With template paths, the template&#x000A;engine is looked up by the extension. For DOM/jQuery embedded templates,&#x000A;this isnt possible, so there are a couple of options:</p>&#x000A;&#x000A;<ul>&#x000A;<li>pass an <code>{engine:}</code> option.</li>&#x000A;<li>define the engine in the <code>data-engine</code> attribute of the passed node.</li>&#x000A;<li>just store the raw template data and use <code>interpolate()</code> manually</li>&#x000A;</ul>&#x000A;&#x000A;&#x000A;<p>If a <code>callback</code> is passed it is executed after the template load.</p></div></div>
+  <div class='meth' id='Sammy.RenderContext-loadPartials'>
+    <h3>
+      <a href='Sammy.RenderContext._methods_.loadPartials'>loadPartials</a>
+      <span>
+        (
+        <em>partials</em>
+        )
+      </span>
+    </h3>
+    <div class='links'>
+      <a href='Sammy.RenderContext._methods_.loadPartials#comments'>Comments</a>
+      |
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1522' target='all'>Show in GitHub</a>
+    </div><div class='doc'><p>Load partials</p>&#x000A;&#x000A;<h3>Example</h3>&#x000A;&#x000A;<pre class='prettyprint'><code> this.loadPartials({mypartial: '/path/to/partial'});&#x000A;</code></pre></div></div>
   <div class='meth' id='Sammy.RenderContext-next'>
     <h3>
       <a href='Sammy.RenderContext._methods_.next'>next</a>
@@ -1722,7 +1722,7 @@
     <div class='links'>
       <a href='Sammy.RenderContext._methods_.next#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1371' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1427' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>Resume the queue, setting <code>content</code> to be used in the next operation.&#x000A;See <code>wait()</code> for an example.</p></div></div>
   <div class='meth' id='Sammy.RenderContext-partial'>
     <h3>
@@ -1736,7 +1736,7 @@
     <div class='links'>
       <a href='Sammy.RenderContext._methods_.partial#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1481' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1556' target='all'>Show in GitHub</a>
     </div><div class='doc'><p><code>render()</code> the the <code>location</code> with <code>data</code> and then <code>swap()</code> the&#x000A;app's <code>$element</code> with the rendered content.</p></div></div>
   <div class='meth' id='Sammy.RenderContext-prependTo'>
     <h3>
@@ -1750,21 +1750,21 @@
     <div class='links'>
       <a href='Sammy.RenderContext._methods_.prependTo#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1603' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1678' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>Same usage as <code>jQuery.fn.prependTo()</code> but uses <code>then()</code> to ensure order</p></div></div>
   <div class='meth' id='Sammy.RenderContext-render'>
     <h3>
       <a href='Sammy.RenderContext._methods_.render'>render</a>
       <span>
         (
-        <em>location, data, callback</em>
+        <em>location, data, callback, partials</em>
         )
       </span>
     </h3>
     <div class='links'>
       <a href='Sammy.RenderContext._methods_.render#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1468' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1543' target='all'>Show in GitHub</a>
     </div><div class='doc'><p><code>load()</code> a template and then <code>interpolate()</code> it with data.</p>&#x000A;&#x000A;<h3>Example</h3>&#x000A;&#x000A;<pre class='prettyprint'><code> this.get('#/', function() {&#x000A;   this.render('mytemplate.template', {name: 'test'});&#x000A; });&#x000A;</code></pre></div></div>
   <div class='meth' id='Sammy.RenderContext-renderEach'>
     <h3>
@@ -1778,7 +1778,7 @@
     <div class='links'>
       <a href='Sammy.RenderContext._methods_.renderEach#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1543' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1618' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>loads a template, and then interpolates it for each item in the <code>data</code>&#x000A;array. If a callback is passed, it will call the callback with each&#x000A;item in the array <em>after</em> interpolation</p></div></div>
   <div class='meth' id='Sammy.RenderContext-replace'>
     <h3>
@@ -1792,7 +1792,7 @@
     <div class='links'>
       <a href='Sammy.RenderContext._methods_.replace#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1611' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1686' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>Replaces the <code>$(selector)</code> using <code>html()</code> with the previously loaded&#x000A;<code>content</code></p></div></div>
   <div class='meth' id='Sammy.RenderContext-send'>
     <h3>
@@ -1806,7 +1806,7 @@
     <div class='links'>
       <a href='Sammy.RenderContext._methods_.send#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1499' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1574' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>defers the call of function to occur in order of the render queue.&#x000A;The function can accept any number of arguments as long as the last&#x000A;argument is a callback function. This is useful for putting arbitrary&#x000A;asynchronous functions into the queue. The content passed to the&#x000A;callback is passed as <code>content</code> to the next item in the queue.</p>&#x000A;&#x000A;<h3>Example</h3>&#x000A;&#x000A;<pre class='prettyprint'><code>this.send($.getJSON, '/app.json')&#x000A;    .then(function(json) {&#x000A;      $('#message).text(json['message']);&#x000A;     });&#x000A;</code></pre></div></div>
   <div class='meth' id='Sammy.RenderContext-swap'>
     <h3>
@@ -1820,7 +1820,7 @@
     <div class='links'>
       <a href='Sammy.RenderContext._methods_.swap#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1589' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1664' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>executes <code>EventContext#swap()</code> with the <code>content</code></p></div></div>
   <div class='meth' id='Sammy.RenderContext-then'>
     <h3>
@@ -1834,7 +1834,7 @@
     <div class='links'>
       <a href='Sammy.RenderContext._methods_.then#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1315' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1371' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>The "core" of the <code>RenderContext</code> object, adds the <code>callback</code> to the&#x000A;queue. If the context is <code>waiting</code> (meaning an async operation is happening)&#x000A;then the callback will be executed in order, once the other operations are&#x000A;complete. If there is no currently executing operation, the <code>callback</code>&#x000A;is executed immediately.</p>&#x000A;&#x000A;<p>The value returned from the callback is stored in <code>content</code> for the&#x000A;subsiquent operation. If you return <code>false</code>, the queue will pause, and&#x000A;the next callback in the queue will not be executed until <code>next()</code> is&#x000A;called. This allows for the guarunteed order of execution while working&#x000A;with async operations.</p>&#x000A;&#x000A;<p>If then() is passed a string instead of a function, the string is looked&#x000A;up as a helper method on the event context.</p>&#x000A;&#x000A;<h3>Example</h3>&#x000A;&#x000A;<pre class='prettyprint'><code> this.get('#/', function() {&#x000A;   // initialize the RenderContext&#x000A;   // Even though `load()` executes async, the next `then()`&#x000A;   // wont execute until the load finishes&#x000A;   this.load('myfile.txt')&#x000A;       .then(function(content) {&#x000A;         // the first argument to then is the content of the&#x000A;         // prev operation&#x000A;         $('#main').html(content);&#x000A;       });&#x000A; });&#x000A;</code></pre></div></div>
   <div class='meth' id='Sammy.RenderContext-trigger'>
     <h3>
@@ -1848,7 +1848,7 @@
     <div class='links'>
       <a href='Sammy.RenderContext._methods_.trigger#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1620' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1695' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>trigger the event in the order of the event context. Same semantics&#x000A;as <code>Sammy.EventContext#trigger()</code>. If data is ommitted, <code>content</code>&#x000A;is sent as <code>{content: content}</code></p></div></div>
   <div class='meth' id='Sammy.RenderContext-wait'>
     <h3>
@@ -1862,7 +1862,7 @@
     <div class='links'>
       <a href='Sammy.RenderContext._methods_.wait#comments'>Comments</a>
       |
-      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1365' target='all'>Show in GitHub</a>
+      <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1421' target='all'>Show in GitHub</a>
     </div><div class='doc'><p>Pause the <code>RenderContext</code> queue. Combined with <code>next()</code> allows for async&#x000A;operations.</p>&#x000A;&#x000A;<h3>Example</h3>&#x000A;&#x000A;<pre class='prettyprint'><code>   this.get('#/', function() {&#x000A;     this.load('mytext.json')&#x000A;         .then(function(content) {&#x000A;           var context = this,&#x000A;               data    = JSON.parse(content);&#x000A;           // pause execution&#x000A;           context.wait();&#x000A;           // post to a url&#x000A;           $.post(data.url, {}, function(response) {&#x000A;             context.next(JSON.parse(response));&#x000A;           });&#x000A;         })&#x000A;         .then(function(data) {&#x000A;           // data is json from the previous post&#x000A;           $('#message').text(data.status);&#x000A;         });&#x000A;   });&#x000A;</code></pre></div></div>
 </div>
 <div class='klass' id='Sammy.Session'>
@@ -2171,6 +2171,15 @@
       )
     </span>
   </h2><div class='doc'><p>Sammy.Title is a very simple plugin to easily set the document's title.&#x000A;It supplies a helper for setting the title (<code>title()</code>) within routes,&#x000A;and an app level method for setting the global title (<code>setTitle()</code>)</p></div></div>
+<div class='klass' id='Sammy.Tmpl'>
+  <h2 class='klass-name'>
+    Sammy.Tmpl
+    <span>
+      (
+      app, method_alias
+      )
+    </span>
+  </h2><div class='doc'><p><code>Sammy.Tmpl</code> is a small wrapper around the jquery.tmpl templating engine. You&#x000A;can find more information and download the engine itself at&#x000A;https://github.com/jquery/jquery-tmpl</p>&#x000A;&#x000A;<p>Note: This does not include jquery.tmpl in the source. Please include jquery.tmpl.js before&#x000A;sammy.tmpl.js</p></div></div>
 <div class='klass' id='Sammy.addLogger'>
   <h2 class='klass-name'>
     Sammy.addLogger
