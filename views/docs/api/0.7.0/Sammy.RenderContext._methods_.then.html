@@ -1,0 +1,37 @@
+<div class='individual meth' id='Sammy.RenderContext-then'>
+  <a href='/docs/api/0.7.0/'>
+    <strong>&laquo; Back</strong>
+  </a>
+  <h3>
+    <strong>Sammy.RenderContext</strong>
+    <a href='Sammy.RenderContext._methods_.then'>then</a>
+    <span>
+      (
+      <em>callback</em>
+      )
+    </span>
+  </h3>
+  <div class='links'>
+    <a href='Sammy.RenderContext._methods_.then#comments'>Comments</a>
+    |
+    <a href='https://github.com/quirkey/sammy/tree/v0.7.0/lib/sammy.js#L1371' target='all'>Show in GitHub</a>
+  </div><div class='doc'><p>The "core" of the <code>RenderContext</code> object, adds the <code>callback</code> to the&#x000A;queue. If the context is <code>waiting</code> (meaning an async operation is happening)&#x000A;then the callback will be executed in order, once the other operations are&#x000A;complete. If there is no currently executing operation, the <code>callback</code>&#x000A;is executed immediately.</p>&#x000A;&#x000A;<p>The value returned from the callback is stored in <code>content</code> for the&#x000A;subsiquent operation. If you return <code>false</code>, the queue will pause, and&#x000A;the next callback in the queue will not be executed until <code>next()</code> is&#x000A;called. This allows for the guarunteed order of execution while working&#x000A;with async operations.</p>&#x000A;&#x000A;<p>If then() is passed a string instead of a function, the string is looked&#x000A;up as a helper method on the event context.</p>&#x000A;&#x000A;<h3>Example</h3>&#x000A;&#x000A;<pre class='prettyprint'><code> this.get('#/', function() {&#x000A;   // initialize the RenderContext&#x000A;   // Even though `load()` executes async, the next `then()`&#x000A;   // wont execute until the load finishes&#x000A;   this.load('myfile.txt')&#x000A;       .then(function(content) {&#x000A;         // the first argument to then is the content of the&#x000A;         // prev operation&#x000A;         $('#main').html(content);&#x000A;       });&#x000A; });&#x000A;</code></pre></div><div id='comments'>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'sammyjsorg'; // required: replace example with your forum shortname
+
+    // The following are highly recommended additional parameters. Remove the slashes in front to use.
+    var disqus_identifier = "sammyjsdocs-0.7.0-Sammy.RenderContext-then";
+    var disqus_url = 'http://www.sammyjs.org/docs/api/0.7.0/Sammy.RenderContext._methods_.then';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
+</div>
