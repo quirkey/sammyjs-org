@@ -31,7 +31,7 @@ class SammyjsOrg < Sinatra::Application
   end
 
   before do
-    @current_version = '0.6.3'
+    @current_version = '0.7.0'
   end
 
   get '/' do
