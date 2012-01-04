@@ -15,7 +15,7 @@ Sammy.js is a tiny JavaScript framework developed to ease the pain and provide a
 
 Sammy tries to achieve this by providing a small 'core' framework and an ever-growing list of plugins for specific functionality. The core includes a simple API for defining applications which are made up primarily of @routes@ and @events@. By driving application development around a small and specific API, Sammy attempts to keep your code organized while still allowing a lot of breathing room to define your own style and structure. 
 
-Sammy *is not* a solution for every JavaScript application or problematic situation. It is a single and rather opinionated method for building applications that tries to lend itself to best practices and maintainable development. It does this without the overhead of a large base framework or a single method or system for building models or views. If you want something more fully featured I highly suggest checking out "SproutCore":http://www.sproutcore.com or "Cappucino":http://cappucino.org.
+Sammy *is not* a solution for every JavaScript application or problematic situation. It is a single and rather opinionated method for building applications that tries to lend itself to best practices and maintainable development. It does this without the overhead of a large base framework or a single method or system for building models or views. If you want something more fully featured I highly suggest checking out "SproutCore":http://www.sproutcore.com or "Cappuccino":http://cappuccino.org.
 
 h3(#why). Why
 
