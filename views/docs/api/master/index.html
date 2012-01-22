@@ -3,7 +3,7 @@
     Sammy
     <span>
       (
-
+      
       )
     </span>
   </h2><div class='doc'><p><code>Sammy</code> (also aliased as $.sammy) is not only the namespace for a&#x000A;number of prototypes, its also a top level method that allows for easy&#x000A;creation/management of <code>Sammy.Application</code> instances. There are a&#x000A;number of different forms for <code>Sammy()</code> but each returns an instance&#x000A;of <code>Sammy.Application</code>. When a new instance is created using&#x000A;<code>Sammy</code> it is added to an Object called <code>Sammy.apps</code>. This&#x000A;provides for an easy way to get at existing Sammy applications. Only one&#x000A;instance is allowed per <code>element_selector</code> so when calling&#x000A;<code>Sammy('selector')</code> multiple times, the first time will create&#x000A;the application and the following times will extend the application&#x000A;already added to that selector.</p>&#x000A;&#x000A;<h3>Example</h3>&#x000A;&#x000A;<pre class='prettyprint'><code> // returns the app at #main or a new app&#x000A; Sammy('#main')&#x000A;&#x000A; // equivalent to "new Sammy.Application", except appends to apps&#x000A; Sammy();&#x000A; Sammy(function() { ... });&#x000A;&#x000A; // extends the app at '#main' with function.&#x000A; Sammy('#main', function() { ... });&#x000A;</code></pre></div></div>
@@ -2184,7 +2184,7 @@
     Sammy.Title
     <span>
       (
-
+      
       )
     </span>
   </h2><div class='doc'><p>Sammy.Title is a very simple plugin to easily set the document's title.&#x000A;It supplies a helper for setting the title (<code>title()</code>) within routes,&#x000A;and an app level method for setting the global title (<code>setTitle()</code>)</p></div></div>
@@ -2211,7 +2211,7 @@
     Sammy.log
     <span>
       (
-
+      
       )
     </span>
   </h2><div class='doc'><p>Sends a log message to each logger listed in the global&#x000A;loggers pool. Can take any number of arguments.&#x000A;Also prefixes the arguments with a timestamp.</p></div></div>
