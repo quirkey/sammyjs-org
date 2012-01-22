@@ -1,0 +1,37 @@
+<div class='individual meth' id='Sammy.Application-runRoute'>
+  <a href='/docs/api/0.7.1/'>
+    <strong>&laquo; Back</strong>
+  </a>
+  <h3>
+    <strong>Sammy.Application</strong>
+    <a href='Sammy.Application._methods_.runRoute'>runRoute</a>
+    <span>
+      (
+      <em>verb, path, params, target</em>
+      )
+    </span>
+  </h3>
+  <div class='links'>
+    <a href='Sammy.Application._methods_.runRoute#comments'>Comments</a>
+    |
+    <a href='https://github.com/quirkey/sammy/tree/v0.7.1/lib/sammy.js#L993' target='all'>Show in GitHub</a>
+  </div><div class='doc'><p>First, invokes <code>lookupRoute()</code> and if a route is found, parses the&#x000A;possible URL params and then invokes the route's callback within a new&#x000A;<code>Sammy.EventContext</code>. If the route can not be found, it calls&#x000A;<code>notFound()</code>. If <code>raise_errors</code> is set to <code>true</code> and&#x000A;the <code>error()</code> has not been overridden, it will throw an actual JS&#x000A;error.</p>&#x000A;&#x000A;<p>You probably will never have to call this directly.</p>&#x000A;&#x000A;<h3>Arguments</h3>&#x000A;&#x000A;<ul>&#x000A;<li><code>verb</code> A String for the verb.</li>&#x000A;<li><code>path</code> A String path to lookup.</li>&#x000A;<li><code>params</code> An Object of Params pulled from the URI or passed directly.</li>&#x000A;</ul>&#x000A;&#x000A;&#x000A;<h3>Returns</h3>&#x000A;&#x000A;<p>Either returns the value returned by the route callback or raises a 404 Not Found error.</p></div><div id='comments'>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'sammyjsorg'; // required: replace example with your forum shortname
+
+    // The following are highly recommended additional parameters. Remove the slashes in front to use.
+    var disqus_identifier = "sammyjsdocs-0.7.1-Sammy.Application-runRoute";
+    var disqus_url = 'http://www.sammyjs.org/docs/api/0.7.1/Sammy.Application._methods_.runRoute';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
+</div>
