@@ -10,7 +10,7 @@ h2. Download
 
 h3(#justjs). Just the JS
 
-h4. Sammy.js "full":https://github.com/quirkey/sammy/raw/master/lib/sammy.js "minified":https://github.com/quirkey/sammy/raw/master/lib/min/sammy-latest.min.js
+h4. Sammy.js "full":https://raw.github.com/quirkey/sammy/master/lib/sammy.js "minified":https://raw.github.com/quirkey/sammy/master/lib/min/sammy-latest.min.js
 
 h3(#packages). Packages
 
