@@ -7,15 +7,15 @@
     <a href='Sammy.Application._methods_.swap'>swap</a>
     <span>
       (
-      <em>content</em>
+      <em>content, callback</em>
       )
     </span>
   </h3>
   <div class='links'>
     <a href='Sammy.Application._methods_.swap#comments'>Comments</a>
     |
-    <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1171' target='all'>Show in GitHub</a>
-  </div><div class='doc'><p>Swaps the content of <code>$element()</code> with <code>content</code>&#x000A;You can override this method to provide an alternate swap behavior&#x000A;for <code>EventContext.partial()</code>.</p>&#x000A;&#x000A;<h3>Example</h3>&#x000A;&#x000A;<pre class='prettyprint'><code> var app = $.sammy(function() {&#x000A;&#x000A;   // implements a 'fade out'/'fade in'&#x000A;   this.swap = function(content) {&#x000A;     this.$element().hide('slow').html(content).show('slow');&#x000A;   }&#x000A;&#x000A;   get('#/', function() {&#x000A;     this.partial('index.html.erb') // will fade out and in&#x000A;   });&#x000A;&#x000A; });&#x000A;</code></pre></div><div id='comments'>
+    <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L1217' target='all'>Show in GitHub</a>
+  </div><div class='doc'><p>Swaps the content of <code>$element()</code> with <code>content</code>&#x000A;You can override this method to provide an alternate swap behavior&#x000A;for <code>EventContext.partial()</code>.</p>&#x000A;&#x000A;<h3>Example</h3>&#x000A;&#x000A;<pre class='prettyprint'><code> var app = $.sammy(function() {&#x000A;&#x000A;   // implements a 'fade out'/'fade in'&#x000A;   this.swap = function(content, callback) {&#x000A;     var context = this;&#x000A;     context.$element().fadeOut('slow', function() {&#x000A;       context.$element().html(content);&#x000A;       context.$element().fadeIn('slow', function() {&#x000A;         if (callback) {&#x000A;           callback.apply();&#x000A;         }&#x000A;       });&#x000A;     });&#x000A;   };&#x000A;&#x000A; });&#x000A;</code></pre></div><div id='comments'>
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'sammyjsorg'; // required: replace example with your forum shortname
