@@ -14,11 +14,7 @@
   <div class='links'>
     <a href='Sammy.Application._methods_.helper#comments'>Comments</a>
     |
-<<<<<<< HEAD
     <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L864' target='all'>Show in GitHub</a>
-=======
-    <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L851' target='all'>Show in GitHub</a>
->>>>>>> 00ddfdb5cab8d5974bf62067f4bfb91649f84384
   </div><div class='doc'><p>Helper extends the event context just like <code>helpers()</code> but does it&#x000A;a single method at a time. This is especially useful for dynamically named&#x000A;helpers</p>&#x000A;&#x000A;<h3>Example</h3>&#x000A;&#x000A;<pre class='prettyprint'><code>// Trivial example that adds 3 helper methods to the context dynamically&#x000A;var app = $.sammy(function(app) {&#x000A;&#x000A;  $.each([1,2,3], function(i, num) {&#x000A;    app.helper('helper' + num, function() {&#x000A;      this.log("I'm helper number " + num);&#x000A;    });&#x000A;  });&#x000A;&#x000A;  this.get('#/', function() {&#x000A;    this.helper2(); //=&gt; I'm helper number 2&#x000A;  });&#x000A;});&#x000A;</code></pre>&#x000A;&#x000A;<h3>Arguments</h3>&#x000A;&#x000A;<ul>&#x000A;<li><code>name</code> The name of the method</li>&#x000A;<li><code>method</code> The function to be added to the prototype at <code>name</code></li>&#x000A;</ul>&#x000A;</div><div id='comments'>
 <div id="disqus_thread"></div>
 <script type="text/javascript">
