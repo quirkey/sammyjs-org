@@ -1,0 +1,37 @@
+<div class='individual meth' id='Sammy.RenderContext-render'>
+  <a href='/docs/api/0.7.4/'>
+    <strong>&laquo; Back</strong>
+  </a>
+  <h3>
+    <strong>Sammy.RenderContext</strong>
+    <a href='Sammy.RenderContext._methods_.render'>render</a>
+    <span>
+      (
+      <em>location, data, callback, partials</em>
+      )
+    </span>
+  </h3>
+  <div class='links'>
+    <a href='Sammy.RenderContext._methods_.render#comments'>Comments</a>
+    |
+    <a href='https://github.com/quirkey/sammy/tree/v0.7.4/lib/sammy.js#L1709' target='all'>Show in GitHub</a>
+  </div><div class='doc'><p><code>load()</code> a template and then <code>interpolate()</code> it with data.</p>&#x000A;&#x000A;<p>can be called with multiple different signatures:</p>&#x000A;&#x000A;<pre class='prettyprint'><code> this.render(callback);&#x000A; this.render('/location');&#x000A; this.render('/location', {some: data});&#x000A; this.render('/location', callback);&#x000A; this.render('/location', {some: data}, callback);&#x000A; this.render('/location', {some: data}, {my: partials});&#x000A; this.render('/location', callback, {my: partials});&#x000A; this.render('/location', {some: data}, callback, {my: partials});&#x000A;</code></pre>&#x000A;&#x000A;<h3>Example</h3>&#x000A;&#x000A;<pre class='prettyprint'><code> this.get('#/', function() {&#x000A;   this.render('mytemplate.template', {name: 'test'});&#x000A; });&#x000A;</code></pre></div><div id='comments'>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'sammyjsorg'; // required: replace example with your forum shortname
+
+    // The following are highly recommended additional parameters. Remove the slashes in front to use.
+    var disqus_identifier = "sammyjsdocs-0.7.4-Sammy.RenderContext-render";
+    var disqus_url = 'http://www.sammyjs.org/docs/api/0.7.4/Sammy.RenderContext._methods_.render';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
+</div>
