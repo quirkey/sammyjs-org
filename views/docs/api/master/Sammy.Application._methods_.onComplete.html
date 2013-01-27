@@ -1,0 +1,37 @@
+<div class='individual meth' id='Sammy.Application-onComplete'>
+  <a href='/docs/api/master/'>
+    <strong>&laquo; Back</strong>
+  </a>
+  <h3>
+    <strong>Sammy.Application</strong>
+    <a href='Sammy.Application._methods_.onComplete'>onComplete</a>
+    <span>
+      (
+      <em>callback</em>
+      )
+    </span>
+  </h3>
+  <div class='links'>
+    <a href='Sammy.Application._methods_.onComplete#comments'>Comments</a>
+    |
+    <a href='https://github.com/quirkey/sammy/tree/master/lib/sammy.js#L867' target='all'>Show in GitHub</a>
+  </div><div class='doc'><p>Adds a onComplete function to the application. onComplete functions are executed&#x000A;at the end of a chain of route callbacks, if they call next(). Unlike after,&#x000A;which is called as soon as the route is complete, onComplete is like a final next()&#x000A;for all routes, and is thus run asynchronously</p>&#x000A;&#x000A;<h3>Example</h3>&#x000A;&#x000A;<p>app.get('/chain',function(context,next){</p>&#x000A;&#x000A;<pre class='prettyprint'><code>console.log('chain1');&#x000A;</code></pre>&#x000A;&#x000A;<p>   next();&#x000A;},function(context,next){</p>&#x000A;&#x000A;<pre class='prettyprint'><code>console.log('chain2');&#x000A;</code></pre>&#x000A;&#x000A;<p>   next();&#x000A;});&#x000A;app.get('/link',function(context,next){</p>&#x000A;&#x000A;<pre class='prettyprint'><code>console.log('link1');&#x000A;</code></pre>&#x000A;&#x000A;<p>   next();&#x000A;},function(context,next){</p>&#x000A;&#x000A;<pre class='prettyprint'><code>console.log('link2');&#x000A;</code></pre>&#x000A;&#x000A;<p>   next();&#x000A;});&#x000A;app.onComplete(function(){</p>&#x000A;&#x000A;<pre class='prettyprint'><code>console.log("Running finally")&#x000A;</code></pre>&#x000A;&#x000A;<p>});</p>&#x000A;&#x000A;<p>If you go to '/chain', you will get the following messages:&#x000A;  chain1&#x000A;  chain2&#x000A;  Running onComplete</p>&#x000A;&#x000A;<p>If you go to /link, you will get the following messages:&#x000A;  link1&#x000A;  link2&#x000A;  Running onComplete</p>&#x000A;&#x000A;<p>It really comes to play when doing asynchronous:&#x000A;app.get('/chain',function(context,next){&#x000A;   $.get('/my/url',function(){</p>&#x000A;&#x000A;<pre class='prettyprint'><code>  console.log('chain1');&#x000A; next();&#x000A;</code></pre>&#x000A;&#x000A;<p>   })&#x000A;},function(context,next){</p>&#x000A;&#x000A;<pre class='prettyprint'><code>console.log('chain2');&#x000A;</code></pre>&#x000A;&#x000A;<p>   next();&#x000A;});</p></div><div id='comments'>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'sammyjsorg'; // required: replace example with your forum shortname
+
+    // The following are highly recommended additional parameters. Remove the slashes in front to use.
+    var disqus_identifier = "sammyjsdocs-master-Sammy.Application-onComplete";
+    var disqus_url = 'http://www.sammyjs.org/docs/api/master/Sammy.Application._methods_.onComplete';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
+</div>

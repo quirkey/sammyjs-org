@@ -14,7 +14,7 @@
   <div class='links'>
     <a href='Sammy.Store._methods_.filter#comments'>Comments</a>
     |
-    <a href='https://github.com/quirkey/sammy/tree/master/lib/plugins/sammy.storage.js#L179' target='all'>Show in GitHub</a>
+    <a href='https://github.com/quirkey/sammy/tree/master/lib/plugins/sammy.storage.js#L183' target='all'>Show in GitHub</a>
   </div><div class='doc'><p>Filters the store by a filter function that takes a key value.&#x000A;Returns an array of arrays where the first element of each array&#x000A;is the key and the second is the value of that key.</p>&#x000A;&#x000A;<h3>Example</h3>&#x000A;&#x000A;<pre class='prettyprint'><code>var store = new Sammy.Store;&#x000A;store.set('one', 'two');&#x000A;store.set('two', 'three');&#x000A;store.set('1', 'two');&#x000A;var returned = store.filter(function(key, value) {&#x000A;  // only return&#x000A;  return value === 'two';&#x000A;});&#x000A;// returned =&gt; [['one', 'two'], ['1', 'two']];&#x000A;</code></pre></div><div id='comments'>
 <div id="disqus_thread"></div>
 <script type="text/javascript">
