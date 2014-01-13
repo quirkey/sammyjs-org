@@ -6,8 +6,9 @@ gem "haml"
 gem "compass"
 gem "yajl-ruby"
 gem "RedCloth"
+gem "unicorn"
 
 group :development do
-  gem "thin"
+  gem "foreman"
   gem "shotgun"
 end

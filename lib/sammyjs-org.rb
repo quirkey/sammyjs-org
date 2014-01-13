@@ -19,7 +19,8 @@ class SammyjsOrg < Sinatra::Application
     set :scss, Compass.sass_engine_options
 
     set :root, APP_ROOT
-
+    mime_type :woff, 'application/x-font-woff'
+    mime_type :ttf, 'application/octet-stream'
   end
 
   error do
