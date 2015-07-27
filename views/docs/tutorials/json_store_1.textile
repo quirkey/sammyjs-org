@@ -262,7 +262,7 @@ In our app:
 this.use('Template');
 </code></pre>
 
-Using @'Template'@ as a string above is a shortcut for saying include the @Sammy@.Template object.
+Using @'Template'@ as a string above is a shortcut for saying include the @Sammy.Template@ object.
 
 Two lines later, we got templates! Lets create a simple template for an item.
 In templates/item.template:
@@ -285,7 +285,7 @@ $.each(items, function(i, item) {
 });
 </code></pre>
 
-Here we're telling the context to fetch the template at the path we've defined. By using the extension 'template' we're informing Sammy to use the @template()@ method we've defined. Next, we're passing local variables to the template. Here its our our item. Because we're not swapping out the entire content area, we use @.appendTo()@ to append the rendered content to our app's @$element@. With our new partial we should see our items displaying! (_NOTE: I took a brief but inconsequential interlude to add just a "teeny bit of stylesheet":http://github.com/quirkey/the_json_store/blob/master/stylesheets/jsonstore.css so that our page isn't so ugly_).
+Here we're telling the context to fetch the template at the path we've defined. By using the extension 'template' we're informing Sammy to use the @template()@ method we've defined. Next, we're passing local variables to the template. Here its our item. Because we're not swapping out the entire content area, we use @.appendTo()@ to append the rendered content to our app's @$element@. With our new partial we should see our items displaying! (_NOTE: I took a brief but inconsequential interlude to add just a "teeny bit of stylesheet":http://github.com/quirkey/the_json_store/blob/master/stylesheets/jsonstore.css so that our page isn't so ugly_).
 
 !http://img.skitch.com/20091010-caw27njugyknrajd67eiwatj2w.jpg!
 
@@ -297,7 +297,7 @@ this.get('#/item/:id', function(context) {
 });
 </code></pre>
 
-Here we're using the special :id interpolation in our route path. This allows us to pull the id for the item into the params object. For the sake of simplicity, were going to say that an item id is its index in the items array. This means that before we can load the details, we need to load the items data again. Instead of a dreaded copy and paste, lets use the opportunity to refactor a bit. Since we know were going to need to load the items _before_ each route, we could use the @before()@ method to run something before each route runs. However, this won't work because we're not just doing anything before, we're making an asynchronous request to the server/filesystem and _then_ when its complete, we want to move on to the route. For this set of problems, we have @around()@. @around()@ works similar to before, but instead of just proceeding to the route, we have to let Sammy know to move on to the next operation. In our case, this would look something like:
+Here we're using the special :id interpolation in our route path. This allows us to pull the id for the item into the params object. For the sake of simplicity, we're going to say that an item id is its index in the items array. This means that before we can load the details, we need to load the items data again. Instead of a dreaded copy and paste, lets use the opportunity to refactor a bit. Since we know we're going to need to load the items _before_ each route, we could use the @before()@ method to run something before each route runs. However, this won't work because we're not just doing anything before, we're making an asynchronous request to the server/filesystem and _then_ when its complete, we want to move on to the route. For this set of problems, we have @around()@. @around()@ works similar to before, but instead of just proceeding to the route, we have to let Sammy know to move on to the next operation. In our case, this would look something like:
 
 <pre class="prettyprint lang-js"><code>
 this.around(function(callback) {
@@ -325,7 +325,7 @@ this.get('#/item/:id', function(context) {
 
 Pretty simple, ay? For demonstration sake, here I'm using @this@ instead of @context@ to show that in a route callback, they're equivalent. Its important to mention though, if your nesting callbacks, @this@ will most likely change, which is why using the @context@ from the arguments is rather helpful.
 
-We pull item item out of the array, assign it to @item@ and then render a new item_detail template. This time, instead of using @render()@, we use @partial()@ which internally calls render and _then_ swaps our the content of the entire app element. The template code looks roughly the same as the index item template, except we're going to use the large image and add a link to Amazon and a link back to the index:
+We pull an item out of the array, assign it to @item@ and then render a new item_detail template. This time, instead of using @render()@, we use @partial()@ which internally calls render and _then_ swaps the content of the entire app element. The template code looks roughly the same as the index item template, except we're going to use the large image and add a link to Amazon and a link back to the index:
 
 <pre class="prettyprint lang-html"><code>
 <div class="item-detail">
@@ -363,7 +363,7 @@ this.get('#/', function(context) {
 });
 </code></pre>
 
-Now when we load our index page up, we should be able able to click to an item and even go back to the index. Our back and forward buttons should work great, too! One last bug to fix: When we go back to the index after loading a detail, the detail is still there! This is because of how we're loading the item partials, instead of using the app's @swap()@ method, we've been appending each partial to the content area. The fix is a single line. We just need to clear the content area before loading the partials:
+Now when we load our index page up, we should be able to click to an item and even go back to the index. Our back and forward buttons should work great, too! One last bug to fix: When we go back to the index after loading a detail, the detail is still there! This is because of how we're loading the item partials, instead of using the app's @swap()@ method, we've been appending each partial to the content area. The fix is a single line. We just need to clear the content area before loading the partials:
 
 <pre class="prettyprint lang-js"><code>
 this.get('#/', function(context) {
