@@ -22,7 +22,7 @@ For this belated Part II, we're going to jump right where we left off last time,
 By the end of part II, I hope to have a slightly more useful store. Here's what well try to tackle:
 
 * Adding items to a cart using a form and post() routes
-* Persisting the cart across requests using the Sammy.Storage plugin
+* Persisting the cart across requests using the @Sammy.Storage@ plugin
 * Using bind/trigger to add a mini 'items in cart' display
 
 Also, not a _complete_ E-commerce store, but the important thing is were introducing a couple big pieces, so lets not get ahead of ourselves.
@@ -72,11 +72,9 @@ Lets create a form to handle the user input of quantity and create a button to l
 </div>
 </code></pre>
 
-Nothing to complicated in the form body, just a simple text input with a label, a name, and a default value to allow for quantity. Then a submit button that we label with the infamous 'Add to Cart'. The value is insignificant other than to inform the user of what the button does. The only other piece is a hidden input that will allow us to identify which item we're adding to the cart when we submit the form. When we add it and navigate to an item, we should see something like this:
+Nothing too complicated in the form body, just a simple text input with a label, a name, and a default value to allow for quantity. Then a submit button that we label with the infamous 'Add to Cart'. The value is insignificant other than to inform the user of what the button does. The only other piece is a hidden input that will allow us to identify which item we're adding to the cart when we submit the form.
 
-!http://img.skitch.com/20100101-j622xn613b3q6n9r4drqmiy5ai.jpg!
-
-When we try to submit it, we get some possibly unexpected behavior. The browser goes to #/cart and we're left with a blank content area. We could add a @get('#/cart')@ route to our app, but that wont actually get us where we want. What we want, is a way to capture the form submission and have a place to handle the contents of our form. Fortunately, Sammy makes this easy.
+When we try to submit it, we get some possibly unexpected behavior. The browser goes to @#/cart@ and we're left with a blank content area. We could add a @get('#/cart')@ route to our app, but that won't actually get us where we want. What we want, is a way to capture the form submission and have a place to handle the contents of our form. Fortunately, Sammy makes this easy.
 
 Lets look back at the template and where we defined the form's attributes.
 
@@ -100,13 +98,9 @@ this.post('#/cart', function(context) {
 });
 </code></pre>
 
-Once we submit, the proof is there:
-
-!http://img.skitch.com/20100101-mherwtke8cqa8cw2jjxdp8fga.jpg!
-
 Now that we're actually handling the form submission, we need to actually do something with the data. Sammy helps us out by passing the values of the form that was posted inside the @params@ object. This way we can easily get the _quantity_ that the user entered, by accessing @this.params['quantity']@ within our route. The key in the @params@ object matches the @name@ attribute of the HTML form element. Likewise, we'll also have access to @this.params['item_id']@ based on the hidden input above.
 
-In order to make this a _cart_ we need to store the data we're getting somewhere. The easiest way is probably just creating a top level object in our app and storing a hash of item id's and their quantities. In our @post@ route we can inspect this object and add the item and update its corresponding quantity. Heres a basic implementation:
+In order to make this a _cart_ we need to store the data we're getting somewhere. The easiest way is probably just creating a top level object in our app and storing a hash of item id's and their quantities. In our @post@ route we can inspect this object and add the item and update its corresponding quantity. Here's a basic implementation:
 
 <pre class="prettyprint lang-js"><code>
 // initialize the cart
