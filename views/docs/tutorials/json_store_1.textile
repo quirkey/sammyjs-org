@@ -11,7 +11,7 @@ h2. Documentation
 
 h3. The JSON Store: A Sammy.js Tutorial, Part I
 
-As promised I'm starting a series of tutorials for getting to know Sammy.js. Instead of starting huge I'm going to start pretty small and slowly build up. However, instead of starting at Hello World (which the documentation pretty well covers), lets jump into a somewhat more realistic use case. Lets party like its 1999 and build ourselves an E-commerce front end! (Don't you love the word E-commerce? Its just like E-mail, but with more $$$.) We'll call our shop The JSON Store (_just to confuse people_).
+As promised I'm starting a series of tutorials for getting to know Sammy.js. Instead of starting huge I'm going to start pretty small and slowly build up. However, instead of starting at Hello World (which the documentation pretty well covers), let's jump into a somewhat more realistic use case. Let's party like its 1999 and build ourselves an E-commerce front end! (Don't you love the word E-commerce? Its just like E-mail, but with more $$$.) We'll call our shop The JSON Store (_just to confuse people_).
 
 The goal of this little walkthrough is to build a very basic e-commerce front end. It wont do everything yet. We'll get to everything later. What it will do:
 
@@ -23,7 +23,7 @@ OK. So its not much. Its going to be a pretty basic run through, but hey! you mi
 
 "All the code is on github (of course).":http://github.com/quirkey/the_json_store You can follow along with the commits and see the app get built bit by bit.
 
-First things first, lets build a simple directory layout. Right now we're not going to be talking to any services or a backend, just flat files. Heres the structure I created:
+First things first, let's build a simple directory layout. Right now we're not going to be talking to any services or a backend, just flat files. Heres the structure I created:
 
 <pre class="prettyprint lang-bash"><code>
 $ tree the_json_store
@@ -48,14 +48,14 @@ cd the_json_store/javascripts
 wget http://jqueryjs.googlecode.com/files/jquery-1.4.2.js
 </code></pre>
 
-OK. Those are all the dependencies. Lets also create an empty JS file to store our app code. We could just include the code inside of script tags in our HTML, but I find its cleaner and easier to manage as an external file.
+OK. Those are all the dependencies. Let's also create an empty JS file to store our app code. We could just include the code inside of script tags in our HTML, but I find its cleaner and easier to manage as an external file.
 
 <pre class="prettyprint lang-bash"><code>
 cd the_json_store/javascripts
 touch json_store.js
 </code></pre>
 
-Now lets get started by making a basic HTML thats empty except for our script includes:
+Now let's get started by making a basic HTML thats empty except for our script includes:
 
 <pre class="prettyprint lang-html"><code>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
@@ -91,7 +91,7 @@ The main thing worth noting is the order that which we include the files. First 
 
 data/items.json is an array of 4 items with an identical structure.
 
-Lets dig in and start actually coding our Sammy app. In our app file (javascripts/json_store.js) lets encapsulate our code in "the module pattern":http://yuiblog.com/blog/2007/06/12/module-pattern/ so that we can prevent any scope leak and make use of local functions.
+Let's dig in and start actually coding our Sammy app. In our app file (javascripts/json_store.js) let's encapsulate our code in "the module pattern":http://yuiblog.com/blog/2007/06/12/module-pattern/ so that we can prevent any scope leak and make use of local functions.
 
 <pre class="prettyprint lang-js"><code>
 (function($) {
@@ -103,7 +103,7 @@ Lets dig in and start actually coding our Sammy app. In our app file (javascript
 })(jQuery);
 </code></pre>
 
-The first thing we want to do is handle an 'index'. This should be the page thats loaded if a user first comes to our lovely store. Since we have a good idea at this point that the we're at least going to maintain a header throughout the site and only the content area will change, lets add the header to our html:
+The first thing we want to do is handle an 'index'. This should be the page thats loaded if a user first comes to our lovely store. Since we have a good idea at this point that the we're at least going to maintain a header throughout the site and only the content area will change, let's add the header to our html:
 
 <pre class="prettyprint lang-html"><code>
 <div id="container">
@@ -146,7 +146,7 @@ this.get('#/', function(context) {
 });
 </code></pre>
 
-This is the most basic route. When the browser hits '#/' the function that we've defined will be executed and a Sammy.EventContext with additional info will be passed to context (the callback is also evaluated within the context of Sammy.EventContext, "read more about routes in the Sammy docs":http://code.quirkey.com/sammy/docs/routes.html). Lets just add a simple call to @log@ to make sure our route is firing.
+This is the most basic route. When the browser hits '#/' the function that we've defined will be executed and a Sammy.EventContext with additional info will be passed to context (the callback is also evaluated within the context of Sammy.EventContext, "read more about routes in the Sammy docs":http://code.quirkey.com/sammy/docs/routes.html). Let's just add a simple call to @log@ to make sure our route is firing.
 
 <pre class="prettyprint lang-js"><code>
 this.get('#/', function(context) {
@@ -154,9 +154,9 @@ this.get('#/', function(context) {
 });
 </code></pre>
 
-@log@ just logs to our firebug or web inspector console by default. So lets crack open our browser to index.html with firebug open and see if it works.
+@log@ just logs to our firebug or web inspector console by default. So let's crack open our browser to index.html with firebug open and see if it works.
 
-Oy, It doesn't. Even if we change the URL to 'index.html#/' it still doesn't send the log message. Quit banging your head. Theres a very good reason. Our Sammy app isn't running! Sammy doesn't run until you tell it to, and usually you want to tell it to run after the DOM has loaded. Lets add a call to @run@ within a jQuery.ready callback. We'll also pass it a 'start_url' which is the route we want it to load if no other route was specified. Our code should look like this:
+Oy, It doesn't. Even if we change the URL to 'index.html#/' it still doesn't send the log message. Quit banging your head. Theres a very good reason. Our Sammy app isn't running! Sammy doesn't run until you tell it to, and usually you want to tell it to run after the DOM has loaded. Let's add a call to @run@ within a jQuery.ready callback. We'll also pass it a 'start_url' which is the route we want it to load if no other route was specified. Our code should look like this:
 
 <pre class="prettyprint lang-js"><code>
 (function($) {
@@ -176,11 +176,11 @@ Oy, It doesn't. Even if we change the URL to 'index.html#/' it still doesn't sen
 })(jQuery);
 </code></pre>
 
-Now, lets try again. Open up our browser and it should go directly to '#/' and we should see a nice little timestamped message in our log:
+Now, let's try again. Open up our browser and it should go directly to '#/' and we should see a nice little timestamped message in our log:
 
 !http://img.skitch.com/20091009-t9dr974t2wqtqtm8hh69ggn6a2.jpg!
 
-Huzzah! Lets proceed to making our route actually useful. As we said, the first thing we want to do is load our item data via AJAX. We'll get the data using @$.ajax()@ and then pass it to another callback. In this callback well be iterating over the items. And for now, lets just log their names.
+Huzzah! Let's proceed to making our route actually useful. As we said, the first thing we want to do is load our item data via AJAX. We'll get the data using @$.ajax()@ and then pass it to another callback. In this callback well be iterating over the items. And for now, let's just log their names.
 
 <pre class="prettyprint lang-js"><code>
 this.get('#/', function(context) {
@@ -206,12 +206,12 @@ OKAY! Now that we have our data, we want to actual render it so that our thousan
 <h4>Note about using Google Chrome (or Chromium) and AJAX</h4>
 <p>If you're using a recent version of chrome and have followed the instructions up until this point, you might be scratching your head wondering why nothing seems to work, or at least the items dont seem to be fetched from the JSON. Since version 5, Chrome has blocked AJAX resquests to any protocol other than @http://@. Of course, this includes @file://@, so if you're just running this code on your local machine the AJAX requests will seem to work, but just wont.
 </p>
-<p>There's an easy solution, however, just run a local web server. If you're coding in a Django, Sinatra, or Rails app, this shouldn't be a problem. If you just want to serve files from a directory, there are a couple options. If you're on OS X, you have Apache built in. Start Web Sharing in your Sharing Preferences and put you're files under the Apache www directory. To make it even easier, I've "included a simple ruby script called 'servefiles'":http://github.com/quirkey/the_json_store/blob/master/servefiles that will start a ruby web server in the directory.</p>
+<p>There's an easy solution, however, just run a local web server. If you're coding in a Django, Sinatra, or Rails app, this shouldn't be a problem. If you just want to serve files from a directory, there are a couple options. If you're on OS X, you have Apache built in. Start Web Sharing in your Sharing Preferences and put your files under the Apache www directory. To make it even easier, I've "included a simple ruby script called 'servefiles'":http://github.com/quirkey/the_json_store/blob/master/servefiles that will start a ruby web server in the directory.</p>
 </div>
 
 As of Sammy 0.6 there's a whole new way to load data, interpolate it, and add it to the screen - the @RenderContext@. The @RenderContext@ tries to abstract away the problems of complex asynchronous templating, by creating a simple way to chain commands. The chaining looks a lot like jQuery's own syntax, but @RenderContext@ actually is doing a lot behind the scenes to make sure that each command happens in order whether its asynchronous or not. This means that you can fetch the data, interpolate it, and render it to the screen without ever making a callback. Sounds pretty nifty, eh?
 
-Lets start by changing the @$.ajax()@ call into a call to @load()@. @load@ will create a @RenderContext@ then load the data at the URL given and pass it to the next command in the chain. In our case we can just make this a call to @then()@.
+Let's start by changing the @$.ajax()@ call into a call to @load()@. @load@ will create a @RenderContext@ then load the data at the URL given and pass it to the next command in the chain. In our case we can just make this a call to @then()@.
 
 <pre class="prettyprint lang-js"><code>
 this.get('#/', function(context) {
@@ -246,7 +246,7 @@ Obviously the above example is useless, but you can see how we can refine or cha
 
 By changing our original AJAX call to @load()@ we've also gained parsing of the JSON, simply by using the @.json@ extension. That tells Sammy to use the JSON 'engine' to parse the file, which in this case turns it from a JSON string, to a JS object.
 
-Now that we have the data and a @RenderContext@ to work with, lets make a template and interpolate the data. To do this we have to pick a templating engine and install the Sammy plugin for it. There are a lot of great options for client side templating these days - Mustache, EJS, HAML, Pure, Meld - I suggest when writing an app, you check them all out and evaluate which of them fits your needs. For the purposes of this tutorial, we're going to pick an old and trusted friend: @Sammy.Template@. The @Sammy.Template@ plugin provides us with a simple method based on "John Resig's templating code":http://ejohn.org/blog/javascript-micro-templating/ and "Greg Borenstein's $.srender":http://ideasfordozens.com that allows us to render HTML with embedded javascript and variables.
+Now that we have the data and a @RenderContext@ to work with, let's make a template and interpolate the data. To do this we have to pick a templating engine and install the Sammy plugin for it. There are a lot of great options for client side templating these days - Mustache, EJS, HAML, Pure, Meld - I suggest when writing an app, you check them all out and evaluate which of them fits your needs. For the purposes of this tutorial, we're going to pick an old and trusted friend: @Sammy.Template@. The @Sammy.Template@ plugin provides us with a simple method based on "John Resig's templating code":http://ejohn.org/blog/javascript-micro-templating/ and "Greg Borenstein's $.srender":http://ideasfordozens.com that allows us to render HTML with embedded javascript and variables.
 
 In order to use @Sammy.Template@ we need to include the plugin in our HTML and then 'use' it in our app.
 
@@ -264,7 +264,7 @@ this.use('Template');
 
 Using @'Template'@ as a string above is a shortcut for saying include the @Sammy@.Template object.
 
-Two lines later, we got templates! Lets create a simple template for an item.
+Two lines later, we got templates! Let's create a simple template for an item.
 In templates/item.template:
 
 <pre class="prettyprint lang-erb"><code>
@@ -276,7 +276,7 @@ In templates/item.template:
 </div>
 </code></pre>
 
-Here we're going to interpolate a single item and print out some of its data. Now that we have our template, lets render it. The method for rendering remote templates in Sammy is @render@. Instead of just logging, lets render the items with our new template:
+Here we're going to interpolate a single item and print out some of its data. Now that we have our template, let's render it. The method for rendering remote templates in Sammy is @render@. Instead of just logging, let's render the items with our new template:
 
 <pre class="prettyprint lang-js"><code>
 $.each(items, function(i, item) {
@@ -289,7 +289,7 @@ Here we're telling the context to fetch the template at the path we've defined. 
 
 !http://img.skitch.com/20091010-caw27njugyknrajd67eiwatj2w.jpg!
 
-Theres just one more missing element for our first phase. Clicking on an item to view its detail. We know how to start though right? Lets define a route for an item detail.
+Theres just one more missing element for our first phase. Clicking on an item to view its detail. We know how to start though right? Let's define a route for an item detail.
 
 <pre class="prettyprint lang-js"><code>
 this.get('#/item/:id', function(context) {
@@ -297,7 +297,7 @@ this.get('#/item/:id', function(context) {
 });
 </code></pre>
 
-Here we're using the special :id interpolation in our route path. This allows us to pull the id for the item into the params object. For the sake of simplicity, were going to say that an item id is its index in the items array. This means that before we can load the details, we need to load the items data again. Instead of a dreaded copy and paste, lets use the opportunity to refactor a bit. Since we know were going to need to load the items _before_ each route, we could use the @before()@ method to run something before each route runs. However, this won't work because we're not just doing anything before, we're making an asynchronous request to the server/filesystem and _then_ when its complete, we want to move on to the route. For this set of problems, we have @around()@. @around()@ works similar to before, but instead of just proceeding to the route, we have to let Sammy know to move on to the next operation. In our case, this would look something like:
+Here we're using the special :id interpolation in our route path. This allows us to pull the id for the item into the params object. For the sake of simplicity, were going to say that an item id is its index in the items array. This means that before we can load the details, we need to load the items data again. Instead of a dreaded copy and paste, let's use the opportunity to refactor a bit. Since we know were going to need to load the items _before_ each route, we could use the @before()@ method to run something before each route runs. However, this won't work because we're not just doing anything before, we're making an asynchronous request to the server/filesystem and _then_ when its complete, we want to move on to the route. For this set of problems, we have @around()@. @around()@ works similar to before, but instead of just proceeding to the route, we have to let Sammy know to move on to the next operation. In our case, this would look something like:
 
 <pre class="prettyprint lang-js"><code>
 this.around(function(callback) {
@@ -313,7 +313,7 @@ this.around(function(callback) {
 
 First, we load the items.json as we did before, _then_ we assign the items into our @EventContext@ which is a shared context between the filters and the route. The first argument to the @around@ callback is the next callback in the chain, or in this case the route. Once we've assigned the items, we can queue the callback, making sure that the items are always loaded before we run our route code.
 
-Now that we have the item data loaded in our context, lets pull out the item we want and render a detail view.
+Now that we have the item data loaded in our context, let's pull out the item we want and render a detail view.
 
 <pre class="prettyprint lang-js"><code>
 this.get('#/item/:id', function(context) {
